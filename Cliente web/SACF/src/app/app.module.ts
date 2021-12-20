@@ -17,6 +17,7 @@ import { BubbleChartComponent } from './Charts/bubble-chart/bubble-chart.compone
 import { ScatterChartComponent } from './Charts/scatter-chart/scatter-chart.component';
 import { DynamicChartComponent } from './Charts/dynamic-chart/dynamic-chart.component';
 import { FinancialChartComponent } from './Charts/financial-chart/financial-chart.component';
+import { LoginComponent } from './Pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FinancialChartComponent } from './Charts/financial-chart/financial-char
     BubbleChartComponent,
     ScatterChartComponent,
     DynamicChartComponent,
-    FinancialChartComponent
+    FinancialChartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
