@@ -13,15 +13,17 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <form #logUser="ngForm" (ngSubmit)="enterIntoSystem(logUser.value)" role="form">
+      <input type="text" name="user" #user ngModel class="fadeIn second" placeholder="usuario" autofocus> 
+      <br/>
+      <input type="password" name="password" #password ngModel class="fadeIn third">
+      <br/>
+      <input type="submit" class="fadeIn fourth" value="Verificar">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      <a class="underlineHover" href="#">¿Olvidó su contraseña?</a>
     </div>
 
   </div>

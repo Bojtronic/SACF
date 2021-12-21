@@ -261,3 +261,9 @@ html {
     width:60%;
   }
   
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+    max-width: 600px;
+} 

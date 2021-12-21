@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
-import { NgChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './Charts/pie-chart/pie-chart.component';
 import { LineChartComponent } from './Charts/line-chart/line-chart.component';
 import { BarChartComponent } from './Charts/bar-chart/bar-chart.component';
@@ -39,7 +42,10 @@ import { LoginComponent } from './Pages/login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgChartsModule
+    NgChartsModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

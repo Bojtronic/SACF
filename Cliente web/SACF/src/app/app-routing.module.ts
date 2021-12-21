@@ -14,8 +14,19 @@ import { FinancialChartComponent } from './Charts/financial-chart/financial-char
 import { LoginComponent } from './Pages/login/login.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'radarchart', pathMatch:'full'}, //componente inicial (se redirecciona al login)
-  { path:'radarchart', component:LoginComponent}, //se idica la ruta para llegar o utilizar un componente
+  {path:'', redirectTo:'login', pathMatch:'full'}, //componente por default (se redirecciona al login)
+  { path:'login', component:LoginComponent}, //se indica la ruta al componente (html, scss, typescript)
+  { path:'dashboard', component:DashboardComponent},
+  { path:'piechart', component:PieChartComponent},
+  { path:'linechart', component:LineChartComponent},
+  { path:'barchart', component:BarChartComponent},
+  { path:'doughnutchart', component:DoughnutChartComponent},
+  { path:'radarchart', component:RadarChartComponent},
+  { path:'polarareachart', component:PolarAreaChartComponent},
+  { path:'bubblechart', component:BubbleChartComponent},
+  { path:'scatterchart', component:ScatterChartComponent},
+  { path:'dynamicchart', component:DynamicChartComponent},
+  { path:'financialchart', component:FinancialChartComponent}
 ];
 
 @NgModule({
