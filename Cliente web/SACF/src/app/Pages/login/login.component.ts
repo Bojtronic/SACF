@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgForm} from '@angular/forms';
+import { Login } from 'src/app/Models/Login';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +8,6 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  user="";
-  password="";
 
   constructor(private router:Router) {
     this.closeSystem() //saca de la base de datos los datos de usuarios logeados
@@ -25,8 +22,14 @@ export class LoginComponent implements OnInit {
 
   
 
-  public enterIntoSystem(logUser:NgForm) { 
-    this.router.navigate(['/piechart']);     
+  public enterIntoSystem(login:Login) {
+    if(login.user=="admin" && login.password=="xxx"){
+      this.router.navigate(['/dashboard']); 
+    }
+    else{
+
+    }
+         
   }
 
 }

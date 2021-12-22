@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+    
+    <div class="nav-container">
+        <div>
+            <button (click)="drawer.toggle()" mat-icon-button>
+                <mat-icon>menu</mat-icon>
+              </button>
+            <span>Panel de control</span>
+        </div>
+        <div>
+            <button style="float: right" mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>backup</mat-icon>
+                  <span>Enviar</span>
+                </button>
+                <button mat-menu-item disabled>
+                  <mat-icon>event</mat-icon>
+                  <span>Actividades</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>exit_to_app</mat-icon>
+                  <span>Cerrar sesion</span>
+                </button>
+              </mat-menu> 
+        </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-drawer-container class="example-container">
+  <mat-drawer #drawer mode="side" opened>
+    <mat-list role="list">
+        <mat-list-item role="listitem" routerLink="/piechart">
+            General 
+            <mat-icon>settings</mat-icon>
+        </mat-list-item>
+        <mat-list-item role="listitem" routerLink="/linechart">Contabilidad</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/radarchart">Cuentas por cobrar</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/piechart">Cuentas por pagar</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/piechart">Conciliaciones bancarias</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/piechart">Inventarios</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/piechart">Reportes</mat-list-item>
+      </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+      <td>
+          <app-bar-chart></app-bar-chart>
+      </td>
+  </mat-drawer-content>
+  </mat-drawer-container>

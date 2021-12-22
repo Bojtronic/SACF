@@ -36,6 +36,6 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 //se exportan los componentes para que se puedan redireccionar
-export const routingComponents=[DashboardComponent, PieChartComponent, LineChartComponent, BarChartComponent,
+export const routingComponents=[DashboardComponent, BarChartComponent, PieChartComponent, LineChartComponent,
   DoughnutChartComponent, RadarChartComponent, PolarAreaChartComponent, BubbleChartComponent, ScatterChartComponent,
   DynamicChartComponent, FinancialChartComponent, LoginComponent]
