@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']); 
     }
     else{
+      console.log("usuario no permitido")
 
     }
          

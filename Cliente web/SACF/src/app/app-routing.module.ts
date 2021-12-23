@@ -39,3 +39,4 @@ export class AppRoutingModule { }
 export const routingComponents=[DashboardComponent, BarChartComponent, PieChartComponent, LineChartComponent,
   DoughnutChartComponent, RadarChartComponent, PolarAreaChartComponent, BubbleChartComponent, ScatterChartComponent,
   DynamicChartComponent, FinancialChartComponent, LoginComponent]
+  
