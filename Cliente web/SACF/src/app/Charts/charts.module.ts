@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsRoutingModule } from './charts-routing.module';
 
 import { PieChartComponent } from '../Charts/pie-chart/pie-chart.component';
 import { LineChartComponent } from '../Charts/line-chart/line-chart.component';
@@ -24,7 +25,7 @@ import { BubbleChartComponent } from '../Charts/bubble-chart/bubble-chart.compon
 import { ScatterChartComponent } from '../Charts/scatter-chart/scatter-chart.component';
 import { DynamicChartComponent } from '../Charts/dynamic-chart/dynamic-chart.component';
 import { FinancialChartComponent } from '../Charts/financial-chart/financial-chart.component';
-
+import { AllChartsComponent } from './all-charts/all-charts.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { FinancialChartComponent } from '../Charts/financial-chart/financial-cha
     ScatterChartComponent,
     DynamicChartComponent,
     FinancialChartComponent,
+    AllChartsComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { FinancialChartComponent } from '../Charts/financial-chart/financial-cha
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
+    ChartsRoutingModule,
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
@@ -54,6 +57,7 @@ import { FinancialChartComponent } from '../Charts/financial-chart/financial-cha
     MatListModule,
     MatCardModule,
     MatSidenavModule,
-  ]
+  ],
+  exports: [AllChartsComponent]
 })
 export class ChartsModule { }

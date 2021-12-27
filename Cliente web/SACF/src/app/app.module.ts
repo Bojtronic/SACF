@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-/*
-import { NgChartsModule } from 'ng2-charts';
+
+//import { NgChartsModule } from 'ng2-charts';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,7 +12,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
-*/
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
@@ -53,7 +52,7 @@ import { ChartsModule } from './Charts/charts.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     // NgChartsModule,
-    FormsModule /*,
+    FormsModule,
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
@@ -61,7 +60,7 @@ import { ChartsModule } from './Charts/charts.module';
     MatMenuModule,
     MatListModule,
     MatCardModule,
-    MatSidenavModule */,
+    MatSidenavModule,
     ChartsModule
   ],
   providers: [],
