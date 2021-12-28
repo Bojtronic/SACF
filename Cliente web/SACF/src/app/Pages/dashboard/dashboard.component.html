@@ -6,6 +6,7 @@
                 <mat-icon>menu</mat-icon>
               </button>
             <span>Panel de control</span>
+            <span style="cursor:default">Panel de control</span>
         </div>
         <div>
             <button style="float: right" mat-icon-button [matMenuTriggerFor]="menu">
@@ -31,17 +32,102 @@
 
   <mat-drawer-container class="example-container">
   <mat-drawer #drawer mode="side" opened>
-    <mat-list role="list">
-        <mat-list-item role="listitem" routerLink='pie'> 
-            <mat-icon>settings</mat-icon>
-            General
+    <mat-list style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General
+        <mat-list-item> 
+            
+
+            <mat-menu #animals="matMenu">
+              <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+              <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+            </mat-menu>
+
+            <mat-menu #vertebrates="matMenu">
+              <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+              <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+              <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+              <button mat-menu-item>Birds</button>
+              <button mat-menu-item>Mammals</button>
+            </mat-menu>
+
+            <mat-menu #invertebrates="matMenu">
+              <button mat-menu-item>Insects</button>
+              <button mat-menu-item>Molluscs</button>
+              <button mat-menu-item>Crustaceans</button>
+              <button mat-menu-item>Corals</button>
+              <button mat-menu-item>Arachnids</button>
+              <button mat-menu-item>Velvet worms</button>
+              <button mat-menu-item>Horseshoe crabs</button>
+            </mat-menu>
+
+            <mat-menu #fish="matMenu">
+              <button mat-menu-item>Baikal oilfish</button>
+              <button mat-menu-item>Bala shark</button>
+              <button mat-menu-item>Ballan wrasse</button>
+              <button mat-menu-item>Bamboo shark</button>
+              <button mat-menu-item>Banded killifish</button>
+            </mat-menu>
+
+            <mat-menu #amphibians="matMenu">
+              <button mat-menu-item>Sonoran desert toad</button>
+              <button mat-menu-item>Western toad</button>
+              <button mat-menu-item>Arroyo toad</button>
+              <button mat-menu-item>Yosemite toad</button>
+            </mat-menu>
+
+            <mat-menu #reptiles="matMenu">
+              <button mat-menu-item>Banded Day Gecko</button>
+              <button mat-menu-item>Banded Gila Monster</button>
+              <button mat-menu-item>Black Tree Monitor</button>
+              <button mat-menu-item>Blue Spiny Lizard</button>
+              <button mat-menu-item disabled>Velociraptor</button>
+            </mat-menu>
         </mat-list-item>
-        <mat-list-item role="listitem" routerLink="/linechart">Contabilidad</mat-list-item>
-        <mat-list-item role="listitem" routerLink="/radarchart">Cuentas por cobrar</mat-list-item>
-        <mat-list-item role="listitem" routerLink="/piechart">Cuentas por pagar</mat-list-item>
-        <mat-list-item role="listitem" routerLink="/piechart">Conciliaciones bancarias</mat-list-item>
-        <mat-list-item role="listitem" routerLink="/piechart">Inventarios</mat-list-item>
-        <mat-list-item role="listitem" routerLink="/piechart">Reportes</mat-list-item>
+
+        <mat-list-item role="listitem"></mat-list-item>
+        <button mat-button [matMenuTriggerFor]="contabilidad">Contabilidad</button>
+            <mat-menu #contabilidad="matMenu">
+              <button mat-menu-item [matMenuTriggerFor]="plancuentas">Plan de cuentas</button>
+              <button mat-menu-item [matMenuTriggerFor]="conciliar">Conciliar</button>
+            </mat-menu>
+
+            <mat-menu #plancuentas="matMenu">
+              <button mat-menu-item [matMenuTriggerFor]="deposito">Depósito bancario</button>
+              <button mat-menu-item [matMenuTriggerFor]="transferencia">Transferencia</button>
+              <button mat-menu-item [matMenuTriggerFor]="asiento">Asiento de diario</button>
+              <button mat-menu-item routerLink="/barchart">Grafica de barras</button>
+              <button mat-menu-item routerLink="/piechart">Grafica de pastel</button>
+            </mat-menu>
+
+            <mat-menu #conciliar="matMenu">
+              <button mat-menu-item>Insects</button>
+              <button mat-menu-item>Molluscs</button>
+              <button mat-menu-item>Crustaceans</button>
+              <button mat-menu-item>Corals</button>
+              <button mat-menu-item>Arachnids</button>
+              <button mat-menu-item>Velvet worms</button>
+              <button mat-menu-item>Horseshoe crabs</button>
+            </mat-menu>
+
+            <mat-menu #deposito="matMenu">
+              <button mat-menu-item>Nuevo depositos</button>
+              <button mat-menu-item>Todos los depositos</button>
+            </mat-menu>
+
+            <mat-menu #transferencia="matMenu">
+              <button mat-menu-item>Nueva transferencia</button>
+              <button mat-menu-item>Todas las transferencias</button>
+            </mat-menu>
+
+            <mat-menu #asiento="matMenu">
+              <button mat-menu-item>Nuevo asiento</button>
+              <button mat-menu-item>Todos los asientos</button>
+            </mat-menu>
+
+        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/radarchart">Cuentas por cobrar</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Cuentas por pagar</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Conciliaciones bancarias</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Inventarios</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Reportes</mat-list-item>
       </mat-list>
   </mat-drawer>
   <mat-drawer-content>
