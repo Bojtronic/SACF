@@ -5,7 +5,6 @@
             <button (click)="drawer.toggle()" mat-icon-button>
                 <mat-icon>menu</mat-icon>
               </button>
-            <span>Panel de control</span>
             <span style="cursor:default">Panel de control</span>
         </div>
         <div>
@@ -32,8 +31,8 @@
 
   <mat-drawer-container class="example-container">
   <mat-drawer #drawer mode="side" opened>
-    <mat-list style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General
-        <mat-list-item> 
+    <mat-list> 
+        <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General</mat-list-item> 
             
 
             <mat-menu #animals="matMenu">
@@ -81,10 +80,10 @@
               <button mat-menu-item>Blue Spiny Lizard</button>
               <button mat-menu-item disabled>Velociraptor</button>
             </mat-menu>
-        </mat-list-item>
+        
 
-        <mat-list-item role="listitem"></mat-list-item>
-        <button mat-button [matMenuTriggerFor]="contabilidad">Contabilidad</button>
+        <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="contabilidad">Contabilidad</mat-list-item>
+        
             <mat-menu #contabilidad="matMenu">
               <button mat-menu-item [matMenuTriggerFor]="plancuentas">Plan de cuentas</button>
               <button mat-menu-item [matMenuTriggerFor]="conciliar">Conciliar</button>

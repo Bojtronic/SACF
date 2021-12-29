@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NuevoAsientoComponent } from './contabilidad/nuevo-asiento/nuevo-asiento.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NuevoAsientoComponent
+  ],
   imports: [
     CommonModule
   ]

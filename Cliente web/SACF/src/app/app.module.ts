@@ -12,6 +12,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
@@ -28,8 +31,9 @@ import { DynamicChartComponent } from './Charts/dynamic-chart/dynamic-chart.comp
 import { FinancialChartComponent } from './Charts/financial-chart/financial-chart.component';
 */
 import { LoginComponent } from './Pages/login/login.component';
-
 import { ChartsModule } from './Charts/charts.module';
+
+import { NuevoAsientoComponent } from './Pages/contabilidad/nuevo-asiento/nuevo-asiento.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { ChartsModule } from './Charts/charts.module';
     ScatterChartComponent,
     DynamicChartComponent,
     FinancialChartComponent, */
-    LoginComponent 
+    LoginComponent,
+    NuevoAsientoComponent 
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,8 @@ import { ChartsModule } from './Charts/charts.module';
     MatListModule,
     MatCardModule,
     MatSidenavModule,
+    MatTableModule,
+    MatFormFieldModule,
     ChartsModule
   ],
   providers: [],
