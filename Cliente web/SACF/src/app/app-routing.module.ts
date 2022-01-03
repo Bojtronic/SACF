@@ -18,7 +18,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { NuevoAsientoComponent } from './Pages/contabilidad/nuevo-asiento/nuevo-asiento.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'nuevoasiento', pathMatch:'full'}, //componente por default (se redirecciona al login)
+  {path:'', redirectTo:'login', pathMatch:'full'}, //componente por default (se redirecciona al login)
   { path:'login', component:LoginComponent}, //se indica la ruta al componente (html, scss, typescript)
   { path:'dashboard', component:DashboardComponent},
   { path:'nuevoasiento', component:NuevoAsientoComponent},

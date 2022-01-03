@@ -16,14 +16,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  hide = true;
+
   public closeSystem(){
 
   }
 
-  
-
-  public enterIntoSystem(login:Login) {
-    if(login.user=="admin" && login.password=="xxx"){
+  public enter(user: string, password: string) {
+    if(user=="admin" && password=="xxx"){
       this.router.navigate(['/dashboard']); 
     }
     else{
@@ -32,5 +32,4 @@ export class LoginComponent implements OnInit {
     }
          
   }
-
 }

@@ -1,46 +1,55 @@
-<table mat-table [dataSource]="datos" class="mat-elevation-z8" #tabla1>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="codigo">
-      <th mat-header-cell *matHeaderCellDef> Código </th>
-      <td mat-cell *matCellDef="let articulo"> {{articulo.codigo}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="descripcion">
-      <th mat-header-cell *matHeaderCellDef> Descripción </th>
-      <td mat-cell *matCellDef="let articulo"> {{articulo.descripcion}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="precio">
-      <th mat-header-cell *matHeaderCellDef> Precio </th>
-      <td mat-cell *matCellDef="let articulo"> {{articulo.precio}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="borrar">
-      <th mat-header-cell *matHeaderCellDef> Borra? </th>
-      <td mat-cell *matCellDef="let j = index;">
-        <button mat-raised-button color="warn" focusable="false" (click)="borrarFila(j)">
-          Borra?
-        </button>
-      </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-  </table>
-  <div class="contenedor">
-  
-    <mat-form-field>
-      <input matInput [(ngModel)]="articuloselect.codigo" type="number" placeholder="Ingrese código">
-    </mat-form-field>
-  
-    <mat-form-field>
-      <input matInput [(ngModel)]="articuloselect.descripcion" type="text" placeholder="Ingrese descripción">
-    </mat-form-field>
-  
-    <mat-form-field>
-      <input matInput [(ngModel)]="articuloselect.precio" type="number" placeholder="Ingrese precio">
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
-  
-  </div>
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="consecutivo">
+    <th mat-header-cell *matHeaderCellDef> consecutivo </th>
+    <td mat-cell *matCellDef="let element"> {{element.consecutivo}}
+      <input type="text">
+    </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="debitos">
+    <th mat-header-cell *matHeaderCellDef> debitos </th>
+    <td mat-cell *matCellDef="let element"> {{element.debitos}}
+      <input type="text">
+    </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="creditos">
+    <th mat-header-cell *matHeaderCellDef> creditos </th>
+    <td mat-cell *matCellDef="let element"> {{element.creditos}}
+      <input type="text">
+    </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> descripcion </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}}
+      <input type="text">
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}}
+      <input type="text">
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="impuesto">
+    <th mat-header-cell *matHeaderCellDef> impuesto </th>
+    <td mat-cell *matCellDef="let element"> {{element.impuesto}}
+      <input type="text">
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

@@ -1,8 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -12,14 +7,18 @@
       <img src="../../../assets/Logo.jpeg" id="icon" alt="User Icon" />
     </div>
 
-    <!-- Login Form -->
-    <form #logUser="ngForm" (ngSubmit)="enterIntoSystem(logUser.value)" role="form">
-      <input type="text" name="user" #user ngModel class="fadeIn second" placeholder="usuario" autofocus> 
+    
+    <input type="text" name="user" #user ngModel class="fadeIn second" placeholder="usuario" autofocus>
       <br/>
-      <input type="password" name="password" #password ngModel class="fadeIn third">
-      <br/>
-      <input type="submit" class="fadeIn fourth" value="Verificar">
-    </form>
+      <mat-form-field appearance="fill" class="fadeIn third">
+        <mat-label>Ingrese su contraseña</mat-label>
+        <input name="password" #password ngModel matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <input type="submit" (click)="enter(user.value, password.value)" class="fadeIn fourth" value="Verificar">
+
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
