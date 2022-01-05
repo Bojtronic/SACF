@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //import { NgChartsModule } from 'ng2-charts';
 import { MatInputModule } from '@angular/material/input';
@@ -68,7 +68,8 @@ import { NuevoAsientoComponent } from './Pages/contabilidad/nuevo-asiento/nuevo-
     MatSidenavModule,
     MatTableModule,
     MatFormFieldModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

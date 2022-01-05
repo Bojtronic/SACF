@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
-export interface PeriodicElement {
-  consecutivo: number;
-  debitos: number;
-  creditos: number;
+export interface Asiento {
+  consecutivo: string;
+  debitos: string;
+  creditos: string;
   descripcion: string;
   nombre: string;
-  impuesto: number;
+  impuesto: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {consecutivo: 1, debitos: 1, creditos: 1, descripcion: 'H', nombre: 'nombre', impuesto: 1 }
+
+const nuevo_asiento: Asiento[] = [
+  {consecutivo: '', debitos: '', creditos: '', descripcion: '', nombre: '', impuesto: '' }
 ];
 
 @Component({
@@ -23,7 +24,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class NuevoAsientoComponent {
   
   displayedColumns: string[] = ['consecutivo', 'debitos', 'creditos', 'descripcion', 'nombre', 'impuesto'];
-  dataSource = ELEMENT_DATA;
+  dataSource = [''];
 
   constructor(){
 
@@ -31,9 +32,11 @@ export class NuevoAsientoComponent {
 
   ngOnInit(): void {
   }
+
+  crearAsiento(consecutivo: string){
+    console.log(consecutivo);
+  }
   
 }
-
-
 
 

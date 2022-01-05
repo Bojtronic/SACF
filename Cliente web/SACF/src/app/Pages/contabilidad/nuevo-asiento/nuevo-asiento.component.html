@@ -1,51 +1,48 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
+  
   <!-- Position Column -->
   <ng-container matColumnDef="consecutivo">
     <th mat-header-cell *matHeaderCellDef> consecutivo </th>
-    <td mat-cell *matCellDef="let element"> {{element.consecutivo}}
-      <input type="text">
+    <td mat-cell *matCellDef="let element"> 
+      <input type="text" #consecutivo id= "consecutivo" name="consecutivo" ngModel matInput>
     </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="debitos">
     <th mat-header-cell *matHeaderCellDef> debitos </th>
-    <td mat-cell *matCellDef="let element"> {{element.debitos}}
-      <input type="text">
+    <td mat-cell *matCellDef="let element">
+      <input type="text" #debitos name="debitos" ngModel matInput>
     </td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="creditos">
     <th mat-header-cell *matHeaderCellDef> creditos </th>
-    <td mat-cell *matCellDef="let element"> {{element.creditos}}
-      <input type="text">
+    <td mat-cell *matCellDef="let element">
+      <input type="text" #creditos name="creditos" ngModel matInput>
     </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="descripcion">
     <th mat-header-cell *matHeaderCellDef> descripcion </th>
-    <td mat-cell *matCellDef="let element"> {{element.descripcion}}
-      <input type="text">
+    <td mat-cell *matCellDef="let element">
+      <input type="text" #descripcion name="descripcion" ngModel matInput>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="nombre">
     <th mat-header-cell *matHeaderCellDef> nombre </th>
-    <td mat-cell *matCellDef="let element"> {{element.nombre}}
-      <input type="text">
+    <td mat-cell *matCellDef="let element">
+      <input type="text" #nombre name="nombre" ngModel matInput>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="impuesto">
     <th mat-header-cell *matHeaderCellDef> impuesto </th>
-    <td mat-cell *matCellDef="let element"> {{element.impuesto}}
-      <input type="text">
+    <td mat-cell *matCellDef="let element">
+      <input type="text" #impuesto name="impuesto" ngModel matInput>
     </td>
   </ng-container>
 
@@ -53,3 +50,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
+<button mat-icon-button (click)="crearAsiento(consecutivo.value)">
+  <mat-icon>delete_forever</mat-icon>
+</button>
