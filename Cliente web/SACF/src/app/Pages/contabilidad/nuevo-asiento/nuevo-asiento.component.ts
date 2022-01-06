@@ -33,8 +33,13 @@ export class NuevoAsientoComponent {
   ngOnInit(): void {
   }
 
-  crearAsiento(consecutivo: string){
+  crearAsiento(consecutivo: string, debitos: string, creditos: string, descripcion: string, nombre: string, impuesto: string){
     console.log(consecutivo);
+    console.log(debitos);
+    console.log(creditos);
+    console.log(descripcion);
+    console.log(nombre);
+    console.log(impuesto);
   }
   
 }
