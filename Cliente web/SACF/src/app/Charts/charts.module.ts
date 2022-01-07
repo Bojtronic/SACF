@@ -44,11 +44,11 @@ import { AllChartsComponent } from './all-charts/all-charts.component';
   ],
   imports: [
     CommonModule,
+    ChartsRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
-    ChartsRoutingModule,
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
@@ -58,6 +58,18 @@ import { AllChartsComponent } from './all-charts/all-charts.component';
     MatCardModule,
     MatSidenavModule,
   ],
-  exports: [AllChartsComponent]
+  exports: [
+    AllChartsComponent,
+    PieChartComponent,
+    LineChartComponent,
+    BarChartComponent,
+    DoughnutChartComponent,
+    RadarChartComponent,
+    PolarAreaChartComponent,
+    BubbleChartComponent,
+    ScatterChartComponent,
+    DynamicChartComponent,
+    FinancialChartComponent
+  ]
 })
 export class ChartsModule { }

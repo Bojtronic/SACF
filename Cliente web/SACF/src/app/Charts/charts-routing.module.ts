@@ -28,8 +28,8 @@ const routes: Routes = [
       { path:'scatterchart', component:ScatterChartComponent},
       { path:'dynamicchart', component:DynamicChartComponent},
       { path:'financialchart', component:FinancialChartComponent},
-      { path:'allcharts', component:AllChartsComponent},
-      { path:'**', redirectTo:'allcharts' }
+      { path:'allcharts', component:AllChartsComponent}
+      //{ path:'**', redirectTo:'allcharts' }
     ]
 }
 ]

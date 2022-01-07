@@ -118,15 +118,15 @@
             </mat-menu>
 
             <mat-menu #asiento="matMenu">
-              <button mat-menu-item routerLink="/nuevoasiento">Nuevo asiento</button>
+              <button mat-menu-item (click)="toNewAsiento()">Nuevo asiento</button>
               <button mat-menu-item>Todos los asientos</button>
             </mat-menu>
 
-        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/radarchart">Cuentas por cobrar</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Cuentas por pagar</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Conciliaciones bancarias</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Inventarios</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" routerLink="/piechart">Reportes</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por cobrar</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por pagar</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Conciliaciones bancarias</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Inventarios</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Reportes</mat-list-item>
       </mat-list>
   </mat-drawer>
   <mat-drawer-content>
