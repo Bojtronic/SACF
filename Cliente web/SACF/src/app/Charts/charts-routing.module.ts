@@ -29,7 +29,6 @@ const routes: Routes = [
       { path:'dynamicchart', component:DynamicChartComponent},
       { path:'financialchart', component:FinancialChartComponent},
       { path:'allcharts', component:AllChartsComponent}
-      //{ path:'**', redirectTo:'allcharts' }
     ]
 }
 ]

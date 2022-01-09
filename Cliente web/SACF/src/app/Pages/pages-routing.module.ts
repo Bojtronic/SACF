@@ -14,10 +14,7 @@ const routes: Routes = [
       { path:'login', component:LoginComponent},
       { path:'dashboard', component:DashboardComponent},
       { path:'newasiento', component:NewAsientoComponent},
-      { path:'allasientos', component:AllAsientosComponent},
-      { path: 'charts',
-        loadChildren: () => import('../Charts/charts.module').then(m => m.ChartsModule) 
-      }
+      { path:'allasientos', component:AllAsientosComponent}
     ]
   }
 ]

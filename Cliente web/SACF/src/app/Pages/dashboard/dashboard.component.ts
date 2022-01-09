@@ -19,5 +19,6 @@ export class DashboardComponent implements OnInit {
 
   x (){
     console.log("No se ha creado la ruta al componente");
+    this.router.navigate(['/radarchart']);
   }
 }
