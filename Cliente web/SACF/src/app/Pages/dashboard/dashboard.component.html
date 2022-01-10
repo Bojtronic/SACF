@@ -2,35 +2,43 @@
     
     <div class="nav-container">
         <div>
-            <button (click)="drawer.toggle()" mat-icon-button>
-                <mat-icon>menu</mat-icon>
-              </button>
-            <span style="cursor:default">Panel de control</span>
+            <button (click)="adminSidenav.toggle(); contaSidenav.close()" mat-icon-button>
+              <mat-icon>business_center</mat-icon>
+              Administración
+            </button>
+            <br>
+            <button (click)="contaSidenav.toggle(); adminSidenav.close()" mat-icon-button>
+              <mat-icon>bar_chart</mat-icon>
+              Contabilidad
+            </button>
+                          
         </div>
-        <div>
-            <button style="float: right" mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>backup</mat-icon>
-                  <span>Enviar</span>
-                </button>
-                <button mat-menu-item disabled>
-                  <mat-icon>event</mat-icon>
-                  <span>Actividades</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>exit_to_app</mat-icon>
-                  <span>Cerrar sesion</span>
-                </button>
-              </mat-menu> 
+        <div style="float: right">
+          <p></p>
+          <button style="float: left" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>backup</mat-icon>
+              <span>Enviar</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>event</mat-icon>
+              <span>Actividades</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Cerrar sesion</span>
+            </button>
+          </mat-menu> 
         </div>
     </div>
   </mat-toolbar>
 
-  <mat-drawer-container class="example-container">
-  <mat-drawer #drawer mode="side" opened>
+
+  <mat-drawer-container>
+  <mat-drawer #adminSidenav mode="side" closed>
     <mat-list> 
         <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General</mat-list-item> 
             
@@ -80,8 +88,16 @@
               <button mat-menu-item>Blue Spiny Lizard</button>
               <button mat-menu-item disabled>Velociraptor</button>
             </mat-menu>
-        
 
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cosas de administración</mat-list-item>
+        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Otras varas</mat-list-item>
+      </mat-list>
+  </mat-drawer>
+
+
+
+  <mat-drawer #contaSidenav mode="side" closed>
+    <mat-list>   
         <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="contabilidad">Contabilidad</mat-list-item>
         
             <mat-menu #contabilidad="matMenu">
@@ -93,18 +109,11 @@
               <button mat-menu-item [matMenuTriggerFor]="deposito">Depósito bancario</button>
               <button mat-menu-item [matMenuTriggerFor]="transferencia">Transferencia</button>
               <button mat-menu-item [matMenuTriggerFor]="asiento">Asiento de diario</button>
-              <button mat-menu-item routerLink="/barchart">Grafica de barras</button>
-              <button mat-menu-item routerLink="/piechart">Grafica de pastel</button>
             </mat-menu>
 
             <mat-menu #conciliar="matMenu">
-              <button mat-menu-item>Insects</button>
-              <button mat-menu-item>Molluscs</button>
-              <button mat-menu-item>Crustaceans</button>
-              <button mat-menu-item>Corals</button>
-              <button mat-menu-item>Arachnids</button>
-              <button mat-menu-item>Velvet worms</button>
-              <button mat-menu-item>Horseshoe crabs</button>
+              <button mat-menu-item>Nueva conciliaciación</button>
+              <button mat-menu-item>Todas las conciliaciones</button>
             </mat-menu>
 
             <mat-menu #deposito="matMenu">
@@ -129,9 +138,27 @@
         <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Reportes</mat-list-item>
       </mat-list>
   </mat-drawer>
+
+
+jghjfg
+
   <mat-drawer-content>
-      <td>
-          <app-all-charts></app-all-charts>
-      </td>
+    <td>
+      <mat-drawer-content>
+        <app-all-charts></app-all-charts>
+      </mat-drawer-content>
+    </td>
+  
+    <td style="width:300px;" valign="top">
+      <div>
+        <mat-drawer-content>
+          <mat-card>Conversor de divisas</mat-card>
+          <br>
+          <mat-card>
+           x
+          </mat-card>
+        </mat-drawer-content>
+      </div>
+    </td>
   </mat-drawer-content>
   </mat-drawer-container>
