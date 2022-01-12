@@ -15,12 +15,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PagesRoutingModule } from './pages-routing.module';
-
 import { ChartsModule } from '../Charts/charts.module';
+import {MatSelectModule} from '@angular/material/select';
+
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './Shared/header/header.component';
+import { FooterComponent } from './Shared/footer/footer.component';
 
 
 
@@ -30,7 +33,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     DashboardComponent,
     NewAsientoComponent,
-    AllAsientosComponent
+    AllAsientosComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +55,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatCardModule,
     MatSidenavModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
+  ],
+  exports: [
+    LoginComponent,
+    DashboardComponent,
+    NewAsientoComponent,
+    AllAsientosComponent,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class PagesModule { }

@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
+import { HeaderComponent } from './Shared/header/header.component';
+import { FooterComponent } from './Shared/footer/footer.component';
 
 const routes: Routes = [
   {
@@ -14,7 +16,9 @@ const routes: Routes = [
       { path:'login', component:LoginComponent},
       { path:'dashboard', component:DashboardComponent},
       { path:'newasiento', component:NewAsientoComponent},
-      { path:'allasientos', component:AllAsientosComponent}
+      { path:'allasientos', component:AllAsientosComponent},
+      { path:'header', component:HeaderComponent},
+      { path:'footer', component:FooterComponent}
     ]
   }
 ]
