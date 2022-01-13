@@ -37,4 +37,53 @@
 </tr>
 
 <h3>Todos los asientos</h3>
-<app-all-asientos></app-all-asientos>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="consecutivo">
+      <th mat-header-cell *matHeaderCellDef> consecutivo </th>
+      <td mat-cell *matCellDef="let element"> {{element.consecutivo}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="debitos">
+      debitos
+      <th mat-header-cell *matHeaderCellDef> debitos </th>
+      <td mat-cell *matCellDef="let element"> {{element.debitos}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="creditos">
+      <th mat-header-cell *matHeaderCellDef> creditos </th>
+      <td mat-cell *matCellDef="let element"> {{element.creditos}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> descripcion </th>
+      <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="impuesto">
+      <th mat-header-cell *matHeaderCellDef> impuesto </th>
+      <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Datos del asiento">
+  </mat-paginator>
+</div>
