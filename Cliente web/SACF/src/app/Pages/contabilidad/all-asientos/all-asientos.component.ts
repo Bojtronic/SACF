@@ -10,7 +10,9 @@ import {MatTableDataSource} from '@angular/material/table';
 export class AllAsientosComponent implements AfterViewInit{
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Asiento>(AsientosData);
+
+  Columns: string[] = ['consecutivo', 'debitos', 'creditos', 'descripcion', 'nombre', 'impuesto'];
 
   constructor() { }
 
@@ -24,32 +26,34 @@ export class AllAsientosComponent implements AfterViewInit{
   }
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Asiento {
+  consecutivo: string;
+  debitos: string;
+  creditos: string;
+  descripcion: string;
+  nombre: string;
+  impuesto: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+const AsientosData: Asiento[] = [
+  {consecutivo: '1', debitos: '1000', creditos: '1000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '2', debitos: '2000', creditos: '2000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '3', debitos: '3000', creditos: '3000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '4', debitos: '4000', creditos: '4000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '5', debitos: '5000', creditos: '5000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '6', debitos: '6000', creditos: '6000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '7', debitos: '7000', creditos: '7000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '8', debitos: '8000', creditos: '8000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '9', debitos: '9000', creditos: '9000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '10', debitos: '10000', creditos: '10000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '11', debitos: '11000', creditos: '11000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '12', debitos: '12000', creditos: '12000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '13', debitos: '13000', creditos: '13000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '14', debitos: '14000', creditos: '14000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '15', debitos: '15000', creditos: '15000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '16', debitos: '16000', creditos: '16000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '17', debitos: '17000', creditos: '17000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '18', debitos: '18000', creditos: '18000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '19', debitos: '19000', creditos: '19000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {consecutivo: '20', debitos: '20000', creditos: '20000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
 ];

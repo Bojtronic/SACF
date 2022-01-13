@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ChartsModule } from '../Charts/charts.module';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
@@ -56,7 +57,8 @@ import { FooterComponent } from './Shared/footer/footer.component';
     MatSidenavModule,
     MatTableModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule
   ],
   exports: [
     LoginComponent,

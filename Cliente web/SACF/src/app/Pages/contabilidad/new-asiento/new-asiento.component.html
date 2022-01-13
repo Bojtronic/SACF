@@ -1,89 +1,118 @@
-<h3>Datos para crear el asiento</h3>
+<mat-form-field appearance="fill" class="example-form-field">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="datepicker">
+    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+</mat-form-field>
 
-
-<tr>
-  <td>
-    <label>consecutivo</label>
-    <input type="text" #consecutivo name="consecutivo" matInput placeholder=">>>">
-  </td>
-  <td>
-    <label>debitos</label>
-    <input type="text" #debitos name="debitos" ngModel matInput placeholder=">>>">
-  </td>
-  <td>
-    <label>creditos</label>
-    <input type="text" #creditos name="creditos" ngModel matInput placeholder=">>>">
-  </td>
-  <td>
-    <label>descripcion</label>
-    <input type="text" #descripcion name="descripcion" ngModel matInput placeholder=">>>">
-  </td>
-  <td>
-    <label>nombre</label>
-    <input type="text" #nombre name="nombre" ngModel matInput placeholder=">>>">
-  </td>
-  <td>
-    <label>impuesto</label>
-    <input type="text" #impuesto name="impuesto" ngModel matInput placeholder=">>>">
-  </td>
-  <td>
-    <button mat-icon-button (click)="consecutivo.value=''; debitos.value=''; creditos.value=''; descripcion.value=''; nombre.value=''; impuesto.value=''">
-      <mat-icon>delete_forever</mat-icon>
-    </button>
-    <button mat-icon-button (click)="newAsiento(consecutivo.value, debitos.value, creditos.value, descripcion.value, nombre.value, impuesto.value)">
-      <mat-icon>assignment_turned_in</mat-icon>
-    </button>
-  </td>
-</tr>
-
-<h3>Todos los asientos</h3>
-
+<mat-card>
+    
+    <td>
+        <label>consecutivo</label>
+        <input type="text" #consecutivo name="consecutivo" matInput placeholder=">>>">
+      </td>
+      <td>
+        <label>debitos</label>
+        <input type="text" #debitos name="debitos" ngModel matInput placeholder=">>>">
+      </td>
+      <td>
+        <label>creditos</label>
+        <input type="text" #creditos name="creditos" ngModel matInput placeholder=">>>">
+      </td>
+      <td>
+        <label>descripcion</label>
+        <input type="text" #descripcion name="descripcion" ngModel matInput placeholder=">>>">
+      </td>
+      <td>
+        <label>nombre</label>
+        <input type="text" #nombre name="nombre" ngModel matInput placeholder=">>>">
+      </td>
+      <td>
+        <label>impuesto</label>
+        <input type="text" #impuesto name="impuesto" ngModel matInput placeholder=">>>">
+      </td>
+      <td>
+        <button mat-icon-button (click)="consecutivo.value=''; debitos.value=''; creditos.value=''; descripcion.value=''; nombre.value=''; impuesto.value=''">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button mat-icon-button (click)="newAsiento(consecutivo.value, debitos.value, creditos.value, descripcion.value, nombre.value, impuesto.value)">
+          <mat-icon>assignment_turned_in</mat-icon>
+        </button>
+      </td>    
+  
+</mat-card>
+    
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="consecutivo">
+        <th mat-header-cell *matHeaderCellDef> consecutivo </th>
+        <td mat-cell *matCellDef="let element"> {{element.consecutivo}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="debitos">
+        <th mat-header-cell *matHeaderCellDef> debitos </th>
+        <td mat-cell *matCellDef="let element"> {{element.debitos}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="creditos">
+        <th mat-header-cell *matHeaderCellDef> creditos </th>
+        <td mat-cell *matCellDef="let element"> {{element.creditos}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> descripcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="impuesto">
+        <th mat-header-cell *matHeaderCellDef> impuesto </th>
+        <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Datos del asiento">
+    </mat-paginator>
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="consecutivo">
-      <th mat-header-cell *matHeaderCellDef> consecutivo </th>
-      <td mat-cell *matCellDef="let element"> {{element.consecutivo}} </td>
-    </ng-container>
+    <mat-card>
+        <td>
+            <button mat-fab color="warn" style="width: 100px; color: rgb(0, 0, 0);">Borrar todo</button>
+        </td>
+        <td>
+            <button mat-fab color="warn" style="width: 120px; background-color: rgb(88, 71, 243); color: rgb(0, 0, 0);">Crear y guardar</button>
+        </td>
+        <td>
+            <button mat-fab color="warn" style="width: 70px; background-color: rgb(229, 241, 205); color: rgb(0, 0, 0);">Guardar</button>
+        </td>
+    </mat-card>
+</div>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="debitos">
-      debitos
-      <th mat-header-cell *matHeaderCellDef> debitos </th>
-      <td mat-cell *matCellDef="let element"> {{element.debitos}} </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="creditos">
-      <th mat-header-cell *matHeaderCellDef> creditos </th>
-      <td mat-cell *matCellDef="let element"> {{element.creditos}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="descripcion">
-      <th mat-header-cell *matHeaderCellDef> descripcion </th>
-      <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef> nombre </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="impuesto">
-      <th mat-header-cell *matHeaderCellDef> impuesto </th>
-      <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="Columns"></tr>
-    <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons 
-                 aria-label="Datos del asiento">
-  </mat-paginator>
+<div class="alert alert-primary">
+    <td>
+        <button>ver todos los asientos</button>
+    </td>
+    <td>
+        <button>ir al panel de control</button>
+    </td>
 </div>

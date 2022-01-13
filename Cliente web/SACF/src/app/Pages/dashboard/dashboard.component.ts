@@ -31,6 +31,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/newasiento']); 
   }
 
+  toAllAsientos() {
+    this.router.navigate(['/allasientos']);
+  }
+
   x (){
     console.log("No se ha creado la ruta al componente");
   }
