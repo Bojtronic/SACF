@@ -4,40 +4,31 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface Asiento {
-  consecutivo: string;
-  debitos: string;
-  creditos: string;
+  numlinea: string;
+  cuenta: string;
+  debito: string;
+  credito: string;
   descripcion: string;
-  nombre: string;
   impuesto: string;
+  proveedor: string;
+  fechabanco: string;
 }
 
 const AsientosData: Asiento[] = [
-  {consecutivo: '1', debitos: '1000', creditos: '1000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '2', debitos: '2000', creditos: '2000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '3', debitos: '3000', creditos: '3000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '4', debitos: '4000', creditos: '4000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '5', debitos: '5000', creditos: '5000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '6', debitos: '6000', creditos: '6000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '7', debitos: '7000', creditos: '7000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '8', debitos: '8000', creditos: '8000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '9', debitos: '9000', creditos: '9000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '10', debitos: '10000', creditos: '10000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '11', debitos: '11000', creditos: '11000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '12', debitos: '12000', creditos: '12000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '13', debitos: '13000', creditos: '13000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '14', debitos: '14000', creditos: '14000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '15', debitos: '15000', creditos: '15000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '16', debitos: '16000', creditos: '16000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '17', debitos: '17000', creditos: '17000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '18', debitos: '18000', creditos: '18000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '19', debitos: '19000', creditos: '19000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
-  {consecutivo: '20', debitos: '20000', creditos: '20000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
+  {numlinea: '1', cuenta: 'BAC', debito: '1000', credito: '1000', descripcion: 'compra de alimento', impuesto: '200', proveedor: 'Veterinario', fechabanco: '00/00/0000'},
+  {numlinea: '2', cuenta: 'BCR', debito: '2000', credito: '2000', descripcion: 'pago por drogas', impuesto: '0', proveedor: 'Mafia', fechabanco: '00/00/0000'},
+  {numlinea: '3', cuenta: 'CATHAY', debito: '3000', credito: '3000', descripcion: 'devolucion', impuesto: '100', proveedor: 'Huguito', fechabanco: '00/00/0000'}
 ];
 
-interface Animal {
-  name: string;
-  sound: string;
+interface Proveedor {
+  nombre: string;
+  correo: string;
+}
+
+interface Cuenta {
+  titular: string;
+  banco: string;
+  descripcion: string;
 }
 
 @Component({
@@ -50,7 +41,7 @@ interface Animal {
 
 export class NewAsientoComponent implements AfterViewInit{
   
-  Columns: string[] = ['consecutivo', 'debitos', 'creditos', 'descripcion', 'nombre', 'impuesto'];
+  Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco'];
   
   nuevoConsecutivo: number = 666;
 
@@ -83,13 +74,22 @@ export class NewAsientoComponent implements AfterViewInit{
     }
   }
 
-  animalControl = new FormControl('', Validators.required);
+  proveedorControl = new FormControl('', Validators.required);
+  cuentaControl = new FormControl('', Validators.required);
+
   selectFormControl = new FormControl('', Validators.required);
-  animals: Animal[] = [
-    {name: 'Dog', sound: 'Woof!'},
-    {name: 'Cat', sound: 'Meow!'},
-    {name: 'Cow', sound: 'Moo!'},
-    {name: 'Fox', sound: 'Wa-pa-pa-pa-pa-pa-pow!'},
+
+  proveedores: Proveedor[] = [
+    {nombre: 'Felix el gato', correo: 'xyz@catmail.com'},
+    {nombre: 'Buckethead', correo: 'oioi@metal.com'},
+    {nombre: 'Ryan Williams', correo: 'nitrocircus@au.com'},
+    {nombre: 'Goku', correo: 'dragonball@anime.com'}
   ];
   
+  cuentas: Cuenta[] = [
+    {titular: 'Mechudin', banco: 'BAC', descripcion: 'cuenta para el vicio'},
+    {titular: 'Cory', banco: 'BCR', descripcion: 'cuenta para comida'},
+    {titular: 'Alissa', banco: 'Scotiabank', descripcion: 'cuenta para viajes'},
+    {titular: 'Simone', banco: 'Cathay', descripcion: 'cuenta para instrumentos'}
+  ];
 }

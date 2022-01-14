@@ -25,14 +25,13 @@
         <label>Cuenta contable</label>
         <mat-form-field>
           <mat-label>---</mat-label>
-          <mat-select [formControl]="animalControl" required>
-            <mat-option>---</mat-option>
-            <mat-option #nombre *ngFor="let animal of animals" [value]="animal">
-              {{animal.name}}
+          <mat-select [formControl]="cuentaControl" required>
+            <mat-option #nombre *ngFor="let cuenta of cuentas" [value]="cuenta">
+              {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
-          <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+          <mat-error *ngIf="cuentaControl.hasError('required')">Selecione una cuenta</mat-error>
+          <mat-hint>{{cuentaControl.value?.titular}}</mat-hint>
         </mat-form-field>
       </td>
       <td>
@@ -50,15 +49,13 @@
       <td>
         <label>Proveedor</label>
         <mat-form-field>
-          <mat-label>---</mat-label>
-          <mat-select [formControl]="animalControl" required>
-            <mat-option>---</mat-option>
-            <mat-option #nombre *ngFor="let animal of animals" [value]="animal">
-              {{animal.name}}
+          <mat-select [formControl]="proveedorControl" required>
+            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor">
+              {{proveedor.nombre}} - {{proveedor.correo}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
-          <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+          <mat-error *ngIf="proveedorControl.hasError('required')">Selecione un proveedor</mat-error>
+          <mat-hint>{{proveedorControl.value?.nombre}}</mat-hint>
         </mat-form-field>
       </td>
     </div>
@@ -67,7 +64,7 @@
     <div>
       <mat-form-field style="width: 500px;">
         <mat-label>Descripcion</mat-label>
-        <input type="text" #descripcion name="descripcion" ngModel matInput placeholder="---">
+        <input type="text" #descripcion name="descripcion" ngModel matInput>
       </mat-form-field>
     </div>
     <div>
@@ -81,7 +78,6 @@
     </div> 
     <p></p>
     <div>
-      <p></p>
       <td>
         <button mat-icon-button>
           <mat-icon>delete_forever</mat-icon>
@@ -109,40 +105,54 @@
     <table mat-table [dataSource]="dataSource">
   
       <!-- Position Column -->
-      <ng-container matColumnDef="consecutivo">
-        <th mat-header-cell *matHeaderCellDef> consecutivo </th>
-        <td mat-cell *matCellDef="let element"> {{element.consecutivo}} </td>
+      <ng-container matColumnDef="numlinea">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element"> {{element.numlinea}} </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="cuenta">
+        <th mat-header-cell *matHeaderCellDef> Cuentas </th>
+        <td mat-cell *matCellDef="let element"> {{element.cuenta}} </td>
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="debitos">
-        <th mat-header-cell *matHeaderCellDef> debitos </th>
-        <td mat-cell *matCellDef="let element"> {{element.debitos}} </td>
+      <ng-container matColumnDef="debito">
+        <th mat-header-cell *matHeaderCellDef> Debitos </th>
+        <td mat-cell *matCellDef="let element"> {{element.debito}} </td>
       </ng-container>
   
       <!-- Weight Column -->
-      <ng-container matColumnDef="creditos">
-        <th mat-header-cell *matHeaderCellDef> creditos </th>
-        <td mat-cell *matCellDef="let element"> {{element.creditos}} </td>
+      <ng-container matColumnDef="credito">
+        <th mat-header-cell *matHeaderCellDef> Creditos </th>
+        <td mat-cell *matCellDef="let element"> {{element.credito}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
       <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef> descripcion </th>
+        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
         <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-      </ng-container>
-  
-      <!-- Symbol Column -->
       <ng-container matColumnDef="impuesto">
-        <th mat-header-cell *matHeaderCellDef> impuesto </th>
+        <th mat-header-cell *matHeaderCellDef> Impuestos </th>
         <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
       </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="proveedor">
+        <th mat-header-cell *matHeaderCellDef> Proveedores </th>
+        <td mat-cell *matCellDef="let element"> {{element.proveedor}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fechabanco">
+        <th mat-header-cell *matHeaderCellDef> Ingreso al banco </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechabanco}} </td>
+      </ng-container>
+  
+  
   
       <tr mat-header-row *matHeaderRowDef="Columns"></tr>
       <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
