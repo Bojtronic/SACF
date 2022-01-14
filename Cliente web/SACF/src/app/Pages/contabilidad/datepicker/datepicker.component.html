@@ -1,0 +1,9 @@
+<mat-label>Elija la fecha</mat-label>
+    <input matInput [matDatepicker]="datepicker">
+    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancelar</button>
+        <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>

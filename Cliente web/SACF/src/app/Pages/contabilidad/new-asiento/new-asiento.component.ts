@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -34,11 +35,10 @@ const AsientosData: Asiento[] = [
   {consecutivo: '20', debitos: '20000', creditos: '20000', descripcion: 'H', nombre: 'H', impuesto: 'H'},
 ];
 
-/*
-const nuevo_asiento: Asiento[] = [
-  {consecutivo: '', debitos: '', creditos: '', descripcion: '', nombre: '', impuesto: '' }
-];
-*/
+interface Animal {
+  name: string;
+  sound: string;
+}
 
 @Component({
   selector: 'app-new-asiento',
@@ -51,7 +51,8 @@ const nuevo_asiento: Asiento[] = [
 export class NewAsientoComponent implements AfterViewInit{
   
   Columns: string[] = ['consecutivo', 'debitos', 'creditos', 'descripcion', 'nombre', 'impuesto'];
-  //dataSource = [''];
+  
+  nuevoConsecutivo: number = 666;
 
   dataSource = new MatTableDataSource<Asiento>(AsientosData);
 
@@ -81,5 +82,14 @@ export class NewAsientoComponent implements AfterViewInit{
       console.log("impuesto: "+impuesto);
     }
   }
+
+  animalControl = new FormControl('', Validators.required);
+  selectFormControl = new FormControl('', Validators.required);
+  animals: Animal[] = [
+    {name: 'Dog', sound: 'Woof!'},
+    {name: 'Cat', sound: 'Meow!'},
+    {name: 'Cow', sound: 'Moo!'},
+    {name: 'Fox', sound: 'Wa-pa-pa-pa-pa-pa-pow!'},
+  ];
   
 }

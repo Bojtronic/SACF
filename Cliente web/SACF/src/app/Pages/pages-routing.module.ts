@@ -8,6 +8,7 @@ import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.comp
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
+import { DatepickerComponent } from './contabilidad/datepicker/datepicker.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path:'newasiento', component:NewAsientoComponent},
       { path:'allasientos', component:AllAsientosComponent},
       { path:'header', component:HeaderComponent},
-      { path:'footer', component:FooterComponent}
+      { path:'footer', component:FooterComponent},
+      { path:'datepicker', component:DatepickerComponent}
     ]
   }
 ]

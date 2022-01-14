@@ -18,6 +18,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ChartsModule } from '../Charts/charts.module';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
@@ -25,6 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
+import { DatepickerComponent } from './contabilidad/datepicker/datepicker.component';
+
 
 
 
@@ -36,7 +40,8 @@ import { FooterComponent } from './Shared/footer/footer.component';
     NewAsientoComponent,
     AllAsientosComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DatepickerComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +63,8 @@ import { FooterComponent } from './Shared/footer/footer.component';
     MatTableModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     LoginComponent,
