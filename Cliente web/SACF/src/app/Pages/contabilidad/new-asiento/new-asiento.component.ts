@@ -3,6 +3,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { MatSelectChange } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
+
 export interface Asiento {
   numlinea: string;
   cuenta: string;
@@ -14,7 +17,7 @@ export interface Asiento {
   fechabanco: string;
 }
 
-const AsientosData: Asiento[] = [
+ const AsientosData: Asiento[] = [
   {numlinea: '1', cuenta: 'BAC', debito: '1000', credito: '1000', descripcion: 'compra de alimento', impuesto: '200', proveedor: 'Veterinario', fechabanco: '00/00/0000'},
   {numlinea: '2', cuenta: 'BCR', debito: '2000', credito: '2000', descripcion: 'pago por drogas', impuesto: '0', proveedor: 'Mafia', fechabanco: '00/00/0000'},
   {numlinea: '3', cuenta: 'CATHAY', debito: '3000', credito: '3000', descripcion: 'devolucion', impuesto: '100', proveedor: 'Huguito', fechabanco: '00/00/0000'}
@@ -40,12 +43,15 @@ interface Cuenta {
 
 
 export class NewAsientoComponent implements AfterViewInit{
-  
+  cuentaSelect: string  = '';
+
+  asientoo: Asiento[] = AsientosData;
+
   Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco'];
   
   nuevoConsecutivo: number = 666;
 
-  dataSource = new MatTableDataSource<Asiento>(AsientosData);
+  dataSource = new MatTableDataSource<Asiento>(this.asientoo);
 
   constructor(){
 
@@ -60,19 +66,24 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  newAsiento(consecutivo: string, debitos: string, creditos: string, descripcion: string, nombre: string, impuesto: string){
-    if(consecutivo=='' || debitos=='' || creditos=='' || descripcion=='' || nombre=='' || impuesto==''){
-      console.log("Faltan datos");
-    }
-    else{
-      console.log("consecutivo: "+consecutivo);
-      console.log("debitos: "+debitos);
-      console.log("creditos: "+creditos);
-      console.log("descripcion: "+descripcion);
-      console.log("nombre: "+nombre);
-      console.log("impuesto: "+impuesto);
-    }
+  x(cuenta: string){
+    console.log(cuenta);
   }
+
+  
+  setCuenta(titular: string, banco: string, descripcion: string){
+    this.newCuenta.titular = titular;
+    this.newCuenta.banco = banco;
+    this.newCuenta.descripcion = descripcion;
+
+    console.log(this.newCuenta);
+    let asientoaux: Asiento = {numlinea: '3', cuenta: 'CATHAY', debito: '3000', credito: '3000', descripcion: 'devolucion', impuesto: '100', proveedor: 'Huguito', fechabanco: '00/00/0000'}
+
+    this.asientoo.push(asientoaux);
+    
+    this.dataSource = new MatTableDataSource<Asiento>(this.asientoo);
+  }
+
 
   proveedorControl = new FormControl('', Validators.required);
   cuentaControl = new FormControl('', Validators.required);
@@ -86,6 +97,8 @@ export class NewAsientoComponent implements AfterViewInit{
     {nombre: 'Goku', correo: 'dragonball@anime.com'}
   ];
   
+  newCuenta: Cuenta = {titular: '', banco: '', descripcion: ''};
+
   cuentas: Cuenta[] = [
     {titular: 'Mechudin', banco: 'BAC', descripcion: 'cuenta para el vicio'},
     {titular: 'Cory', banco: 'BCR', descripcion: 'cuenta para comida'},

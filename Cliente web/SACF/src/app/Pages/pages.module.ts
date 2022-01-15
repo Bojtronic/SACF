@@ -27,7 +27,6 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
-import { DatepickerComponent } from './contabilidad/datepicker/datepicker.component';
 
 
 
@@ -40,8 +39,7 @@ import { DatepickerComponent } from './contabilidad/datepicker/datepicker.compon
     NewAsientoComponent,
     AllAsientosComponent,
     HeaderComponent,
-    FooterComponent,
-    DatepickerComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,

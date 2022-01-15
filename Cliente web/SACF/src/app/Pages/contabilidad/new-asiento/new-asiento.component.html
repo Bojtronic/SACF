@@ -24,9 +24,8 @@
       <td>
         <label>Cuenta contable</label>
         <mat-form-field>
-          <mat-label>---</mat-label>
           <mat-select [formControl]="cuentaControl" required>
-            <mat-option #nombre *ngFor="let cuenta of cuentas" [value]="cuenta">
+            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.titular, cuenta.banco, cuenta.descripcion)">
               {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
             </mat-option>
           </mat-select>
@@ -50,7 +49,7 @@
         <label>Proveedor</label>
         <mat-form-field>
           <mat-select [formControl]="proveedorControl" required>
-            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor">
+            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor" (click)="x(proveedor.nombre)">
               {{proveedor.nombre}} - {{proveedor.correo}}
             </mat-option>
           </mat-select>
@@ -88,11 +87,8 @@
           <mat-icon>check_circle</mat-icon>
         </button>
       </td>
-    </div>
-    
+    </div>   
   </mat-card>
-  
-
 </mat-card>
 
 <mat-card>
