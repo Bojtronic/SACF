@@ -71,8 +71,21 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
+  borrarLineas(){
+    AsientoRows.splice(0, AsientoRows.length);
+        
+    this.dataSource = new MatTableDataSource<Asiento>(AsientoRows);
+    this.dataSource.paginator = this.paginator;
+  }
+
   addLinea(debito: string, credito: string, impuesto: string, descripcion: string, fecha: string){
-    let newnumLinea: string = (+AsientoRows[AsientoRows.length - 1].numlinea + 1).toString();
+    let newnumLinea: string = '';
+    if(AsientoRows.length == 0){
+      newnumLinea = '1';
+    }
+    else{
+      newnumLinea = (+AsientoRows[AsientoRows.length - 1].numlinea + 1).toString();
+    }
 
     let newLinea: Asiento = {numlinea: newnumLinea, cuenta: this.banco, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: fecha}
     
