@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
+import { MatDatepickerInput } from '@angular/material/datepicker';
 
 export interface Asiento {
   numlinea: string;
@@ -17,7 +18,7 @@ export interface Asiento {
   fechabanco: string;
 }
 
- const AsientosData: Asiento[] = [
+ const AsientoRows: Asiento[] = [
   {numlinea: '1', cuenta: 'BAC', debito: '1000', credito: '1000', descripcion: 'compra de alimento', impuesto: '200', proveedor: 'Veterinario', fechabanco: '00/00/0000'},
   {numlinea: '2', cuenta: 'BCR', debito: '2000', credito: '2000', descripcion: 'pago por drogas', impuesto: '0', proveedor: 'Mafia', fechabanco: '00/00/0000'},
   {numlinea: '3', cuenta: 'CATHAY', debito: '3000', credito: '3000', descripcion: 'devolucion', impuesto: '100', proveedor: 'Huguito', fechabanco: '00/00/0000'}
@@ -43,15 +44,19 @@ interface Cuenta {
 
 
 export class NewAsientoComponent implements AfterViewInit{
-  cuentaSelect: string  = '';
-
-  asientoo: Asiento[] = AsientosData;
+  banco: string  = '';
+  proveedor: string = '';
+  debito: string = '';
+  credito: string = '';
+  impuesto: string = '';
+  descripcion: string = '';
+  fecha: string = '';
 
   Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco'];
   
   nuevoConsecutivo: number = 666;
 
-  dataSource = new MatTableDataSource<Asiento>(this.asientoo);
+  dataSource = new MatTableDataSource<Asiento>(AsientoRows);
 
   constructor(){
 
@@ -66,22 +71,24 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  x(cuenta: string){
-    console.log(cuenta);
+  addLinea(debito: string, credito: string, impuesto: string, descripcion: string, fecha: string){
+    let newnumLinea: string = (+AsientoRows[AsientoRows.length - 1].numlinea + 1).toString();
+
+    let newLinea: Asiento = {numlinea: newnumLinea, cuenta: this.banco, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: fecha}
+    
+    AsientoRows.push(newLinea);
+    
+    this.dataSource = new MatTableDataSource<Asiento>(AsientoRows);
+    this.dataSource.paginator = this.paginator;
   }
 
-  
-  setCuenta(titular: string, banco: string, descripcion: string){
-    this.newCuenta.titular = titular;
-    this.newCuenta.banco = banco;
-    this.newCuenta.descripcion = descripcion;
 
-    console.log(this.newCuenta);
-    let asientoaux: Asiento = {numlinea: '3', cuenta: 'CATHAY', debito: '3000', credito: '3000', descripcion: 'devolucion', impuesto: '100', proveedor: 'Huguito', fechabanco: '00/00/0000'}
+  setProveedor(nombre: string){
+    this.proveedor = nombre;
+  }
 
-    this.asientoo.push(asientoaux);
-    
-    this.dataSource = new MatTableDataSource<Asiento>(this.asientoo);
+  setCuenta(banco: string){
+    this.banco = banco;
   }
 
 

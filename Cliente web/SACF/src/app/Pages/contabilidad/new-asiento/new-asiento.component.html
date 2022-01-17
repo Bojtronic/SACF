@@ -25,7 +25,7 @@
         <label>Cuenta contable</label>
         <mat-form-field>
           <mat-select [formControl]="cuentaControl" required>
-            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.titular, cuenta.banco, cuenta.descripcion)">
+            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.banco)">
               {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
             </mat-option>
           </mat-select>
@@ -35,11 +35,11 @@
       </td>
       <td>
         <label>Debito</label>
-        <input type="text" #debitos name="debitos" ngModel matInput placeholder="---">
+        <input type="text" #debito name="debito" ngModel matInput placeholder="---">
       </td>
       <td>
         <label>Credito</label>
-        <input type="text" #creditos name="creditos" ngModel matInput placeholder="---">
+        <input type="text" #credito name="credito" ngModel matInput placeholder="---">
       </td>
       <td>
         <label>Impuesto</label>
@@ -49,7 +49,7 @@
         <label>Proveedor</label>
         <mat-form-field>
           <mat-select [formControl]="proveedorControl" required>
-            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor" (click)="x(proveedor.nombre)">
+            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor" (click)="setProveedor(proveedor.nombre)">
               {{proveedor.nombre}} - {{proveedor.correo}}
             </mat-option>
           </mat-select>
@@ -70,9 +70,9 @@
       
         <mat-form-field>
           <mat-label>Ingreso al banco</mat-label>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <input matInput [matDatepicker]="picker" placeholder="00/00/0000">
+          <input matInput #fecha [matDatepicker]="picker" placeholder="00/00/0000">
         </mat-form-field>
     </div> 
     <p></p>
@@ -83,7 +83,7 @@
         </button>
       </td>
       <td>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="addLinea(debito.value, credito.value, impuesto.value, descripcion.value, fecha.value)">
           <mat-icon>check_circle</mat-icon>
         </button>
       </td>
@@ -153,11 +153,13 @@
       <tr mat-header-row *matHeaderRowDef="Columns"></tr>
       <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
     </table>
-  
+
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons 
-                   aria-label="Datos del asiento">
+      showFirstLastButtons 
+      aria-label="dataSource">
     </mat-paginator>
+  
+    
 
     <mat-card>
         <td>
