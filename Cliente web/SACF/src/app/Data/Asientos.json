@@ -1,0 +1,18 @@
+[
+    {
+        "consecutivo": "1", 
+        "fecha":"00/00/0000",
+        "numlinea": [{"numero": "1", "cuenta": "BAC", "debito": "1000", "credito": "1000", "descripcion": "compra de alimento", "impuesto": "200", "proveedor": "Veterinario", "fechabanco": "00/00/0000"},
+            {"numero": "2", "cuenta": "BCR", "debito": "2000", "credito": "2000", "descripcion": "paranguanitirimicuaro", "impuesto": "500", "proveedor": "Vendor", "fechabanco": "11/11/3333"},
+            {"numero": "3", "cuenta": "BN", "debito": "3000", "credito": "3000", "descripcion": "otorrinolaringologo", "impuesto": "9500", "proveedor": "Picachu", "fechabanco": "07/10/9999"}
+        ]
+    },
+    {
+        "consecutivo": "2", 
+        "fecha":"66/99/3333",
+        "numlinea": [{"numero": "1", "cuenta": "Pollo", "debito": "666", "credito": "4321", "descripcion": "viaje a Finlandia", "impuesto": "0", "proveedor": "COB", "fechabanco": "22/98/1234"},
+            {"numero": "2", "cuenta": "Gato", "debito": "4567", "credito": "9876", "descripcion": "onomatopeya", "impuesto": "8760", "proveedor": "Tilin", "fechabanco": "54/65/9373"},
+            {"numero": "3", "cuenta": "Dragon", "debito": "1567", "credito": "9999", "descripcion": "Churros", "impuesto": "9500", "proveedor": "Godzilla", "fechabanco": "31/19/1349"}
+        ]
+    }
+]
