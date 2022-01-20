@@ -27,7 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
-
+import { FormAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -39,7 +40,8 @@ import { FooterComponent } from './Shared/footer/footer.component';
     NewAsientoComponent,
     AllAsientosComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FormAsientoComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { FooterComponent } from './Shared/footer/footer.component';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   exports: [
     LoginComponent,

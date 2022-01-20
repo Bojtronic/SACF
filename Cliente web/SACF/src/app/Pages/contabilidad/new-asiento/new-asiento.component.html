@@ -13,7 +13,7 @@
       </mat-form-field>
     </td>
     <td>
-      <h1> Consecutivo # {{nuevoConsecutivo}}</h1>
+      <h1> Consecutivo # {{consecutivo}}</h1>
     </td>
     <td>
       <img src="../../../assets/LogoCliente.png"/>
@@ -146,6 +146,21 @@
       <ng-container matColumnDef="fechabanco">
         <th mat-header-cell *matHeaderCellDef> Ingreso al banco </th>
         <td mat-cell *matCellDef="let element"> {{element.fechabanco}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="accion">
+        *ngFor="let AsientoRow of AsientoRows"
+        <th mat-header-cell *matHeaderCellDef> Editar / Eliminar </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="openDialog()"> <mat-icon>create</mat-icon> </button>
+          <button mat-icon-button (click)="deleteLine(element.numero)"> <mat-icon>highlight_off</mat-icon> </button> 
+        </td>
+        <tr >
+          <td>
+            
+          </td>
+        </tr>
       </ng-container>
   
   
