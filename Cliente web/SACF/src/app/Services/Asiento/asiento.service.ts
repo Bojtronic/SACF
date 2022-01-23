@@ -7,6 +7,18 @@ import { LineaAsiento } from 'src/app/Models/LineaAsiento';
 })
 export class AsientoService {
 
+  private allNewRows: LineaAsiento[] = [];
+  private newRow: LineaAsiento = {
+    numero: '',
+    cuenta: '',
+    debito: '',
+    credito: '',
+    descripcion: '',
+    impuesto: '',
+    proveedor: '',
+    fechabanco: ''
+  }
+
   Asientos: Asiento[] = [
   {consecutivo: '1', fecha:'00/00/0000',
     numlinea: [{numero: '1', cuenta: 'BAC', debito: '1000', credito: '1000', descripcion: 'compra de alimento', impuesto: '200', proveedor: 'Veterinario', fechabanco: '00/00/0000'},
@@ -22,10 +34,19 @@ export class AsientoService {
     {numero: '3', cuenta: 'BN', debito: '3000', credito: '3000', descripcion: 'otorrinolaringologo', impuesto: '9500', proveedor: 'Picachu', fechabanco: '07/10/9999'}]}
 ];
 
+  getNewRow(){
+    return this.newRow;
+  }
+
+  getAllNewRows(){
+    return this.allNewRows;
+  }
+
   allAsientos(){
     return this.Asientos
   }
 
+  //*
   asientoLines(consecutivo: string){
     let asiento: Asiento = this.Asientos[+consecutivo]
     let lines: LineaAsiento[] = asiento.numlinea
@@ -34,6 +55,25 @@ export class AsientoService {
 
   asiento(consecutivo: string){
     this.Asientos[+consecutivo]
+  }
+
+  deleteRow(numero: string){
+    this.allNewRows.splice(+numero-1, 1);
+    this.allNewRows = this.reorderRows(this.allNewRows);
+  }
+
+  addNewRow(row: LineaAsiento){
+    this.allNewRows.push(row)
+  }
+
+  editRow(numero: string, cuenta: string, debito: string, credito: string, descripcion: string, impuesto: string, proveedor: string, fecha: string){
+    this.newRow.numero=numero;
+    this.newRow.cuenta=cuenta;
+    this.newRow.debito=debito;
+    this.newRow.credito=credito;
+    this.newRow.descripcion=descripcion;
+    this.newRow.impuesto=impuesto;
+    return this.newRow;
   }
 
   newConsecutivo(){

@@ -19,7 +19,7 @@ import { ChartsModule } from '../Charts/charts.module';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
@@ -27,8 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
-import { FormAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.component';
+
 
 
 
@@ -73,7 +73,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     NewAsientoComponent,
     AllAsientosComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FormAsientoComponent
   ]
 })
 export class PagesModule { }

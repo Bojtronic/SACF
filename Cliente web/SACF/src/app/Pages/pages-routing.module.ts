@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
+import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.component'
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
 
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path:'newasiento', component:NewAsientoComponent},
       { path:'allasientos', component:AllAsientosComponent},
       { path:'header', component:HeaderComponent},
-      { path:'footer', component:FooterComponent}
+      { path:'footer', component:FooterComponent},
+      { path:'formasiento', component:FormAsientoComponent}
     ]
   }
 ]

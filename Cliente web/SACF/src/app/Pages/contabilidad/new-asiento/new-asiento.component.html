@@ -19,76 +19,11 @@
       <img src="../../../assets/LogoCliente.png"/>
     </td>
   </table>
-  <mat-card style="height: 300px">
-    <div>
-      <td>
-        <label>Cuenta contable</label>
-        <mat-form-field>
-          <mat-select [formControl]="cuentaControl" required>
-            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.banco)">
-              {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="cuentaControl.hasError('required')">Selecione una cuenta</mat-error>
-          <mat-hint>{{cuentaControl.value?.titular}}</mat-hint>
-        </mat-form-field>
-      </td>
-      <td>
-        <label>Debito</label>
-        <input type="text" #debito name="debito" ngModel matInput placeholder="---">
-      </td>
-      <td>
-        <label>Credito</label>
-        <input type="text" #credito name="credito" ngModel matInput placeholder="---">
-      </td>
-      <td>
-        <label>Impuesto</label>
-        <input type="text" #impuesto name="impuesto" ngModel matInput placeholder="---">
-      </td>
-      <td>
-        <label>Proveedor</label>
-        <mat-form-field>
-          <mat-select [formControl]="proveedorControl" required>
-            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor" (click)="setProveedor(proveedor.nombre)">
-              {{proveedor.nombre}} - {{proveedor.correo}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="proveedorControl.hasError('required')">Selecione un proveedor</mat-error>
-          <mat-hint>{{proveedorControl.value?.nombre}}</mat-hint>
-        </mat-form-field>
-      </td>
-    </div>
-    
-    
-    <div>
-      <mat-form-field style="width: 500px;">
-        <mat-label>Descripcion</mat-label>
-        <input type="text" #descripcion name="descripcion" ngModel matInput>
-      </mat-form-field>
-    </div>
-    <div>
-      
-        <mat-form-field>
-          <mat-label>Ingreso al banco</mat-label>
-          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <input matInput #fecha [matDatepicker]="picker" placeholder="00/00/0000">
-        </mat-form-field>
-    </div> 
-    <p></p>
-    <div>
-      <td>
-        <button mat-icon-button>
-          <mat-icon>delete_forever</mat-icon>
-        </button>
-      </td>
-      <td>
-        <button mat-icon-button (click)="addLinea(debito.value, credito.value, impuesto.value, descripcion.value, fecha.value)">
-          <mat-icon>check_circle</mat-icon>
-        </button>
-      </td>
-    </div>   
-  </mat-card>
+
+  <app-form-asiento></app-form-asiento>
+
+  
+  
 </mat-card>
 
 <mat-card>
@@ -154,7 +89,7 @@
         <th mat-header-cell *matHeaderCellDef> Editar / Eliminar </th>
         <td mat-cell *matCellDef="let element">
           <button mat-icon-button (click)="openDialog()"> <mat-icon>create</mat-icon> </button>
-          <button mat-icon-button (click)="deleteLine(element.numero)"> <mat-icon>highlight_off</mat-icon> </button> 
+          <button mat-icon-button (click)="deleteRow(element.numero)"> <mat-icon>highlight_off</mat-icon> </button> 
         </td>
         <tr >
           <td>
@@ -178,7 +113,7 @@
 
     <mat-card>
         <td>
-            <button mat-fab color="warn" style="width: 100px; color: rgb(0, 0, 0);" (click)="borrarLineas()">Borrar todo</button>
+            <button mat-fab color="warn" style="width: 100px; color: rgb(0, 0, 0);">Borrar todo</button>
         </td>
         <td>
             <button mat-fab color="warn" style="width: 120px; background-color: rgb(88, 71, 243); color: rgb(0, 0, 0);">Crear y guardar</button>

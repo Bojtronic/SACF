@@ -9,19 +9,13 @@ import { Cuenta } from 'src/app/Models/Cuenta';
 import { AsientoService } from 'src/app/Services/Asiento/asiento.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-/*
-let newAsiento: Asiento = {consecutivo: '1', fecha:'00/00/0000',
-numlinea: [{numero: '1', cuenta: 'BAC', debito: '1000', credito: '1000', descripcion: 'compra de alimento', impuesto: '200', proveedor: 'Veterinario', fechabanco: '00/00/0000'},
-           {numero: '2', cuenta: 'BCR', debito: '2000', credito: '2000', descripcion: 'paranguanitirimicuaro', impuesto: '500', proveedor: 'Vendor', fechabanco: '11/11/3333'},
-           {numero: '3', cuenta: 'BN', debito: '3000', credito: '3000', descripcion: 'otorrinolaringologo', impuesto: '9500', proveedor: 'Picachu', fechabanco: '07/10/9999'}
-]};
-*/
+import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
+import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
+import { FormAsientoComponent } from '../form-asiento/form-asiento.component';
 
 
-
-
-
+let newProveedor: string = '';
+let newCuenta: string = '';
 
 @Component({
   selector: 'app-new-asiento',
@@ -32,23 +26,21 @@ numlinea: [{numero: '1', cuenta: 'BAC', debito: '1000', credito: '1000', descrip
 
 
 export class NewAsientoComponent implements AfterViewInit{
-  numero: string = '';
-  banco: string  = '';
-  proveedor: string = '';
-  debito: string = '';
-  credito: string = '';
-  impuesto: string = '';
-  descripcion: string = '';
-  fecha: string = '';
+  proveedorControl = this.proveedorService.getControl();
+  cuentaControl = this.cuentaService.getControl();
 
-  AsientoRows: LineaAsiento[] = [];
-  consecutivo: string = this.service.newConsecutivo()
+  proveedores: Proveedor[] = this.proveedorService.allProveedores();
+  cuentas: Cuenta[] = this.cuentaService.allCuentas();
+
+
+  AsientoRows: LineaAsiento[] = this.asientoService.getAllNewRows();
+  consecutivo: string = this.asientoService.newConsecutivo()
 
   Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco','accion'];
 
   dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
 
-  constructor(public dialog: MatDialog, private service:AsientoService, private router:Router){ }
+  constructor(public dialog: MatDialog, private asientoService:AsientoService, private cuentaService:CuentaService, private proveedorService:ProveedorService, private router:Router){ }
 
 
 
@@ -56,7 +48,7 @@ export class NewAsientoComponent implements AfterViewInit{
     const dialogRef = this.dialog.open(FormAsientoComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //this.openDialog()
       //this.animal = result;
     });
   }
@@ -70,98 +62,43 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  deleteLine(numLine: string){
-    this.AsientoRows.splice(+numLine-1, 1);
-    this.AsientoRows = this.service.reorderRows(this.AsientoRows);
-
+  deleteRow(numero: string){
+    //this.AsientoRows.splice(+numero-1, 1);
+    //this.AsientoRows = this.asientoService.reorderRows(this.AsientoRows);
+    this.asientoService.deleteRow(numero);
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;
   }
-
+/*
   borrarLineas(){
     this.AsientoRows.splice(0, this.AsientoRows.length);
         
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;
   }
-
-  addLinea(debito: string, credito: string, impuesto: string, descripcion: string, fecha: string){
-    this.numero = (this.AsientoRows.length + 1).toString();
-
-    let newLinea: LineaAsiento = {numero: this.numero, cuenta: this.banco, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: fecha}
+*/
+  addRow(debito: string, credito: string, descripcion: string, impuesto: string, fecha: string){
+    let numero: string = (this.AsientoRows.length + 1).toString();
+    let newRow: LineaAsiento = this.asientoService.editRow(numero, newCuenta, debito, credito, descripcion, impuesto, newProveedor, fecha);
     
-    this.AsientoRows.push(newLinea);
-    //this.service.updateLines(this.service.newConsecutivo(), this.AsientoRows)
-    //newAsiento.numlinea = this.AsientoRows; 
-
-
+    this.asientoService.addNewRow(newRow);
+    //this.AsientoRows.push(newRow); 
     
-    this.dataSource = new MatTableDataSource<LineaAsiento>(this.service.reorderRows(this.AsientoRows));
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;
   }
 
+  modifyRow(numero: string, cuenta: string, debito: string, credito: string, descripcion: string, impuesto: string, proveedor: string, fecha: string){
 
-  setProveedor(nombre: string){
-    this.proveedor = nombre;
   }
 
-  setCuenta(banco: string){
-    this.banco = banco;
+  //*
+  setProveedor(proveedor: string){
+    newProveedor = proveedor;
   }
 
-
-  proveedorControl = new FormControl('', Validators.required);
-  cuentaControl = new FormControl('', Validators.required);
-
-
-  proveedores: Proveedor[] = [
-    {nombre: 'Felix el gato', correo: 'xyz@catmail.com'},
-    {nombre: 'Buckethead', correo: 'oioi@metal.com'},
-    {nombre: 'Ryan Williams', correo: 'nitrocircus@au.com'},
-    {nombre: 'Goku', correo: 'dragonball@anime.com'}
-  ];
-  
-  newCuenta: Cuenta = {titular: '', banco: '', descripcion: ''};
-
-  cuentas: Cuenta[] = [
-    {titular: 'Mechudin', banco: 'BAC', descripcion: 'cuenta para el vicio'},
-    {titular: 'Cory', banco: 'BCR', descripcion: 'cuenta para comida'},
-    {titular: 'Alissa', banco: 'Scotiabank', descripcion: 'cuenta para viajes'},
-    {titular: 'Simone', banco: 'Cathay', descripcion: 'cuenta para instrumentos'}
-  ];
+  setCuenta(cuenta: string){
+    newCuenta = cuenta;
+  }
 }
 
-@Component({
-  selector: 'app-form-asiento',
-  templateUrl: './form-asiento.component.html'
-})
-export class FormAsientoComponent{
-  constructor(
-    public dialogRef: MatDialogRef<FormAsientoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Cuenta,
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  proveedorControl = new FormControl('', Validators.required);
-  cuentaControl = new FormControl('', Validators.required);
-
-
-  proveedores: Proveedor[] = [
-    {nombre: 'Felix el gato', correo: 'xyz@catmail.com'},
-    {nombre: 'Buckethead', correo: 'oioi@metal.com'},
-    {nombre: 'Ryan Williams', correo: 'nitrocircus@au.com'},
-    {nombre: 'Goku', correo: 'dragonball@anime.com'}
-  ];
-  
-  newCuenta: Cuenta = {titular: '', banco: '', descripcion: ''};
-
-  cuentas: Cuenta[] = [
-    {titular: 'Mechudin', banco: 'BAC', descripcion: 'cuenta para el vicio'},
-    {titular: 'Cory', banco: 'BCR', descripcion: 'cuenta para comida'},
-    {titular: 'Alissa', banco: 'Scotiabank', descripcion: 'cuenta para viajes'},
-    {titular: 'Simone', banco: 'Cathay', descripcion: 'cuenta para instrumentos'}
-  ];
-}
