@@ -40,16 +40,22 @@ export class NewAsientoComponent implements AfterViewInit{
 
   dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
 
+
   constructor(public dialog: MatDialog, private asientoService:AsientoService, private cuentaService:CuentaService, private proveedorService:ProveedorService, private router:Router){ }
 
 
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(FormAsientoComponent, {});
-
+    const dialogRef = this.dialog.open(FormAsientoComponent, {
+      //height: '400px',
+      //width: '600px',
+      data: {numlinea: 'numlinea', cuenta: 'cuenta', debito: 'debito', credito: 'credito', descripcion: 'descripcion', impuesto: 'impuesto', proveedor: 'proveedor', fechabanco: 'fechabanco'}
+    });
+    
     dialogRef.afterClosed().subscribe(result => {
       //this.openDialog()
       //this.animal = result;
+      this.upDate();
     });
   }
 
@@ -77,6 +83,7 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 */
+/*
   addRow(debito: string, credito: string, descripcion: string, impuesto: string, fecha: string){
     let numero: string = (this.AsientoRows.length + 1).toString();
     let newRow: LineaAsiento = this.asientoService.editRow(numero, newCuenta, debito, credito, descripcion, impuesto, newProveedor, fecha);
@@ -91,7 +98,12 @@ export class NewAsientoComponent implements AfterViewInit{
   modifyRow(numero: string, cuenta: string, debito: string, credito: string, descripcion: string, impuesto: string, proveedor: string, fecha: string){
 
   }
+*/
 
+upDate(){
+  this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
+  this.dataSource.paginator = this.paginator;
+}
   //*
   setProveedor(proveedor: string){
     newProveedor = proveedor;

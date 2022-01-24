@@ -1,5 +1,6 @@
 <mat-card style="height: 300px">
     <div>
+      {{numlinea}}
       <td>
         <label>Cuenta contable</label>
         <mat-form-field>
@@ -14,7 +15,7 @@
       </td>
       <td>
         <label>Debito</label>
-        <input type="text" #debito name="debito" ngModel matInput placeholder="---">
+        <input type="text" #debito name="debito" ngModel matInput placeholder="---"> {{debito}}
       </td>
       <td>
         <label>Credito</label>
@@ -51,18 +52,18 @@
           <mat-label>Ingreso al banco</mat-label>
           <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <input matInput #fecha [matDatepicker]="picker" placeholder="00/00/0000">
+          <input matInput #fechabanco [matDatepicker]="picker" placeholder="00/00/0000">
         </mat-form-field>
     </div> 
     <p></p>
     <div>
       <td>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="onNoClick()">
           <mat-icon>delete_forever</mat-icon>
         </button>
       </td>
       <td>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="addRow(debito.value, credito.value, impuesto.value, descripcion.value, fechabanco.value)">
           <mat-icon>check_circle</mat-icon>
         </button>
       </td>

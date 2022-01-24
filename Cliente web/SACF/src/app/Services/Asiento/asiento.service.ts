@@ -38,6 +38,10 @@ export class AsientoService {
     return this.newRow;
   }
 
+  addNewRow(row: LineaAsiento){
+    this.allNewRows.push(row)
+  }
+
   getAllNewRows(){
     return this.allNewRows;
   }
@@ -60,10 +64,6 @@ export class AsientoService {
   deleteRow(numero: string){
     this.allNewRows.splice(+numero-1, 1);
     this.allNewRows = this.reorderRows(this.allNewRows);
-  }
-
-  addNewRow(row: LineaAsiento){
-    this.allNewRows.push(row)
   }
 
   editRow(numero: string, cuenta: string, debito: string, credito: string, descripcion: string, impuesto: string, proveedor: string, fecha: string){
