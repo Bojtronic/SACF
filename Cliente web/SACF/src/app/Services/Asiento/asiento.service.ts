@@ -39,7 +39,8 @@ export class AsientoService {
   }
 
   addNewRow(row: LineaAsiento){
-    this.allNewRows.push(row)
+    this.allNewRows.push(row);
+    this.allNewRows = this.reorderRows(this.allNewRows);
   }
 
   getAllNewRows(){

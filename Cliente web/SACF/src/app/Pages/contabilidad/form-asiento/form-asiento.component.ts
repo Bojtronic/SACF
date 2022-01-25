@@ -16,11 +16,11 @@ import { ProveedorService } from "src/app/Services/Proveedor/proveedor.service";
 })
 export class FormAsientoComponent{
   //constructor(public dialogRef: MatDialogRef<FormAsientoComponent>) { }
-
+/*
   closeDialog() {
     this.dialogRef.close('Pizza!');
   }
-
+*/
   numlinea: string = '';
   cuenta: string = '';
   debito: string = ''; 
@@ -35,23 +35,21 @@ export class FormAsientoComponent{
     private cuentaService:CuentaService, 
     private proveedorService:ProveedorService,
     public dialogRef: MatDialogRef<FormAsientoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {numlinea: string, cuenta: string, debito: string, credito: string, impuesto: string, proveedor: string, descripcion: string, fechabanco: string}
+    @Inject(MAT_DIALOG_DATA) public data: {numlinea: string}
   ) {
     this.numlinea=data.numlinea;
-    this.cuenta=data.cuenta;
-    this.debito=data.debito;
   }
 
-  addRow(debito: string, credito: string, descripcion: string, impuesto: string, fecha: string){
+  addRow(debito: string, credito: string, descripcion: string, impuesto: string, fechabanco: string){
     let numero: string = (this.asientoService.getAllNewRows.length + 1).toString();
-    let newRow: LineaAsiento = this.asientoService.editRow(numero, this.cuenta, debito, credito, descripcion, impuesto, this.proveedor, fecha);
-    
+    //let newRow: LineaAsiento = this.asientoService.editRow(numero, this.cuenta, debito, credito, descripcion, impuesto, this.proveedor, fecha);
+    let newRow: LineaAsiento = {numero: numero, cuenta: this.cuenta, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: fechabanco}
     this.asientoService.addNewRow(newRow);
-    
+    this.dialogRef.close();
   }
   
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
   

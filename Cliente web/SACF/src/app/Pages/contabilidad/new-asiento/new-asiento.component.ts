@@ -45,7 +45,23 @@ export class NewAsientoComponent implements AfterViewInit{
 
 
 
-  openDialog(): void {
+  openDialog(numlinea: string): void {
+    console.log(numlinea);
+    const dialogRef = this.dialog.open(FormAsientoComponent, {
+      //height: '400px',
+      //width: '600px',
+      data: {numlinea: numlinea}
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      //this.openDialog()
+      //this.animal = result;
+      this.upDate();
+    });
+  }
+
+  openDialogX(): void {
+    
     const dialogRef = this.dialog.open(FormAsientoComponent, {
       //height: '400px',
       //width: '600px',

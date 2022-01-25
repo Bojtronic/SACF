@@ -1,11 +1,13 @@
 <mat-card style="height: 300px">
     <div>
-      {{numlinea}}
+      <p>
+        Fila #{{numlinea}}
+      </p>
       <td>
         <label>Cuenta contable</label>
         <mat-form-field>
           <mat-select [formControl]="cuentaControl" required>
-            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta">
+            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.banco)">
               {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
             </mat-option>
           </mat-select>
@@ -15,7 +17,7 @@
       </td>
       <td>
         <label>Debito</label>
-        <input type="text" #debito name="debito" ngModel matInput placeholder="---"> {{debito}}
+        <input type="text" #debito name="debito" ngModel matInput placeholder="---">
       </td>
       <td>
         <label>Credito</label>
@@ -29,7 +31,7 @@
         <label>Proveedor</label>
         <mat-form-field>
           <mat-select [formControl]="proveedorControl" required>
-            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor">
+            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor" (click)="setProveedor(proveedor.nombre)">
               {{proveedor.nombre}} - {{proveedor.correo}}
             </mat-option>
           </mat-select>
@@ -58,7 +60,7 @@
     <p></p>
     <div>
       <td>
-        <button mat-icon-button (click)="onNoClick()">
+        <button mat-icon-button (click)="closeDialog()">
           <mat-icon>delete_forever</mat-icon>
         </button>
       </td>
