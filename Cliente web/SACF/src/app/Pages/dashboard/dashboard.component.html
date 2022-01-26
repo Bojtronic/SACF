@@ -2,19 +2,15 @@
     
     <div class="nav-container">
         <div>
-            <button (click)="adminSidenav.toggle(); contaSidenav.close()" mat-icon-button>
-              <mat-icon>business_center</mat-icon>
-              Administración
+            <button (click)="settingsSidenav.toggle()" mat-icon-button>
+              <mat-icon>list</mat-icon>
+              Opciones
             </button>
-            <br>
-            <button (click)="contaSidenav.toggle(); adminSidenav.close()" mat-icon-button>
-              <mat-icon>bar_chart</mat-icon>
-              Contabilidad
-            </button>
+            
                           
         </div>
         <div style="float: right">
-          <p></p>
+          
           <button style="float: left" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
           </button>
@@ -45,107 +41,144 @@
   </mat-toolbar>
 
 
+
+
   <mat-drawer-container>
-  <mat-drawer #adminSidenav mode="side" closed position="start">
-    <mat-list> 
-        <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General</mat-list-item> 
-            
-
-            <mat-menu #animals="matMenu">
-              <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
-              <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
-            </mat-menu>
-
-            <mat-menu #vertebrates="matMenu">
-              <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
-              <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-              <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-              <button mat-menu-item>Birds</button>
-              <button mat-menu-item>Mammals</button>
-            </mat-menu>
-
-            <mat-menu #invertebrates="matMenu">
-              <button mat-menu-item>Insects</button>
-              <button mat-menu-item>Molluscs</button>
-              <button mat-menu-item>Crustaceans</button>
-              <button mat-menu-item>Corals</button>
-              <button mat-menu-item>Arachnids</button>
-              <button mat-menu-item>Velvet worms</button>
-              <button mat-menu-item>Horseshoe crabs</button>
-            </mat-menu>
-
-            <mat-menu #fish="matMenu">
-              <button mat-menu-item>Baikal oilfish</button>
-              <button mat-menu-item>Bala shark</button>
-              <button mat-menu-item>Ballan wrasse</button>
-              <button mat-menu-item>Bamboo shark</button>
-              <button mat-menu-item>Banded killifish</button>
-            </mat-menu>
-
-            <mat-menu #amphibians="matMenu">
-              <button mat-menu-item>Sonoran desert toad</button>
-              <button mat-menu-item>Western toad</button>
-              <button mat-menu-item>Arroyo toad</button>
-              <button mat-menu-item>Yosemite toad</button>
-            </mat-menu>
-
-            <mat-menu #reptiles="matMenu">
-              <button mat-menu-item>Banded Day Gecko</button>
-              <button mat-menu-item>Banded Gila Monster</button>
-              <button mat-menu-item>Black Tree Monitor</button>
-              <button mat-menu-item>Blue Spiny Lizard</button>
-              <button mat-menu-item disabled>Velociraptor</button>
-            </mat-menu>
-
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cosas de administración</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Otras varas</mat-list-item>
-      </mat-list>
-  </mat-drawer>
-
-
-
-  <mat-drawer #contaSidenav mode="side" closed position="end">
-    <mat-list>   
-        <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="contabilidad">Contabilidad</mat-list-item>
+  <mat-drawer #settingsSidenav mode="side" closed position="start">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Administración
+          </mat-panel-title>
+          <mat-panel-description>
+            Opciones administrativas
+            <mat-icon>business_center</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
         
-            <mat-menu #contabilidad="matMenu">
-              <button mat-menu-item [matMenuTriggerFor]="plancuentas">Plan de cuentas</button>
-              <button mat-menu-item [matMenuTriggerFor]="conciliar">Conciliar</button>
-            </mat-menu>
 
-            <mat-menu #plancuentas="matMenu">
-              <button mat-menu-item [matMenuTriggerFor]="deposito">Depósito bancario</button>
-              <button mat-menu-item [matMenuTriggerFor]="transferencia">Transferencia</button>
-              <button mat-menu-item [matMenuTriggerFor]="asiento">Asiento de diario</button>
-            </mat-menu>
+        <mat-list> 
+          <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General</mat-list-item> 
+            
+              <mat-menu #animals="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+                <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+              </mat-menu>
+  
+              <mat-menu #vertebrates="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+                <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+                <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+                <button mat-menu-item>Birds</button>
+                <button mat-menu-item>Mammals</button>
+              </mat-menu>
+  
+              <mat-menu #invertebrates="matMenu">
+                <button mat-menu-item>Insects</button>
+                <button mat-menu-item>Molluscs</button>
+                <button mat-menu-item>Crustaceans</button>
+                <button mat-menu-item>Corals</button>
+                <button mat-menu-item>Arachnids</button>
+                <button mat-menu-item>Velvet worms</button>
+                <button mat-menu-item>Horseshoe crabs</button>
+              </mat-menu>
+  
+              <mat-menu #fish="matMenu">
+                <button mat-menu-item>Baikal oilfish</button>
+                <button mat-menu-item>Bala shark</button>
+                <button mat-menu-item>Ballan wrasse</button>
+                <button mat-menu-item>Bamboo shark</button>
+                <button mat-menu-item>Banded killifish</button>
+              </mat-menu>
+  
+              <mat-menu #amphibians="matMenu">
+                <button mat-menu-item>Sonoran desert toad</button>
+                <button mat-menu-item>Western toad</button>
+                <button mat-menu-item>Arroyo toad</button>
+                <button mat-menu-item>Yosemite toad</button>
+              </mat-menu>
+  
+              <mat-menu #reptiles="matMenu">
+                <button mat-menu-item>Banded Day Gecko</button>
+                <button mat-menu-item>Banded Gila Monster</button>
+                <button mat-menu-item>Black Tree Monitor</button>
+                <button mat-menu-item>Blue Spiny Lizard</button>
+                <button mat-menu-item disabled>Velociraptor</button>
+              </mat-menu>
+  
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cosas de administración</mat-list-item>
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Otras varas</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-            <mat-menu #conciliar="matMenu">
-              <button mat-menu-item>Nueva conciliaciación</button>
-              <button mat-menu-item>Todas las conciliaciones</button>
-            </mat-menu>
 
-            <mat-menu #deposito="matMenu">
-              <button mat-menu-item>Nuevo depositos</button>
-              <button mat-menu-item>Todos los depositos</button>
-            </mat-menu>
 
-            <mat-menu #transferencia="matMenu">
-              <button mat-menu-item>Nueva transferencia</button>
-              <button mat-menu-item>Todas las transferencias</button>
-            </mat-menu>
 
-            <mat-menu #asiento="matMenu">
-              <button mat-menu-item (click)="toNewAsiento()">Nuevo asiento</button>
-              <button mat-menu-item (click)="toAllAsientos()">Todos los asientos</button>
-            </mat-menu>
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Contabilidad
+          </mat-panel-title>
+          <mat-panel-description>
+            Opciones de contabilidad
+            <mat-icon>bar_chart</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        
 
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por cobrar</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por pagar</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Conciliaciones bancarias</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Inventarios</mat-list-item>
-        <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Reportes</mat-list-item>
-      </mat-list>
+        <mat-list>   
+          <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="contabilidad">Contabilidad</mat-list-item>
+          
+              <mat-menu #contabilidad="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="plancuentas">Plan de cuentas</button>
+                <button mat-menu-item [matMenuTriggerFor]="conciliar">Conciliar</button>
+              </mat-menu>
+  
+              <mat-menu #plancuentas="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="deposito">Depósito bancario</button>
+                <button mat-menu-item [matMenuTriggerFor]="transferencia">Transferencia</button>
+                <button mat-menu-item [matMenuTriggerFor]="asiento">Asiento de diario</button>
+              </mat-menu>
+  
+              <mat-menu #conciliar="matMenu">
+                <button mat-menu-item>Nueva conciliaciación</button>
+                <button mat-menu-item>Todas las conciliaciones</button>
+              </mat-menu>
+  
+              <mat-menu #deposito="matMenu">
+                <button mat-menu-item>Nuevo depositos</button>
+                <button mat-menu-item>Todos los depositos</button>
+              </mat-menu>
+  
+              <mat-menu #transferencia="matMenu">
+                <button mat-menu-item>Nueva transferencia</button>
+                <button mat-menu-item>Todas las transferencias</button>
+              </mat-menu>
+  
+              <mat-menu #asiento="matMenu">
+                <button mat-menu-item (click)="toNewAsiento()">Nuevo asiento</button>
+                <button mat-menu-item (click)="toAllAsientos()">Todos los asientos</button>
+              </mat-menu>
+  
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por cobrar</mat-list-item>
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por pagar</mat-list-item>
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Conciliaciones bancarias</mat-list-item>
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Inventarios</mat-list-item>
+          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Reportes</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
   </mat-drawer>
+
+
+
+  
 
   <mat-drawer-content>
     <td>

@@ -7,16 +7,23 @@
       <img src="../../../assets/LogoSistema.jpeg" id="icon" alt="User Icon" />
     </div>
 
-    
-    <input type="text" name="user" #user ngModel class="fadeIn second" placeholder="usuario" autofocus>
-      <br/>
-      <mat-form-field appearance="fill" class="fadeIn third">
+    <div>
+      <mat-form-field  class="fadeIn third">
+        <mat-label>Ingrese su usuario</mat-label>
+        <input name="user" #user ngModel matInput class="fadeIn second" placeholder="usuario" autofocus>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field  class="fadeIn third">
         <mat-label>Ingrese su contraseña</mat-label>
         <input name="password" #password ngModel matInput [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+    </div>
+      
+      
       <input type="submit" (click)="enter(user.value, password.value)" class="fadeIn fourth" value="Verificar">
 
 

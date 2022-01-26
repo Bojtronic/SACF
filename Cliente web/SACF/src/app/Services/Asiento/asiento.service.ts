@@ -67,14 +67,18 @@ export class AsientoService {
     this.allNewRows = this.reorderRows(this.allNewRows);
   }
 
-  editRow(numero: string, cuenta: string, debito: string, credito: string, descripcion: string, impuesto: string, proveedor: string, fecha: string){
-    this.newRow.numero=numero;
-    this.newRow.cuenta=cuenta;
-    this.newRow.debito=debito;
-    this.newRow.credito=credito;
-    this.newRow.descripcion=descripcion;
-    this.newRow.impuesto=impuesto;
-    return this.newRow;
+  editRow(numero: string, cuenta: string, debito: string, credito: string, impuesto: string, proveedor: string, descripcion: string, fechabanco: string){
+    for (let row of this.getAllNewRows()){
+      if(row.numero==numero){
+        row.cuenta=cuenta;
+        row.debito=debito;
+        row.credito=credito;
+        row.impuesto=impuesto;
+        row.proveedor=proveedor
+        row.descripcion=descripcion;
+        row.fechabanco=fechabanco; 
+      }
+    }
   }
 
   newConsecutivo(){
