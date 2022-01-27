@@ -1,67 +1,61 @@
+<!--BARRA SUPERIOR QUE CONTIENE 2 MENU-->
 <mat-toolbar>
-    
-    <div class="nav-container">
-        <div>
-            <button (click)="settingsSidenav.toggle()" mat-icon-button>
-              <mat-icon>list</mat-icon>
-              Opciones
-            </button>
-            
-                          
-        </div>
-        <div style="float: right">
-          
-          <button style="float: left" mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <mat-icon>perm_identity</mat-icon>
-              <span>Información del usuario</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>supervised_user_circle</mat-icon>
-              <span>Usuarios</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>business</mat-icon>
-              <span>Empresas</span>
-            </button>
-            <button mat-menu-item disabled>
-              <mat-icon>event</mat-icon>
-              <span>Actividades</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Cerrar sesion</span>
-            </button>
-          </mat-menu> 
-        </div>
+  <div class="menu-top-bar">
+    <!--MENU PARA ACCIONES DE GESTION Y CONTROL-->
+    <div>
+      <button (click)="settingsSidenav.toggle()" mat-icon-button>
+        <mat-icon>view_list</mat-icon>
+        Empresa actual
+      </button>                    
     </div>
-  </mat-toolbar>
+    <!--MENU PARA ACCIONES DEL USUARIO-->
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>dvr</mat-icon>
+        Usuarios y empresas
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>perm_identity</mat-icon>
+          <span>Información del usuario</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>supervised_user_circle</mat-icon>
+          <span>Usuarios</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>business</mat-icon>
+          <span>Empresas</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>event</mat-icon>
+          <span>Actividades</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar sesion</span>
+        </button>
+      </mat-menu> 
+    </div>
+  </div>
+</mat-toolbar>
 
-
-
-
-  <mat-drawer-container>
-  <mat-drawer #settingsSidenav mode="side" closed position="start">
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
+<!--CONTENEDOR PRINCIPAL DEL DASHBOARD-->
+<mat-drawer-container>
+  <!--CONTENEDOR PARA ACCIONES DE GESTIÓN Y CONTROL-->
+  <mat-drawer #settingsSidenav mode="side" position="start" style="background:darkcyan;">
+    <!--CONTENEDOR DE OPCIONES PARA ADMINISTRACIÓN-->
+    <mat-accordion multi>
+      <mat-expansion-panel style="background: aqua;">
         <mat-expansion-panel-header>
           <mat-panel-title>
+            <mat-icon>business_center</mat-icon>
             Administración
           </mat-panel-title>
-          <mat-panel-description>
-            Opciones administrativas
-            <mat-icon>business_center</mat-icon>
-          </mat-panel-description>
         </mat-expansion-panel-header>
-    
-        
-
+        <!--LISTA CON LAS OPCIONES DE ADMINISTRACIÓN-->
         <mat-list> 
-          <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="animals">General</mat-list-item> 
-            
+          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="animals">+ General</mat-list-item> 
               <mat-menu #animals="matMenu">
                 <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
                 <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
@@ -108,46 +102,34 @@
                 <button mat-menu-item disabled>Velociraptor</button>
               </mat-menu>
   
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cosas de administración</mat-list-item>
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Otras varas</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Cosas de administración</mat-list-item>
+          
+          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Otras varas</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
-
-
-
-
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
+    <!--CONTENEDOR DE OPCIONES PARA CONTABILIDAD-->
+    <mat-accordion multi>
+      <mat-expansion-panel style="background: aqua;">
         <mat-expansion-panel-header>
           <mat-panel-title>
+            <mat-icon>calculate</mat-icon>
             Contabilidad
           </mat-panel-title>
-          <mat-panel-description>
-            Opciones de contabilidad
-            <mat-icon>bar_chart</mat-icon>
-          </mat-panel-description>
         </mat-expansion-panel-header>
-    
-        
-
+        <!--LISTA CON LAS OPCIONES DE CONTABILIDAD-->
         <mat-list>   
-          <mat-list-item style="cursor:pointer" role="listitem" [matMenuTriggerFor]="contabilidad">Contabilidad</mat-list-item>
-          
-              <mat-menu #contabilidad="matMenu">
-                <button mat-menu-item [matMenuTriggerFor]="plancuentas">Plan de cuentas</button>
-                <button mat-menu-item [matMenuTriggerFor]="conciliar">Conciliar</button>
-              </mat-menu>
-  
-              <mat-menu #plancuentas="matMenu">
+          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="generales">+ Generales</mat-list-item>
+              <mat-menu #generales="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="catalogocuentas">Catálogo de cuentas</button>
                 <button mat-menu-item [matMenuTriggerFor]="deposito">Depósito bancario</button>
                 <button mat-menu-item [matMenuTriggerFor]="transferencia">Transferencia</button>
                 <button mat-menu-item [matMenuTriggerFor]="asiento">Asiento de diario</button>
               </mat-menu>
   
-              <mat-menu #conciliar="matMenu">
-                <button mat-menu-item>Nueva conciliaciación</button>
-                <button mat-menu-item>Todas las conciliaciones</button>
+              <mat-menu #catalogocuentas="matMenu">
+                <button mat-menu-item >Nueva cuenta</button>
+                <button mat-menu-item >Catálogo</button>
               </mat-menu>
   
               <mat-menu #deposito="matMenu">
@@ -165,103 +147,104 @@
                 <button mat-menu-item (click)="toAllAsientos()">Todos los asientos</button>
               </mat-menu>
   
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por cobrar</mat-list-item>
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Cuentas por pagar</mat-list-item>
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Conciliaciones bancarias</mat-list-item>
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Inventarios</mat-list-item>
-          <mat-list-item style="cursor:pointer" role="listitem" (click)="x()">Reportes</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Cuentas por cobrar</mat-list-item>
+          
+          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Cuentas por pagar</mat-list-item>
+          
+          <mat-list-item class="manage-control-options" [matMenuTriggerFor]="conciliacion" role="listitem" (click)="x()">+ Conciliaciones bancarias</mat-list-item>
+          <mat-menu #conciliacion="matMenu">
+            <button mat-menu-item>Nueva conciliaciación</button>
+            <button mat-menu-item>Todas las conciliaciones</button>
+          </mat-menu>
+
+          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Inventarios</mat-list-item>
+
+          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Reportes</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
-
   </mat-drawer>
-
-
-
   
-
   <mat-drawer-content>
+    <table>
+      
+    </table>
+    <!--GRAFICAS-->
     <td>
-      <mat-drawer-content>
-        <app-all-charts></app-all-charts>
+      <mat-drawer-content style="margin-left: 0px;">
+        <mat-card>
+          <app-all-charts></app-all-charts>
+        </mat-card>
       </mat-drawer-content>
+      
     </td>
-  
-    <td style="width:300px;" valign="top">
+    <!--DIVISAS-->
+    <td valign="top">
       <div>
-        <mat-drawer-content>
+        <mat-card>
+          Conversor de divisas
           <mat-card>
-            Conversor de divisas
-            <mat-card>
-              <td>
-                
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Cantidad de dinero</mat-label>
-                  <input matInput placeholder="Ingrese solo numeros">
-                </mat-form-field>
+            <td>  
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Cantidad de dinero</mat-label>
+                <input matInput placeholder="Ingrese solo numeros">
+              </mat-form-field>
 
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Cantidad de dinero</mat-label>
-                  <input matInput placeholder="Ingrese solo numeros">
-                </mat-form-field>
-
-
-
-              </td>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Elija una moneda</mat-label>
-                  <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
-                    <mat-option value="valid">Dolar</mat-option>
-                    <mat-option value="valid">Euro</mat-option>
-                    <mat-option value="valid">Colón</mat-option>
-                    <mat-option value="invalid">---</mat-option>
-                  </mat-select>
-                  <mat-hint>¡Debe elegir una moneda!</mat-hint>
-                  <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-                  <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                    Este campo no debe estar vacío
-                  </mat-error>
-                </mat-form-field>
-                
-
-                <mat-form-field appearance="fill">
-                  <mat-label>Elija una moneda</mat-label>
-                  <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
-                    <mat-option value="valid">Colón</mat-option>
-                    <mat-option value="valid">Dolar</mat-option>
-                    <mat-option value="valid">Euro</mat-option>
-                    <mat-option value="invalid">---</mat-option>
-                  </mat-select>
-                  <mat-hint>¡Debe elegir una moneda!</mat-hint>
-                  <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-                  <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                    Este campo no debe estar vacío
-                  </mat-error>
-                </mat-form-field>
-
-
-              </td>
-            </mat-card>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Cantidad de dinero</mat-label>
+                <input matInput placeholder="Ingrese solo numeros">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Elija una moneda</mat-label>
+                <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+                  <mat-option value="valid">Dolar</mat-option>
+                  <mat-option value="valid">Euro</mat-option>
+                  <mat-option value="valid">Colón</mat-option>
+                  <mat-option value="invalid">---</mat-option>
+                </mat-select>
+                <mat-hint>¡Debe elegir una moneda!</mat-hint>
+                <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+                <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                  Este campo no debe estar vacío
+                </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Elija una moneda</mat-label>
+                <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+                  <mat-option value="valid">Colón</mat-option>
+                  <mat-option value="valid">Dolar</mat-option>
+                  <mat-option value="valid">Euro</mat-option>
+                  <mat-option value="invalid">---</mat-option>
+                </mat-select>
+                <mat-hint>¡Debe elegir una moneda!</mat-hint>
+                <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+                <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                  Este campo no debe estar vacío
+                </mat-error>
+              </mat-form-field>
+            </td>
           </mat-card>
+        </mat-card>
+        <br>
+        <mat-card>
+          Dolares - {{fecha}}
+          <hr>
+          <td>Compra: ₡ 0.00</td>
           <br>
-          <mat-card>
-            Dolares - {{fecha}}
-            <hr>
-            <td>Compra: ₡ 0.00</td>
-            <br>
-            <td>Venta: ₡ 0.00</td>
-          </mat-card>
+          <td>Venta: ₡ 0.00</td>
+        </mat-card>
+        <br>
+        <mat-card>
+          Euros - {{fecha}}
+          <hr>
+          <td>Compra: ₡ 0.00</td>
           <br>
-          <mat-card>
-            Euros - {{fecha}}
-            <hr>
-           <td>Compra: ₡ 0.00</td>
-           <br>
-           <td>Venta: ₡ 0.00</td>
-          </mat-card>
-        </mat-drawer-content>
+          <td>Venta: ₡ 0.00</td>
+        </mat-card>
       </div>
     </td>
   </mat-drawer-content>
-  </mat-drawer-container>
+</mat-drawer-container>
