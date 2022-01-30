@@ -29,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
 import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.component';
+import { EdiTableComponent } from './contabilidad/edi-table/edi-table.component';
 
 
 
@@ -42,7 +43,8 @@ import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.c
     AllAsientosComponent,
     HeaderComponent,
     FooterComponent,
-    FormAsientoComponent
+    FormAsientoComponent,
+    EdiTableComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +78,8 @@ import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.c
     AllAsientosComponent,
     HeaderComponent,
     FooterComponent,
-    FormAsientoComponent
+    FormAsientoComponent,
+    EdiTableComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

@@ -9,6 +9,7 @@ import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.c
 import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.component'
 import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
+import { EdiTableComponent } from './contabilidad/edi-table/edi-table.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path:'allasientos', component:AllAsientosComponent},
       { path:'header', component:HeaderComponent},
       { path:'footer', component:FooterComponent},
-      { path:'formasiento', component:FormAsientoComponent}
+      { path:'formasiento', component:FormAsientoComponent},
+      { path:'editable', component:EdiTableComponent}
     ]
   }
 ]
