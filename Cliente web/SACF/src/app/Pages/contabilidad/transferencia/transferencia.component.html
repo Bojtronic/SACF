@@ -1,0 +1,83 @@
+<div>
+    <td>
+        <mat-form-field>
+            <mat-label>Transferir fondos de: </mat-label>
+            <mat-select>
+            <mat-option value="dolar">Dolar</mat-option>
+            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+            <mat-option value="colon">Colon</mat-option>
+            </mat-select>
+          </mat-form-field>      
+    </td>
+    <td>
+        <div style="margin-left: 200px;">
+            <label>Saldo: </label>
+        </div>
+    </td>
+</div>
+<br>
+<div>
+    <td>
+        <mat-form-field>
+            <mat-label>Transferir fondos a: </mat-label>
+            <mat-select>
+            <mat-option value="dolar">Dolar</mat-option>
+            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+            <mat-option value="colon">Colon</mat-option>
+            </mat-select>
+          </mat-form-field>      
+    </td>
+    <td>
+        <div style="margin-left: 200px;">
+            <label>Saldo: </label>
+        </div>
+    </td>
+</div>
+<br>
+<div>
+    <td>
+        <mat-form-field>
+            <mat-label>Divisa</mat-label>
+            <mat-select>
+            <mat-option value="dolar">Dolar</mat-option>
+            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+            <mat-option value="colon">Colon</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </td>
+</div>
+<br>
+<div>
+    <td>
+        <div>
+            <mat-form-field>
+                <mat-label>Transferir importe</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+    </td>
+    <td>
+        <div>
+            <mat-form-field style="margin-left: 200px;">
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000">
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancelar</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+                </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+        </div>
+    </td>
+</div>
+<br>
+<div>
+    <mat-label>Notas</mat-label>
+    <div>
+        <textarea style="width: 700px;"></textarea>
+    </div> 
+</div>
+
+

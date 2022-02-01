@@ -27,12 +27,20 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public toNewAsiento() { 
+  toNewAsiento() { 
     this.router.navigate(['/newasiento']); 
   }
-
   toAllAsientos() {
     this.router.navigate(['/allasientos']);
+  }
+  toDeposito() {
+    this.router.navigate(['/deposito']);
+  }
+  toTransferencia() {
+    this.router.navigate(['/transferencia']);
+  }
+  toAllCuentas() {
+    this.router.navigate(['/allcuentas']);
   }
 
   x (){

@@ -129,16 +129,16 @@
   
               <mat-menu #catalogocuentas="matMenu">
                 <button mat-menu-item >Nueva cuenta</button>
-                <button mat-menu-item >Catálogo</button>
+                <button mat-menu-item (click)="toAllCuentas()">Catálogo</button>
               </mat-menu>
   
               <mat-menu #deposito="matMenu">
-                <button mat-menu-item>Nuevo depositos</button>
+                <button mat-menu-item (click)="toDeposito()">Nuevo depositos</button>
                 <button mat-menu-item>Todos los depositos</button>
               </mat-menu>
   
               <mat-menu #transferencia="matMenu">
-                <button mat-menu-item>Nueva transferencia</button>
+                <button mat-menu-item (click)="toTransferencia()">Nueva transferencia</button>
                 <button mat-menu-item>Todas las transferencias</button>
               </mat-menu>
   
@@ -163,12 +163,10 @@
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
+    <img style="width: 180px; height: 120px;" src="../../../assets/bart.png"/>
   </mat-drawer>
   
   <mat-drawer-content>
-    <table>
-      
-    </table>
     <!--GRAFICAS-->
     <td>
       <mat-drawer-content style="margin-left: 0px;">

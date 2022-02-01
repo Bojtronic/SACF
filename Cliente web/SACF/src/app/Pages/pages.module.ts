@@ -30,6 +30,9 @@ import { HeaderComponent } from './Shared/header/header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
 import { FormAsientoComponent } from './contabilidad/form-asiento/form-asiento.component';
 import { EdiTableComponent } from './contabilidad/edi-table/edi-table.component';
+import { DepositoComponent } from './contabilidad/deposito/deposito.component';
+import { TransferenciaComponent } from './contabilidad/transferencia/transferencia.component';
+import { AllCuentasComponent } from './contabilidad/all-cuentas/all-cuentas.component';
 
 
 
@@ -44,7 +47,10 @@ import { EdiTableComponent } from './contabilidad/edi-table/edi-table.component'
     HeaderComponent,
     FooterComponent,
     FormAsientoComponent,
-    EdiTableComponent
+    EdiTableComponent,
+    DepositoComponent,
+    TransferenciaComponent,
+    AllCuentasComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +85,10 @@ import { EdiTableComponent } from './contabilidad/edi-table/edi-table.component'
     HeaderComponent,
     FooterComponent,
     FormAsientoComponent,
-    EdiTableComponent
+    EdiTableComponent,
+    DepositoComponent,
+    TransferenciaComponent,
+    AllCuentasComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

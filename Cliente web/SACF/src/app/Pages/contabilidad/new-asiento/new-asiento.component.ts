@@ -129,5 +129,8 @@ upDate(){
   setCuenta(cuenta: string){
     newCuenta = cuenta;
   }
+  toDashboard(){
+    this.router.navigate(['/dashboard']);
+  }
 }
 
