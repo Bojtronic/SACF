@@ -1,83 +1,161 @@
+<div >
+    <td>
+        Nueva transaccion
+        <mat-card>
+            <div>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Transferir fondos de: </mat-label>
+                        <mat-select>
+                        <mat-option value="dolar">Dolar</mat-option>
+                        <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+                        <mat-option value="colon">Colon</mat-option>
+                        </mat-select>
+                      </mat-form-field>      
+                </td>
+                <td>
+                    <div style="margin-left: 200px;">
+                        <label>Saldo: </label>
+                    </div>
+                </td>
+            </div>
+            <br>
+            <div>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Transferir fondos a: </mat-label>
+                        <mat-select>
+                        <mat-option value="dolar">Dolar</mat-option>
+                        <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+                        <mat-option value="colon">Colon</mat-option>
+                        </mat-select>
+                      </mat-form-field>      
+                </td>
+                <td>
+                    <div style="margin-left: 200px;">
+                        <label>Saldo: </label>
+                    </div>
+                </td>
+            </div>
+            <br>
+            <div>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Divisa</mat-label>
+                        <mat-select>
+                        <mat-option value="dolar">Dolar</mat-option>
+                        <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+                        <mat-option value="colon">Colon</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </td>
+            </div>
+            <br>
+            <div>
+                <td>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Transferir importe</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <mat-form-field style="margin-left: 200px; width: 100px;">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000">
+                            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                              <button mat-button matDatepickerCancel>Cancelar</button>
+                              <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+                            </mat-datepicker-actions>
+                            </mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                </td>
+            </div>
+            <br>
+            <div>
+                <mat-label>Notas</mat-label>
+                <div>
+                    <textarea style="width: 500px;"></textarea>
+                </div> 
+            </div>
+            <div>
+                <button mat-icon-button>
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon>check_circle</mat-icon>
+                </button>
+            </div>
+        </mat-card>
+    </td>
+    <td>
+        <button mat-icon-button>
+            <mat-icon>history</mat-icon>
+            Transacciones anteriores
+        </button>
+    </td>    
+</div>
 <div>
-    <td>
-        <mat-form-field>
-            <mat-label>Transferir fondos de: </mat-label>
-            <mat-select>
-            <mat-option value="dolar">Dolar</mat-option>
-            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
-            <mat-option value="colon">Colon</mat-option>
-            </mat-select>
-          </mat-form-field>      
-    </td>
-    <td>
-        <div style="margin-left: 200px;">
-            <label>Saldo: </label>
-        </div>
-    </td>
+    <br>
+    Transacciones por confirmar
+    <table  mat-table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <ng-container matColumnDef="fila">
+          <th mat-header-cell *matHeaderCellDef> fila </th>
+          <td mat-cell *matCellDef="let element"> {{element.fila}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="cuenta_que_paga">
+          <th mat-header-cell *matHeaderCellDef> cuenta que paga </th>
+          <td mat-cell *matCellDef="let element"> {{element.cuenta_que_paga}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="cuenta_que_cobra">
+          <th mat-header-cell *matHeaderCellDef> cuenta que cobra </th>
+          <td mat-cell *matCellDef="let element"> {{element.cuenta_que_cobra}} </td>
+        </ng-container>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="divisa">
+          <th mat-header-cell *matHeaderCellDef> divisa </th>
+          <td mat-cell *matCellDef="let element"> {{element.divisa}} </td>
+        </ng-container>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef> monto </th>
+          <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+        </ng-container>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="notas">
+            <th mat-header-cell *matHeaderCellDef> notas </th>
+            <td mat-cell *matCellDef="let element"> {{element.notas}} </td>
+          </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+      </table>
 </div>
 <br>
 <div>
-    <td>
-        <mat-form-field>
-            <mat-label>Transferir fondos a: </mat-label>
-            <mat-select>
-            <mat-option value="dolar">Dolar</mat-option>
-            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
-            <mat-option value="colon">Colon</mat-option>
-            </mat-select>
-          </mat-form-field>      
-    </td>
-    <td>
-        <div style="margin-left: 200px;">
-            <label>Saldo: </label>
-        </div>
-    </td>
+    <button mat-raised-button>Descartar</button>
+    <button mat-raised-button>Guardar</button>
 </div>
-<br>
-<div>
-    <td>
-        <mat-form-field>
-            <mat-label>Divisa</mat-label>
-            <mat-select>
-            <mat-option value="dolar">Dolar</mat-option>
-            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
-            <mat-option value="colon">Colon</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </td>
-</div>
-<br>
-<div>
-    <td>
-        <div>
-            <mat-form-field>
-                <mat-label>Transferir importe</mat-label>
-                <input matInput>
-            </mat-form-field>
-        </div>
-    </td>
-    <td>
-        <div>
-            <mat-form-field style="margin-left: 200px;">
-                <mat-label>Fecha</mat-label>
-                <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000">
-                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker>
-                <mat-datepicker-actions>
-                  <button mat-button matDatepickerCancel>Cancelar</button>
-                  <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
-                </mat-datepicker-actions>
-                </mat-datepicker>
-              </mat-form-field>
-        </div>
-    </td>
-</div>
-<br>
-<div>
-    <mat-label>Notas</mat-label>
-    <div>
-        <textarea style="width: 700px;"></textarea>
-    </div> 
-</div>
+
+
 
 

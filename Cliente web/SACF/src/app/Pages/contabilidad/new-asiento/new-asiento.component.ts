@@ -1,14 +1,12 @@
-import { AfterViewInit, Component, Inject, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Asiento } from 'src/app/Models/Asiento';
 import { LineaAsiento } from 'src/app/Models/LineaAsiento';
 import { Proveedor } from 'src/app/Models/Proveedor';
 import { Cuenta } from 'src/app/Models/Cuenta';
 import { AsientoService } from 'src/app/Services/Asiento/asiento.service';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
 import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 import { FormAsientoComponent } from '../form-asiento/form-asiento.component';
@@ -66,22 +64,6 @@ export class NewAsientoComponent implements AfterViewInit{
     });
   }
 
-/*
-  openDialogX(): void {
-    
-    const dialogRef = this.dialog.open(FormAsientoComponent, {
-      //height: '400px',
-      //width: '600px',
-      data: {numlinea: 'numlinea', cuenta: 'cuenta', debito: 'debito', credito: 'credito', descripcion: 'descripcion', impuesto: 'impuesto', proveedor: 'proveedor', fechabanco: 'fechabanco'}
-    });
-    
-    dialogRef.afterClosed().subscribe(result => {
-      //this.openDialog()
-      //this.animal = result;
-      this.upDate();
-    });
-  }
-*/
   ngOnInit(): void {
   }
 
@@ -98,14 +80,6 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;
   }
-/*
-  borrarLineas(){
-    this.AsientoRows.splice(0, this.AsientoRows.length);
-        
-    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
-    this.dataSource.paginator = this.paginator;
-  }
-*/
 
   addRow(debito:string, credito:string, impuesto:string, descripcion:string, fechabanco:string){
     let newRow: LineaAsiento = {numero:this.numlinea, cuenta:newCuenta, debito:debito, credito:credito, descripcion:descripcion, impuesto:impuesto, proveedor:newProveedor, fechabanco:fechabanco};
@@ -121,7 +95,7 @@ upDate(){
   this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
   this.dataSource.paginator = this.paginator;
 }
-  //*
+  
   setProveedor(proveedor: string){
     newProveedor = proveedor;
   }
@@ -131,6 +105,9 @@ upDate(){
   }
   toDashboard(){
     this.router.navigate(['/dashboard']);
+  }
+  toAllAsientos(){
+    this.router.navigate(['/allasientos']);
   }
 }
 

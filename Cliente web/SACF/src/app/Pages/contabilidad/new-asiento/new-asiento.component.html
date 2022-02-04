@@ -61,7 +61,11 @@
   </div>
   <br>
   <div>
-    <button mat-raised-button>Ver todos los asientos</button>
+    <button mat-icon-button (click)="toAllAsientos()">
+      <mat-icon>history</mat-icon>
+      Todos los asientos
+    </button>
+    <br>
     <button mat-raised-button (click)="toDashboard()">Inicio</button>
   </div>
 
