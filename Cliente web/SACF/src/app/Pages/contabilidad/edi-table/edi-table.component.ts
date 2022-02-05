@@ -51,10 +51,9 @@ export class EdiTableComponent{
     this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
     this.dataSource.paginator = this.paginator;
   }
+
   setFechabanco(event: { value: any; }){
     let fb:Date = event.value;
-    //this.fechabanco = fb.toString();
-    
     if(this.proveedor!='' && this.impuesto!='' && this.titular!=''){
       if(this.debito!='' || this.credito!=''){
         let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: fb.toString()};
@@ -68,15 +67,15 @@ export class EdiTableComponent{
         this.impuesto='';
         this.fechabanco='';
         this.addNewRow();
-        console.log(7);
+      }
+      else{
+        this.fechabanco = fb.toString();
       }
     }
     else{
       this.fechabanco = fb.toString();
-      console.log(8);
     }  
     this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
-    console.log(9);
   }
 
   setCuenta(cuenta: string){
@@ -93,15 +92,15 @@ export class EdiTableComponent{
         this.impuesto='';
         this.fechabanco='';
         this.addNewRow();
-        console.log(1);
       }
+      else{
+        this.titular=cuenta;
+      } 
     }
     else{
       this.titular=cuenta;
-      console.log(2);
     }  
     this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
-    console.log(3);
   }
 
   setProveedor(proveedor: string){
@@ -118,18 +117,128 @@ export class EdiTableComponent{
         this.impuesto='';
         this.fechabanco='';
         this.addNewRow();
-        console.log(4);
+      }
+      else{
+        this.proveedor=proveedor;
       }
     }
     else{
       this.proveedor=proveedor;
-      console.log(5);
     }
     this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
-    console.log(6);
   }
 
-  x(){
-    console.log('funka');
+  setImpuesto(impuesto:string){
+    if(this.titular!='' && this.proveedor!='' && this.fechabanco!=''){
+      if(this.debito!='' || this.credito!=''){
+        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        AsientoData.pop();
+        AsientoData.push(newRow); 
+        this.titular='';
+        this.proveedor='';
+        this.debito='';
+        this.credito='';
+        this.descripcion='';
+        this.impuesto='';
+        this.fechabanco='';
+        this.addNewRow();
+      }
+      else{
+        this.impuesto=impuesto;
+      }
+    }
+    else{
+      this.impuesto=impuesto;
+    }
+    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+  }
+
+  setDescripcion(descripcion:string){
+    if(this.titular!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
+      if(this.debito!='' || this.credito!=''){
+        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        AsientoData.pop();
+        AsientoData.push(newRow); 
+        this.titular='';
+        this.proveedor='';
+        this.debito='';
+        this.credito='';
+        this.descripcion='';
+        this.impuesto='';
+        this.fechabanco='';
+        this.addNewRow();
+      }
+      else{
+        this.descripcion=descripcion;
+      }
+    }
+    else{
+      this.descripcion=descripcion;
+    }
+    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+  }
+
+  setDebito(debito:string){
+    if(this.titular!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
+      if(this.credito==''){
+        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        AsientoData.pop();
+        AsientoData.push(newRow); 
+        this.titular='';
+        this.proveedor='';
+        this.debito='';
+        this.credito='';
+        this.descripcion='';
+        this.impuesto='';
+        this.fechabanco='';
+        this.addNewRow();
+      }
+      else{
+        this.debito='';
+        console.log('la fila no puede tener credito y debito, solo 1');
+      }
+    }
+    else{
+      if(this.credito==''){
+      this.debito=debito;
+      }
+      else{
+        this.debito='';
+        console.log('la fila no puede tener credito y debito, solo 1');
+      }
+    }
+    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+  }
+
+  setCredito(credito:string){
+    if(this.titular!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
+      if(this.debito==''){
+        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        AsientoData.pop();
+        AsientoData.push(newRow); 
+        this.titular='';
+        this.proveedor='';
+        this.debito='';
+        this.credito='';
+        this.descripcion='';
+        this.impuesto='';
+        this.fechabanco='';
+        this.addNewRow();
+      }
+      else{
+        this.credito='';
+        console.log('la fila no puede tener credito y debito, solo 1');
+      }
+    }
+    else{
+      if(this.debito==''){
+        this.credito=credito;
+      }
+      else{
+        console.log('la fila no puede tener credito y debito, solo 1');
+        this.credito='';
+      }
+    }
+    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
   }
 }
