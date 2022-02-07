@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cuenta } from 'src/app/Models/Cuenta';
@@ -8,9 +7,7 @@ import { Proveedor } from 'src/app/Models/Proveedor';
 import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
 import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 
-const AsientoData: LineaAsiento[] = [
-  { numero: '1', cuenta: '', debito: '', credito: '', descripcion: '', impuesto: '', proveedor: '', fechabanco: ''}
-];
+
 
 @Component({
   selector: 'app-edi-table',
@@ -18,19 +15,23 @@ const AsientoData: LineaAsiento[] = [
   styleUrls: ['./edi-table.component.scss']
 })
 export class EdiTableComponent{
+  AsientoData: LineaAsiento[] = [
+    { numero: '1', cuenta: '', debito: '', credito: '', descripcion: '', impuesto: '', proveedor: '', fechabanco: ''}
+  ];
+  
 
-  titular:string='';
+  cuenta:string='';
   proveedor:string='';
   debito:string='';
   credito:string='';
   descripcion:string='';
   impuesto:string='';
   fechabanco:string='';
-  cuentaControl = new FormControl('', Validators.required);
+  cuentaControl = this.cuentaService.getControl();
   proveedorControl = this.proveedorService.getControl();
   cuentas: Cuenta[] = this.cuentaService.allCuentas();
   proveedores: Proveedor[] = this.proveedorService.allProveedores();
-  dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+  dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   Columns: string[] = ['numero', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco', 'accion'];
   
   constructor(private cuentaService:CuentaService, private proveedorService:ProveedorService) { }
@@ -41,25 +42,34 @@ export class EdiTableComponent{
   }
   
   addNewRow(){
-    let newRow: LineaAsiento = { numero: 'x', cuenta: 'xyz', debito: 'xyz', credito: 'xyz', descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book', impuesto: 'xyz', proveedor: '', fechabanco: ''};
-    AsientoData.push(newRow);
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    let newRow: LineaAsiento = { numero: (this.AsientoData.length+1).toString(), cuenta: '', debito: '', credito: '', descripcion: '', impuesto: '', proveedor: '', fechabanco: ''};
+    this.AsientoData.push(newRow);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
   }
   deleteRow(){
-    AsientoData.pop();
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.AsientoData.pop();
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
   }
 
-  setFechabanco(event: { value: any; }){
+  setFechabanco(event: { value: any; }, rowNum:string){
+    let index:number = +rowNum-1
     let fb:Date = event.value;
-    if(this.proveedor!='' && this.impuesto!='' && this.titular!=''){
+    if(this.proveedor!='' && this.impuesto!='' && this.cuenta!=''){
       if(this.debito!='' || this.credito!=''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: fb.toString()};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: fb.toString()};
+        this.AsientoData[index].cuenta = this.cuenta;
+        this.AsientoData[index].debito = this.debito;
+        this.AsientoData[index].credito = this.credito;
+        this.AsientoData[index].descripcion = this.descripcion;
+        this.AsientoData[index].impuesto = this.impuesto;
+        this.AsientoData[index].proveedor = this.proveedor;
+        this.AsientoData[index].fechabanco = fb.toString();
+
+
+        //this.AsientoData.push(newRow); 
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -75,16 +85,24 @@ export class EdiTableComponent{
     else{
       this.fechabanco = fb.toString();
     }  
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
-  setCuenta(cuenta: string){
+  setCuenta(cuenta: string, rowNum:string){
+    let index:number = +rowNum-1
     if(this.proveedor!='' && this.impuesto!='' && this.fechabanco!=''){
       if(this.debito!='' || this.credito!=''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: cuenta, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        this.AsientoData[index].cuenta = cuenta;
+        this.AsientoData[index].debito = this.debito;
+        this.AsientoData[index].credito = this.credito;
+        this.AsientoData[index].descripcion = this.descripcion;
+        this.AsientoData[index].impuesto = this.impuesto;
+        this.AsientoData[index].proveedor = this.proveedor;
+        this.AsientoData[index].fechabanco = this.fechabanco;
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: cuenta, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        //this.AsientoData.pop();
+        //this.AsientoData.push(newRow); 
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -94,22 +112,30 @@ export class EdiTableComponent{
         this.addNewRow();
       }
       else{
-        this.titular=cuenta;
+        this.cuenta=cuenta;
       } 
     }
     else{
-      this.titular=cuenta;
+      this.cuenta=cuenta;
     }  
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
-  setProveedor(proveedor: string){
-    if(this.titular!='' && this.impuesto!='' && this.fechabanco!=''){
+  setProveedor(proveedor: string, rowNum:string){
+    let index:number = +rowNum-1
+    if(this.cuenta!='' && this.impuesto!='' && this.fechabanco!=''){
       if(this.debito!='' || this.credito!=''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: proveedor, fechabanco: this.fechabanco};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        this.AsientoData[index].cuenta = this.cuenta;
+        this.AsientoData[index].debito = this.debito;
+        this.AsientoData[index].credito = this.credito;
+        this.AsientoData[index].descripcion = this.descripcion;
+        this.AsientoData[index].impuesto = this.impuesto;
+        this.AsientoData[index].proveedor = proveedor;
+        this.AsientoData[index].fechabanco = this.fechabanco;
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: proveedor, fechabanco: this.fechabanco};
+        //this.AsientoData.pop();
+        //this.AsientoData.push(newRow); 
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -125,16 +151,24 @@ export class EdiTableComponent{
     else{
       this.proveedor=proveedor;
     }
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
-  setImpuesto(impuesto:string){
-    if(this.titular!='' && this.proveedor!='' && this.fechabanco!=''){
+  setImpuesto(impuesto:string, rowNum:string){
+    let index:number = +rowNum-1
+    if(this.cuenta!='' && this.proveedor!='' && this.fechabanco!=''){
       if(this.debito!='' || this.credito!=''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        this.AsientoData[index].cuenta = this.cuenta;
+        this.AsientoData[index].debito = this.debito;
+        this.AsientoData[index].credito = this.credito;
+        this.AsientoData[index].descripcion = this.descripcion;
+        this.AsientoData[index].impuesto = impuesto;
+        this.AsientoData[index].proveedor = this.proveedor;
+        this.AsientoData[index].fechabanco = this.fechabanco;
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: this.descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        //this.AsientoData.pop();
+        //this.AsientoData.push(newRow); 
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -150,16 +184,24 @@ export class EdiTableComponent{
     else{
       this.impuesto=impuesto;
     }
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
-  setDescripcion(descripcion:string){
-    if(this.titular!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
+  setDescripcion(descripcion:string, rowNum:string){
+    let index:number = +rowNum-1
+    if(this.cuenta!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
       if(this.debito!='' || this.credito!=''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: this.credito, descripcion: descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        //this.AsientoData.pop();
+        //this.AsientoData.push(newRow); 
+        this.AsientoData[index].cuenta = this.cuenta;
+        this.AsientoData[index].debito = this.debito;
+        this.AsientoData[index].credito = this.credito;
+        this.AsientoData[index].descripcion = descripcion;
+        this.AsientoData[index].impuesto = this.impuesto;
+        this.AsientoData[index].proveedor = this.proveedor;
+        this.AsientoData[index].fechabanco = this.fechabanco;
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -175,16 +217,24 @@ export class EdiTableComponent{
     else{
       this.descripcion=descripcion;
     }
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
-  setDebito(debito:string){
-    if(this.titular!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
+  setDebito(debito:string, rowNum:string){
+    let index:number = +rowNum-1
+    if(this.cuenta!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
       if(this.credito==''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        this.AsientoData[index].cuenta = this.cuenta;
+        this.AsientoData[index].debito = debito;
+        this.AsientoData[index].credito = this.credito;
+        this.AsientoData[index].descripcion = this.descripcion;
+        this.AsientoData[index].impuesto = this.impuesto;
+        this.AsientoData[index].proveedor = this.proveedor;
+        this.AsientoData[index].fechabanco = this.fechabanco;
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: debito, credito: this.credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        //this.AsientoData.pop();
+        //this.AsientoData.push(newRow); 
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -207,16 +257,24 @@ export class EdiTableComponent{
         console.log('la fila no puede tener credito y debito, solo 1');
       }
     }
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
-  setCredito(credito:string){
-    if(this.titular!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
+  setCredito(credito:string, rowNum:string){
+    let index:number = +rowNum-1
+    if(this.cuenta!='' && this.proveedor!='' && this.fechabanco!='' && this.impuesto!=''){
       if(this.debito==''){
-        let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
-        AsientoData.pop();
-        AsientoData.push(newRow); 
-        this.titular='';
+        this.AsientoData[index].cuenta = this.cuenta;
+        this.AsientoData[index].debito = this.debito;
+        this.AsientoData[index].credito = credito;
+        this.AsientoData[index].descripcion = this.descripcion;
+        this.AsientoData[index].impuesto = this.impuesto;
+        this.AsientoData[index].proveedor = this.proveedor;
+        this.AsientoData[index].fechabanco = this.fechabanco;
+        //let newRow: LineaAsiento = { numero: 'x', cuenta: this.titular, debito: this.debito, credito: credito, descripcion: this.descripcion, impuesto: this.impuesto, proveedor: this.proveedor, fechabanco: this.fechabanco};
+        //this.AsientoData.pop();
+        //this.AsientoData.push(newRow); 
+        this.cuenta='';
         this.proveedor='';
         this.debito='';
         this.credito='';
@@ -239,6 +297,11 @@ export class EdiTableComponent{
         this.credito='';
       }
     }
-    this.dataSource = new MatTableDataSource<LineaAsiento>(AsientoData);
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
+  }
+
+  x(){
+    //this.addNewRow();
+    console.log(this.AsientoData);
   }
 }
