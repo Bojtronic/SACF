@@ -65,18 +65,18 @@
               </mat-menu>
   
               <mat-menu #catalogocuentas="matMenu">
-                <button mat-menu-item >Nueva cuenta</button>
+                <button mat-menu-item (click)="toNewCuenta()">Nueva cuenta</button>
                 <button mat-menu-item (click)="toAllCuentas()">Catálogo</button>
               </mat-menu>
   
               <mat-menu #deposito="matMenu">
-                <button mat-menu-item (click)="toDeposito()">Nuevo depositos</button>
-                <button mat-menu-item>Todos los depositos</button>
+                <button mat-menu-item (click)="toNewDeposito()">Nuevo depositos</button>
+                <button mat-menu-item (click)="toAllDepositos()">Todos los depositos</button>
               </mat-menu>
   
               <mat-menu #transferencia="matMenu">
-                <button mat-menu-item (click)="toTransferencia()">Nueva transferencia</button>
-                <button mat-menu-item>Todas las transferencias</button>
+                <button mat-menu-item (click)="toNewTransferencia()">Nueva transferencia</button>
+                <button mat-menu-item (click)="toAllTransferencias()">Todas las transferencias</button>
               </mat-menu>
   
               <mat-menu #asiento="matMenu">
@@ -84,19 +84,19 @@
                 <button mat-menu-item (click)="toAllAsientos()">Todos los asientos</button>
               </mat-menu>
   
-          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Cuentas por cobrar</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXCobrar()">+ Cuentas por cobrar</mat-list-item>
           
-          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Cuentas por pagar</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXPagar()">+ Cuentas por pagar</mat-list-item>
           
-          <mat-list-item class="manage-control-options" [matMenuTriggerFor]="conciliacion" role="listitem" (click)="x()">+ Conciliaciones bancarias</mat-list-item>
+          <mat-list-item class="manage-control-options" [matMenuTriggerFor]="conciliacion" role="listitem">+ Conciliaciones bancarias</mat-list-item>
           <mat-menu #conciliacion="matMenu">
-            <button mat-menu-item>Nueva conciliaciación</button>
-            <button mat-menu-item>Todas las conciliaciones</button>
+            <button mat-menu-item (click)="toNewConciliacion()">Nueva conciliaciación</button>
+            <button mat-menu-item (click)="toAllConciliaciones()">Todas las conciliaciones</button>
           </mat-menu>
 
-          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Inventarios</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toInventarios()">+ Inventarios</mat-list-item>
 
-          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Reportes</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toReportes()">+ Reportes</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
@@ -159,9 +159,9 @@
                 <button mat-menu-item disabled>Velociraptor</button>
               </mat-menu>
   
-          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Cosas de administración</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem">+ Cosas de administración</mat-list-item>
           
-          <mat-list-item class="manage-control-options" role="listitem" (click)="x()">+ Otras varas</mat-list-item>
+          <mat-list-item class="manage-control-options" role="listitem">+ Otras varas</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>

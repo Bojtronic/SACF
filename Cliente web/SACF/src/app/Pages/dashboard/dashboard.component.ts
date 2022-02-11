@@ -33,19 +33,43 @@ export class DashboardComponent implements OnInit {
   toAllAsientos() {
     this.router.navigate(['/allasientos']);
   }
-  toDeposito() {
-    this.router.navigate(['/deposito']);
+  toNewDeposito() {
+    this.router.navigate(['/newdeposito']);
   }
-  toTransferencia() {
-    this.router.navigate(['/transferencia']);
+  toAllDepositos() {
+    this.router.navigate(['/alldepositos']);
+  }
+  toNewTransferencia() {
+    this.router.navigate(['/newtransferencia']);
+  }
+  toAllTransferencias(){
+    this.router.navigate(['/alltransferencias']);
   }
   toAllCuentas() {
     this.router.navigate(['/allcuentas']);
   }
-
-  x (){
-    console.log("No se ha creado la ruta al componente");
+  toCuentasXCobrar() {
+    this.router.navigate(['/cuentasxcobrar']);
   }
+  toNewCuenta(){
+    this.router.navigate(['/newcuenta']);
+  }
+  toCuentasXPagar(){
+    this.router.navigate(['/cuentasxpagar']);
+  }
+  toNewConciliacion() {
+    this.router.navigate(['/newconciliacion']);
+  }
+  toAllConciliaciones(){
+    this.router.navigate(['/allconciliaciones']);
+  }
+  toInventarios(){
+    this.router.navigate(['/inventarios']);
+  }
+  toReportes(){
+    this.router.navigate(['/reportes']);
+  }
+
 
   selected = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
 

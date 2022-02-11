@@ -93,12 +93,17 @@
             </div>
         </mat-card>
     </td>
-    <td>
+    <td style="width: 600px;">
         <button mat-icon-button>
             <mat-icon>history</mat-icon>
-            Transacciones anteriores
+            Transacciones recientes
         </button>
-    </td>    
+    </td>  
+    <td>
+        <button mat-icon-button (click)="toDashboard()">
+            <mat-icon>cancel_presentation</mat-icon>
+        </button>
+    </td>  
 </div>
 <div>
     <br>
@@ -155,7 +160,7 @@
     <button mat-raised-button>Descartar</button>
     <button mat-raised-button>Guardar</button>
 </div>
-
+<br>
 
 
 
