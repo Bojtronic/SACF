@@ -46,10 +46,11 @@ export class NewAsientoComponent implements AfterViewInit{
   getProveedor(proveedor:Proveedor):string{
     return proveedor.nombre;
   }
+  /*
   getCuenta(cuenta:Cuenta):string{
     return cuenta.banco;
   }
-
+  */
   editRow(numero:string, cuenta:string, debito:string, credito:string, impuesto:string, proveedor:string, descripcion:string, fechabanco:string): void {
     const dialogRef = this.dialog.open(FormAsientoComponent, {
       //height: '400px',

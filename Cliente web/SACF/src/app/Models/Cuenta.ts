@@ -1,5 +1,9 @@
 export interface Cuenta {
-    titular: string;
-    banco: string;
+    numero: string;
+    nombre: string;
+    tipo: string;
+    detalle: string;
     descripcion: string;
+    saldo: string;
+    divisa: string;
   }

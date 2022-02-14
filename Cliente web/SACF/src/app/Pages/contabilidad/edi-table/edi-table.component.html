@@ -13,8 +13,8 @@
     <td mat-cell *matCellDef="let element"> 
       <mat-form-field style="width: 90px;">
         <mat-select>
-          <mat-option *ngFor="let cuenta of cuentas" value="element.cuenta" (click)="setCuenta(cuenta.titular+' '+'-'+' '+cuenta.banco+' '+'-'+' '+cuenta.descripcion,element.numero)">
-            {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
+          <mat-option *ngFor="let cuenta of cuentas" value="element.cuenta" (click)="setCuenta(cuenta.numero+' '+'-'+' '+cuenta.nombre+' '+'-'+' '+cuenta.descripcion,element.numero)">
+            {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.descripcion}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -91,8 +91,6 @@
     <tr mat-header-row *matHeaderRowDef="Columns"></tr>
     <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
 </table> 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
 
 <button mat-icon-button (click)="x()"> <mat-icon>note_add</mat-icon> </button>
 <hr>

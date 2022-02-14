@@ -12,10 +12,8 @@ export class CuentaService {
   cuentaControl = new FormControl('', Validators.required);
 
   cuentas: Cuenta[] = [
-    {titular: 'Mechudin', banco: 'BAC', descripcion: 'cuenta para el vicio'},
-    {titular: 'Cory', banco: 'BCR', descripcion: 'cuenta para comida'},
-    {titular: 'Alissa', banco: 'Scotiabank', descripcion: 'cuenta para viajes'},
-    {titular: 'Simone', banco: 'Cathay', descripcion: 'cuenta para instrumentos'}
+    {numero: '101', nombre: 'Bancos Colones', tipo: 'Efectivo y equivalentes de efectivo', detalle: 'Banco', descripcion: '', saldo: '12.430.818,95  ', divisa: 'CRC'},
+    {numero: '101-01-00', nombre:	'Bancos Colones:BNCR #100-01-000466-0', tipo:	'Efectivo y equivalentes de efectivo', detalle:	'Banco', descripcion:	'BNCR 000466', saldo:	'12.022.693,55', divisa: 'CRC'} 	
   ];
 
   allCuentas(){
@@ -24,17 +22,5 @@ export class CuentaService {
 
   getControl(){
     return this.cuentaControl;
-  }
-
-  setTitular(row:string, titular:string){
-
-  }
-
-  setBanco(row:string, banco:string){
-
-  }
-
-  setDescripcion(row:string, descripcion:string){
-
   }
 }

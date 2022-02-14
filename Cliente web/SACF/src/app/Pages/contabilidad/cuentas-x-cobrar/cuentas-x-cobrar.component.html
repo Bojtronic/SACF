@@ -1,1 +1,52 @@
-<p>cuentas-x-cobrar works!</p>
+<div>
+    <mat-label>Cobrar a : </mat-label>
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let cliente of clientes" value="element.nombre">
+                {{cliente.codigo}} - {{cliente.nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div>
+    <table mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef> Codigo </th>
+        <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre de cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="finca">
+        <th mat-header-cell *matHeaderCellDef> Finca </th>
+        <td mat-cell *matCellDef="let element"> {{element.finca}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Monto total </th>
+        <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="pendiente">
+        <th mat-header-cell *matHeaderCellDef> Pendiente </th>
+        <td mat-cell *matCellDef="let element"> {{element.pendiente}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons >
+    </mat-paginator>
+  </div>
+

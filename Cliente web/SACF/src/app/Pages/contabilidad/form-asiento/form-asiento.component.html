@@ -7,12 +7,12 @@
         <label>Cuenta contable</label>
         <mat-form-field>
           <mat-select [formControl]="cuentaControl" required>
-            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.banco)">
-              {{cuenta.titular}} - {{cuenta.banco}} - {{cuenta.descripcion}}
+            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.nombre)">
+              {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.descripcion}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="cuentaControl.hasError('required')">Selecione una cuenta</mat-error>
-          <mat-hint>{{cuentaControl.value?.titular}}</mat-hint>
+          <mat-hint>{{cuentaControl.value?.numero}}</mat-hint>
         </mat-form-field>
       </td>
       <td>
