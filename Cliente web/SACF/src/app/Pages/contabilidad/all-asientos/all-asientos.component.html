@@ -1,22 +1,37 @@
-<div>
+<mat-accordion multi>
+  <mat-expansion-panel style="background: rgb(6, 247, 235);">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="color: rgb(28, 11, 90);">
+      
+        Numero de asiento: 1  &nbsp;&nbsp;-&nbsp;&nbsp; Fecha: 00/00/0000  &nbsp;&nbsp;-&nbsp;&nbsp;  Monto: 99999
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!--LISTA CON LAS OPCIONES DE CONTABILIDAD-->
+    <div>
     <table mat-table [dataSource]="dataSource">
   
       <!-- Position Column -->
-      <ng-container matColumnDef="consecutivo">
-        <th mat-header-cell *matHeaderCellDef> consecutivo </th>
-        <td mat-cell *matCellDef="let element"> {{element.consecutivo}} </td>
+      <ng-container matColumnDef="numero">
+        <th mat-header-cell *matHeaderCellDef> Numero </th>
+        <td mat-cell *matCellDef="let element"> {{element.numero}} </td>
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="debitos">
-        <th mat-header-cell *matHeaderCellDef> debitos </th>
-        <td mat-cell *matCellDef="let element"> {{element.debitos}} </td>
+      <ng-container matColumnDef="cuenta">
+        <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+        <td mat-cell *matCellDef="let element"> {{element.cuenta}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="debito">
+        <th mat-header-cell *matHeaderCellDef> Debito </th>
+        <td mat-cell *matCellDef="let element"> {{element.debito}} </td>
       </ng-container>
   
       <!-- Weight Column -->
-      <ng-container matColumnDef="creditos">
-        <th mat-header-cell *matHeaderCellDef> creditos </th>
-        <td mat-cell *matCellDef="let element"> {{element.creditos}} </td>
+      <ng-container matColumnDef="credito">
+        <th mat-header-cell *matHeaderCellDef> Credito </th>
+        <td mat-cell *matCellDef="let element"> {{element.credito}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
@@ -26,15 +41,21 @@
       </ng-container>
   
       <!-- Symbol Column -->
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      <ng-container matColumnDef="impuesto">
+        <th mat-header-cell *matHeaderCellDef> Impuesto </th>
+        <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
-      <ng-container matColumnDef="impuesto">
-        <th mat-header-cell *matHeaderCellDef> impuesto </th>
-        <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
+      <ng-container matColumnDef="proveedor">
+        <th mat-header-cell *matHeaderCellDef> Proveedor </th>
+        <td mat-cell *matCellDef="let element"> {{element.proveedor}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fechabanco">
+        <th mat-header-cell *matHeaderCellDef> Fecha banco </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechabanco}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="Columns"></tr>
@@ -46,3 +67,82 @@
                    aria-label="Datos del asiento">
     </mat-paginator>
   </div>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<mat-accordion multi>
+  <mat-expansion-panel style="background: rgb(6, 247, 235);">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="color: rgb(28, 11, 90);">
+      
+        Numero de asiento: 2  &nbsp;&nbsp;-&nbsp;&nbsp; Fecha: 11/11/1349  &nbsp;&nbsp;-&nbsp;&nbsp;  Monto: 33333
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!--LISTA CON LAS OPCIONES DE CONTABILIDAD-->
+    <div>
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="numero">
+        <th mat-header-cell *matHeaderCellDef> Numero </th>
+        <td mat-cell *matCellDef="let element"> {{element.numero}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="cuenta">
+        <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+        <td mat-cell *matCellDef="let element"> {{element.cuenta}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="debito">
+        <th mat-header-cell *matHeaderCellDef> Debito </th>
+        <td mat-cell *matCellDef="let element"> {{element.debito}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="credito">
+        <th mat-header-cell *matHeaderCellDef> Credito </th>
+        <td mat-cell *matCellDef="let element"> {{element.credito}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> descripcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="impuesto">
+        <th mat-header-cell *matHeaderCellDef> Impuesto </th>
+        <td mat-cell *matCellDef="let element"> {{element.impuesto}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="proveedor">
+        <th mat-header-cell *matHeaderCellDef> Proveedor </th>
+        <td mat-cell *matCellDef="let element"> {{element.proveedor}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fechabanco">
+        <th mat-header-cell *matHeaderCellDef> Fecha banco </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechabanco}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Datos del asiento">
+    </mat-paginator>
+  </div>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+

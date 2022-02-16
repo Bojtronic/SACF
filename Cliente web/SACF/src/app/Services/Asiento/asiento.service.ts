@@ -52,10 +52,10 @@ export class AsientoService {
   }
 
   //*
-  asientoLines(consecutivo: string){
+  asientoRows(consecutivo: string){
     let asiento: Asiento = this.Asientos[+consecutivo]
-    let lines: LineaAsiento[] = asiento.numlinea
-    return lines
+    let rows: LineaAsiento[] = asiento.numlinea
+    return rows
   }
 
   asiento(consecutivo: string){
