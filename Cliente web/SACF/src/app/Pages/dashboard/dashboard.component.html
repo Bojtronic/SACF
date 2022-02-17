@@ -47,7 +47,7 @@
 
     <!--CONTENEDOR DE OPCIONES PARA CONTABILIDAD-->
     <mat-accordion multi>
-      <mat-expansion-panel style="background: rgb(45, 88, 86);">
+      <mat-expansion-panel style="background: rgb(114, 175, 172);">
         <mat-expansion-panel-header>
           <mat-panel-title style="color: rgb(164, 232, 236);">
             <mat-icon>calculate</mat-icon>
@@ -56,12 +56,12 @@
         </mat-expansion-panel-header>
         <!--LISTA CON LAS OPCIONES DE CONTABILIDAD-->
         <mat-list>   
-          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="generales">+ Generales</mat-list-item>
-              <mat-menu #generales="matMenu">
-                <button mat-menu-item [matMenuTriggerFor]="catalogocuentas">Catálogo de cuentas</button>
-                <button mat-menu-item [matMenuTriggerFor]="deposito">Depósito bancario</button>
-                <button mat-menu-item [matMenuTriggerFor]="transferencia">Transferencia</button>
-                <button mat-menu-item [matMenuTriggerFor]="asiento">Asiento de diario</button>
+          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="generales" style="font-size: 18px; font-family: 'Times New Roman', Times, serif;">+ Generales</mat-list-item>
+              <mat-menu #generales="matMenu" style="color: rgb(76, 0, 255);">
+                <button mat-menu-item [matMenuTriggerFor]="catalogocuentas" style="background-color: chartreuse;">Catálogo de cuentas</button>
+                <button mat-menu-item [matMenuTriggerFor]="deposito" style="background-color: chartreuse;">Depósito bancario</button>
+                <button mat-menu-item [matMenuTriggerFor]="transferencia" style="background-color: chartreuse;">Transferencia</button>
+                <button mat-menu-item [matMenuTriggerFor]="asiento" style="background-color: chartreuse;">Asiento de diario</button>
               </mat-menu>
   
               <mat-menu #catalogocuentas="matMenu">
@@ -83,19 +83,23 @@
                 <button mat-menu-item (click)="toNewAsiento()">Nuevo asiento</button>
                 <button mat-menu-item (click)="toAllAsientos()">Todos los asientos</button>
               </mat-menu>
+
+          <hr>
   
           <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXCobrar()">+ Cuentas por cobrar</mat-list-item>
-          
+            <hr>
+
           <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXPagar()">+ Cuentas por pagar</mat-list-item>
-          
+          <hr>
           <mat-list-item class="manage-control-options" [matMenuTriggerFor]="conciliacion" role="listitem">+ Conciliaciones bancarias</mat-list-item>
           <mat-menu #conciliacion="matMenu">
             <button mat-menu-item (click)="toNewConciliacion()">Nueva conciliaciación</button>
             <button mat-menu-item (click)="toAllConciliaciones()">Todas las conciliaciones</button>
           </mat-menu>
 
+          <hr>
           <mat-list-item class="manage-control-options" role="listitem" (click)="toInventarios()">+ Inventarios</mat-list-item>
-
+          <hr>
           <mat-list-item class="manage-control-options" role="listitem" (click)="toReportes()">+ Reportes</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
