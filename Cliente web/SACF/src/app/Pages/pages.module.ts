@@ -21,6 +21,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { NewAsientoComponent } from './contabilidad/new-asiento/new-asiento.component';
 import { AllAsientosComponent } from './contabilidad/all-asientos/all-asientos.component';
@@ -93,7 +96,10 @@ import { ReportesComponent } from './contabilidad/reportes/reportes.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule,
+    MatSlideToggleModule,
+    MatAutocompleteModule
   ],
   exports: [
     LoginComponent,

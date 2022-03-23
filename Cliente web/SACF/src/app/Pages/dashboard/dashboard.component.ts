@@ -20,6 +20,7 @@ export class ErrorOfEmptyOrInvalidInput implements ErrorStateMatcher {
 })
 export class DashboardComponent implements OnInit {
 
+  isChecked: boolean = false
   fecha: string = "00/00/0000"
 
   constructor(private router:Router) { }

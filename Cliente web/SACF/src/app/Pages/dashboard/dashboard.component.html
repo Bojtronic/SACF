@@ -175,11 +175,14 @@
     
   </mat-drawer>
   
+  
+
   <mat-drawer-content>
+    <mat-slide-toggle [(ngModel)]="isChecked">Ocultar Información</mat-slide-toggle>
     <!--GRAFICAS-->
     <td>
       <mat-drawer-content style="margin-left: 0px;">
-        <mat-card>
+        <mat-card [hidden]=isChecked>
           <app-all-charts></app-all-charts>
         </mat-card>
       </mat-drawer-content>
