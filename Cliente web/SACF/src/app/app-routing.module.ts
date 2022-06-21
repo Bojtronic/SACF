@@ -8,6 +8,12 @@ const routes: Routes = [
   },
   { path: 'pages',
     loadChildren: () => import('./Pages/pages.module').then(m => m.PagesModule) 
+  },
+  { path: 'contabilidad',
+    loadChildren: () => import('./Pages/contabilidad/contabilidad.module').then(m => m.ContabilidadModule) 
+  },
+  { path: 'administracion',
+    loadChildren: () => import('./Pages/administracion/administracion.module').then(m => m.AdministracionModule) 
   }
 ];
 
