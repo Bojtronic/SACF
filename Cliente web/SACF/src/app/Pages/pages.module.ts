@@ -16,14 +16,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ChartsModule } from '../Charts/charts.module';
-import {MatSelectModule} from '@angular/material/select';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+//import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatTabsModule} from '@angular/material/tabs'; 
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import { LoginComponent } from './login/login.component';
@@ -61,7 +61,7 @@ import { FooterComponent } from './Shared/footer/footer.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule,
+    //MatDialogModule,
     MatExpansionModule,
     MatTabsModule,
     MatSlideToggleModule,
@@ -72,9 +72,11 @@ import { FooterComponent } from './Shared/footer/footer.component';
     DashboardComponent,
     HeaderComponent,
     FooterComponent
-  ],
+  ]
+  /*,
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ]
+  */
 })
 export class PagesModule { }

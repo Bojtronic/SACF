@@ -1,7 +1,19 @@
 .menu-top-bar{
   display: grid;
-  grid-template-columns: 85% 10%;
+  //grid-template-columns: 70% 30%;
   width: 100%;
+}
+
+.color-verde-claro{
+  background:rgb(135, 194, 176);
+}
+
+.color-blanco{
+  background:rgb(255, 255, 255);
+}
+
+.color-verde-musgo{
+  background: rgb(45, 88, 86);
 }
 
 .manage-control-options{
@@ -14,8 +26,9 @@
 
 
 mat-drawer-content{
-  height: 80vh;
+  height: 100%;
   padding: 1rem;
+  margin-left: 0px;
 }
 
 
