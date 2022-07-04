@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Cliente } from 'src/app/Models/Cliente';
+import { TransferenciaService } from 'src/app/Services/Transferencia/transferencia.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -8,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private service:TransferenciaService) {
     }
 
   ngOnInit(): void {
@@ -26,5 +30,12 @@ export class LoginComponent implements OnInit {
 
     }
          
-  }
+  };
+
+  test(){
+    this.service.testGet().subscribe((clientes: Cliente[]) => {
+      console.log(clientes)
+    });
+  };
+  
 }
