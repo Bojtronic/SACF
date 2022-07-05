@@ -11,7 +11,7 @@ import { Cliente } from 'src/app/Models/Cliente';
 })
 export class TransferenciaService {
 
-  private APIurl="http://localhost:3000/api/v1/clientes";
+  private APIurl="http://localhost:3000/api/v1/empleados";
   constructor(private http: HttpClient) { }
 
   testGet():Observable<Cliente[]> {

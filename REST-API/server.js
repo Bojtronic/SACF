@@ -1,10 +1,10 @@
 const express = require("express");
-const clienteRoutes = require('./src/clientes/routes')
+const clientesRoute = require('./src/clientes/routes');
+const empleadosRoute = require('./src/empleados/routes');
 
 const app = express();
 const port = 3000;
 
-//const server = "127.0.0.1";
 
 app.use(express.json());
 
@@ -21,10 +21,11 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use('/api/v1/clientes', clienteRoutes);
+app.use('/api/v1/clientes', clientesRoute);
+app.use('/api/v1/empleados', empleadosRoute);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
 app.get('/', (consulta, respuesta) => {
-    respuesta.send('using server')
+    respuesta.send('BOJTRONIC - SACF API');
 });
