@@ -1,5 +1,5 @@
 {
-  "name": "SACF_API",
+  "name": "SACF_SERVER",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
