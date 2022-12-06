@@ -26,15 +26,16 @@ app.use((req, res, next) => {
 app.use('/api/v1/clientes', clientesRoute);
 app.use('/api/v1/empleados', empleadosRoute);
 
+app.listen(port, () => console.log(`listening on port ${port}`));
+
+app.get('/', (consulta, respuesta) => {
+    respuesta.send('BOJTRONIC - SACF API');
+});
+
+
 /*
 https.createServer({
   cert: fs.readFileSync('www_sacf_server_com.csr'),
   key: fs.readFileSync('www_sacf_server_com.key')
 }, app).app.listen(port, () => console.log(`listening on port ${port}`));
 x*/
-
-app.listen(port, () => console.log(`listening on port ${port}`));
-
-app.get('/', (consulta, respuesta) => {
-    respuesta.send('BOJTRONIC - SACF API');
-});
