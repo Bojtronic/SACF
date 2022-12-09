@@ -1,0 +1,61 @@
+create table ASIENTO
+(
+id_asiento int,
+num_asiento int,
+num_cuenta varchar,
+cuenta varchar,
+debitos int,
+creditos int,
+descripcion varchar(100),
+impuestos varchar,
+fecha_creacion date,
+fecha_emision_factura date,
+proveedor varchar
+)
+
+
+create table CONDOMINIO
+(
+id_condominio int,
+nombre varchar,
+direccion varchar,
+correo varchar,
+telefono int
+)
+
+create table CLIENTE
+(
+cedula varchar,
+nombre varchar,
+apellido1 varchar,
+apellido2 varchar,
+direccion varchar,
+telefono int,
+correo varchar,
+tipo varchar
+)
+
+create table PROVEEDOR
+(
+cedula varchar,
+nombre varchar,
+direccion varchar,
+telefono int,
+correo varchar,
+cuenta varchar,
+tipo varchar,
+monto int
+)
+
+create table CUENTA
+(
+id_cuenta int,
+numero varchar,
+nombre varchar,
+tipo varchar,
+tipo_detalle varchar,
+descripcion varchar,
+saldo varchar,
+divisa varchar
+)
+

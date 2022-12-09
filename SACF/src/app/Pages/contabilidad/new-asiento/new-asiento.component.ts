@@ -23,7 +23,8 @@ let newCuenta: string = '';
 
 
 
-export class NewAsientoComponent implements AfterViewInit{
+export class NewAsientoComponent implements AfterViewInit {
+
   numlinea: string = (this.asientoService.getAllNewRows().length + 1).toString();
 
   proveedorControl = this.proveedorService.getControl();
@@ -36,28 +37,29 @@ export class NewAsientoComponent implements AfterViewInit{
   AsientoRows: LineaAsiento[] = this.asientoService.getAllNewRows();
   consecutivo: string = this.asientoService.newConsecutivo()
 
-  Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco','accion'];
+  Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco', 'accion'];
 
   dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
 
 
-  constructor(public dialog: MatDialog, private asientoService:AsientoService, private cuentaService:CuentaService, private proveedorService:ProveedorService, private router:Router){ }
+  constructor(public dialog: MatDialog, private asientoService: AsientoService, private cuentaService: CuentaService, private proveedorService: ProveedorService, private router: Router) { }
 
-  getProveedor(proveedor:Proveedor):string{
+  getProveedor(proveedor: Proveedor): string {
     return proveedor.nombre;
   }
-  /*
-  getCuenta(cuenta:Cuenta):string{
-    return cuenta.banco;
+
+  getCuenta(cuenta: Cuenta): string {
+    //return cuenta.banco;
+    return 'Hola soy un errorsh'
   }
-  */
-  editRow(numero:string, cuenta:string, debito:string, credito:string, impuesto:string, proveedor:string, descripcion:string, fechabanco:string): void {
+
+  editRow(numero: string, cuenta: string, debito: string, credito: string, impuesto: string, proveedor: string, descripcion: string, fechabanco: string): void {
     const dialogRef = this.dialog.open(FormAsientoComponent, {
       //height: '400px',
       //width: '600px',
-      data: {numero: numero, cuenta: cuenta, debito: debito, credito: credito, impuesto: impuesto, proveedor: proveedor, descripcion: descripcion, fechabanco: fechabanco}
+      data: { numero: numero, cuenta: cuenta, debito: debito, credito: credito, impuesto: impuesto, proveedor: proveedor, descripcion: descripcion, fechabanco: fechabanco }
     });
-    
+
     dialogRef.afterClosed().subscribe(result => {
       //this.openDialog()
       //this.animal = result;
@@ -74,7 +76,7 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  deleteRow(numero: string){
+  deleteRow(numero: string) {
     //this.AsientoRows.splice(+numero-1, 1);
     //this.AsientoRows = this.asientoService.reorderRows(this.AsientoRows);
     this.asientoService.deleteRow(numero);
@@ -82,33 +84,35 @@ export class NewAsientoComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  addRow(debito:string, credito:string, impuesto:string, descripcion:string, fechabanco:string){
-    let newRow: LineaAsiento = {numero:this.numlinea, cuenta:newCuenta, debito:debito, credito:credito, descripcion:descripcion, impuesto:impuesto, proveedor:newProveedor, fechabanco:fechabanco};
-    
+  addRow(debito: string, credito: string, impuesto: string, descripcion: string, fechabanco: string) {
+    let newRow: LineaAsiento = { numero: this.numlinea, cuenta: newCuenta, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: newProveedor, fechabanco: fechabanco };
+
     this.asientoService.addNewRow(newRow);
-        
+
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;
   }
 
 
-upDate(){
-  this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
-  this.dataSource.paginator = this.paginator;
-}
-  
-  setProveedor(proveedor: string){
+  upDate() {
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  setProveedor(proveedor: string) {
     newProveedor = proveedor;
   }
 
-  setCuenta(cuenta: string){
+  setCuenta(cuenta: string) {
     newCuenta = cuenta;
   }
-  toDashboard(){
+  toDashboard() {
     this.router.navigate(['/dashboard']);
   }
-  toAllAsientos(){
+  toAllAsientos() {
     this.router.navigate(['/allasientos']);
   }
+
+
 }
 

@@ -6,23 +6,23 @@
           <mat-form-field appearance="fill" style="margin-left: 20px; width: 200px;">
             <mat-label>Divisa</mat-label>
             <mat-select>
-            <mat-option value="dolar">Dolar</mat-option>
-            <mat-option value="euro" disabled>Euro (disabled)</mat-option>
-            <mat-option value="colon">Colon</mat-option>
+              <mat-option value="dolar">Dolar</mat-option>
+              <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+              <mat-option value="colon">Colon</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-  
+
         <div>
           <mat-form-field appearance="fill" style="margin-left: 20px; width: 200px">
             <mat-label>Fecha del asiento</mat-label>
             <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
-            <mat-datepicker-actions>
-              <button mat-button matDatepickerCancel>Cancelar</button>
-              <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
-            </mat-datepicker-actions>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancelar</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+              </mat-datepicker-actions>
             </mat-datepicker>
           </mat-form-field>
         </div>
@@ -33,19 +33,23 @@
         </div>
       </td>
       <td>
-        <mat-card style="margin-left: 150px;" valing="top">
-          <img src="../../../assets/LogoCliente.png"/>
+        <mat-card style="width: 250px" valing="top">
+          <img src="../../../assets/LogoCliente.png" />
         </mat-card>
       </td>
     </table>
   </div>
-  
+
 
   <div id="sharebuttons">
-    <button mat-icon-button> <mat-icon>download</mat-icon> </button>
-    <button mat-icon-button> <mat-icon>share</mat-icon> </button>
+    <button mat-icon-button>
+      <mat-icon>download</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>share</mat-icon>
+    </button>
   </div>
-  
+
   <app-edi-table></app-edi-table>
 
   <div>
@@ -56,8 +60,8 @@
   <div>
     <mat-label>Notas</mat-label>
     <div>
-        <textarea style="width: 700px;"></textarea>
-    </div> 
+      <textarea style="width: 700px;"></textarea>
+    </div>
   </div>
   <br>
   <div>

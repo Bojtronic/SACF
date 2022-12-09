@@ -1,15 +1,15 @@
 const Pool = require("pg").Pool;
 
-/*
+
 const pool = new Pool({
     user: "postgres",
     host: "localhost",
-    database: "test",
+    database: "SACF",
     password: "xxx",
-    port: 5432,    
+    port: 5432,
 });
-*/
 
+/*
 const pool = new Pool({
     user: "mfaebpejhrtipe",
     host: "ec2-52-20-166-21.compute-1.amazonaws.com",
@@ -22,5 +22,5 @@ const pool = new Pool({
     port: 5432,
     //uri: "postgres://ojgrffiqcutdjy:f1172a619a1c25e586cae8e33ef3cc762744f817876cf8c1535abff96a592c1d@ec2-44-206-214-233.compute-1.amazonaws.com:5432/ddm46h90v1f25t", 
 });
-
+*/
 module.exports = pool;

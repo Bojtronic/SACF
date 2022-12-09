@@ -2,18 +2,20 @@
   <!-- Position Column -->
   <ng-container matColumnDef="numero">
     <th mat-header-cell *matHeaderCellDef> fila # </th>
-    <td mat-cell *matCellDef="let element"> 
-      {{element.numero}} 
+    <td mat-cell *matCellDef="let element">
+
+      <label style="width: 60px;">{{element.numero}}</label>
     </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="cuenta">
     <th mat-header-cell *matHeaderCellDef> cuenta </th>
-    <td mat-cell *matCellDef="let element"> 
+    <td mat-cell *matCellDef="let element">
       <mat-form-field style="width: 90px;">
         <mat-select>
-          <mat-option *ngFor="let cuenta of cuentas" value="element.cuenta" (click)="setCuenta(cuenta.numero+' '+'-'+' '+cuenta.nombre+' '+'-'+' '+cuenta.descripcion,element.numero)">
+          <mat-option *ngFor="let cuenta of cuentas" value="element.cuenta"
+            (click)="setCuenta(cuenta.numero+' '+'-'+' '+cuenta.nombre+' '+'-'+' '+cuenta.descripcion,element.numero)">
             {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.descripcion}}
           </mat-option>
         </mat-select>
@@ -21,78 +23,88 @@
     </td>
   </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="debito">
-      <th mat-header-cell *matHeaderCellDef> debito </th>
-      <td mat-cell *matCellDef="let element">
-        <input #debito (ngModelChange)="setDebito(debito.value,element.numero)" ngModel="" value="element.debito" style="width: 90px;">
-      </td>
-    </ng-container>
+  <!-- Weight Column -->
+  <ng-container matColumnDef="debito">
+    <th mat-header-cell *matHeaderCellDef> debito </th>
+    <td mat-cell *matCellDef="let element">
+      <input class="field" #debito (ngModelChange)="setDebito(debito.value,element.numero)" ngModel=""
+        value="element.debito">
+    </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="credito">
-      <th mat-header-cell *matHeaderCellDef> credito </th>
-      <td mat-cell *matCellDef="let element"> 
-        <input #credito (ngModelChange)="setCredito(credito.value,element.numero)" ngModel="" value="element.credito" style="width: 90px;">
-      </td>
-    </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="credito">
+    <th mat-header-cell *matHeaderCellDef> credito </th>
+    <td mat-cell *matCellDef="let element">
+      <input class="field" #credito (ngModelChange)="setCredito(credito.value,element.numero)" ngModel=""
+        value="element.credito">
+    </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="descripcion">
-      <th mat-header-cell *matHeaderCellDef> descripcion </th>
-      <td mat-cell *matCellDef="let element">
-        <textarea #descripcion (ngModelChange)="setDescripcion(descripcion.value,element.numero)" ngModel="" value="element.descripcion" style="width: 150px;"></textarea>
-      </td>
-    </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> descripcion </th>
+    <td mat-cell *matCellDef="let element">
+      <textarea class="field" #descripcion (ngModelChange)="setDescripcion(descripcion.value,element.numero)" ngModel=""
+        value="element.descripcion" style="height:100px; font-size:smaller"></textarea>
+    </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="impuesto">
-      <th mat-header-cell *matHeaderCellDef> impuesto </th>
-      <td mat-cell *matCellDef="let element"> 
-        <input #impuesto (ngModelChange)="setImpuesto(impuesto.value,element.numero)" ngModel="" value="element.impuesto" style="width: 90px;">
-      </td>
-    </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="impuesto">
+    <th mat-header-cell *matHeaderCellDef> impuesto </th>
+    <td mat-cell *matCellDef="let element">
+      <input class="field" #impuesto (ngModelChange)="setImpuesto(impuesto.value,element.numero)" ngModel=""
+        value="element.impuesto">
+    </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="proveedor">
-        <th mat-header-cell *matHeaderCellDef> proveedor </th>
-        <td mat-cell *matCellDef="let element">
-            <mat-form-field style="width: 90px;">
-                <mat-select>
-                  <mat-option *ngFor="let proveedor of proveedores" value="element.proveedor" (click)="setProveedor(proveedor.nombre+' '+'-'+' '+proveedor.correo,element.numero)">
-                    {{proveedor.nombre}} - {{proveedor.correo}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </td>
-      </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="proveedor">
+    <th mat-header-cell *matHeaderCellDef> proveedor </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-form-field style="width: 90px;">
+        <mat-select>
+          <mat-option *ngFor="let proveedor of proveedores" value="element.proveedor"
+            (click)="setProveedor(proveedor.nombre+' '+'-'+' '+proveedor.correo,element.numero)">
+            {{proveedor.nombre}} - {{proveedor.correo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </ng-container>
 
-      <!-- Symbol Column -->
-    <ng-container matColumnDef="fechabanco">
-        <th mat-header-cell *matHeaderCellDef> fechabanco </th>
-        <td mat-cell *matCellDef="let element"> 
-          <mat-form-field style="width: 100px;">
-            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <input matInput #fechabanco (dateChange)="setFechabanco($event,element.numero)" [matDatepicker]="picker" placeholder="00/00/0000">
-          </mat-form-field>
-        </td>
-      </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="fechabanco">
+    <th mat-header-cell *matHeaderCellDef> fechabanco </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-form-field style="width: 90px;">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <input class="field" matInput #fechabanco (dateChange)="setFechabanco($event,element.numero)"
+          [matDatepicker]="picker" placeholder="00/00/0000">
+      </mat-form-field>
+    </td>
+  </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="accion">
-        *ngFor="let AsientoRow of AsientoRows"
-        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-        <td mat-cell *matCellDef="let element">  
-          <button mat-icon-button (click)="deleteRow()"> <mat-icon>highlight_off</mat-icon> </button>
-        </td>
-      </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="accion">
+    *ngFor="let AsientoRow of AsientoRows"
+    <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="deleteRow()">
+        <mat-icon>highlight_off</mat-icon>
+      </button>
+    </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="Columns"></tr>
-    <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
-</table> 
+  <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+</table>
 
-<button mat-icon-button (click)="x()"> <mat-icon>note_add</mat-icon> </button>
+<button mat-icon-button (click)="addNewRow()">
+  <mat-icon>note_add</mat-icon>
+</button>
 <hr>
 <br>
 <div>
@@ -107,4 +119,3 @@
   </td>
 </div>
 <br>
-

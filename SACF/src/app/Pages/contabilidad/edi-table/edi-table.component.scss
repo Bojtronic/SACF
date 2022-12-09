@@ -1,3 +1,17 @@
 table {
-    width: 100%;
-  }
+  width: 100%;
+  //border-collapse: collapse;
+  //border-collapse: separate;
+  //table-layout: auto;
+
+}
+
+.field {
+  border: 0px;
+  outline-color: #8fc3ee;
+  width: 100px;
+  //outline: none;
+  overflow: hidden;
+  display: block;
+  resize: none;
+}
