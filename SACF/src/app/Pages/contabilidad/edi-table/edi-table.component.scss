@@ -1,9 +1,20 @@
 table {
   width: 100%;
-  //border-collapse: collapse;
+  border-collapse: collapse;
   //border-collapse: separate;
   //table-layout: auto;
+}
 
+td {
+  border-color: black;
+}
+
+th {
+  border-color: #8fc3ee;
+}
+
+tr {
+  border-color: black;
 }
 
 .field {
@@ -13,5 +24,5 @@ table {
   //outline: none;
   overflow: hidden;
   display: block;
-  resize: none;
+  //resize: none;
 }

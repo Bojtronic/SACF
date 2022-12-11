@@ -1,5 +1,5 @@
 <table mat-table [dataSource]="dataSource">
-  <!-- Position Column -->
+  <!-- number Column -->
   <ng-container matColumnDef="numero">
     <th mat-header-cell *matHeaderCellDef> fila # </th>
     <td mat-cell *matCellDef="let element">
@@ -8,7 +8,7 @@
     </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- account Column -->
   <ng-container matColumnDef="cuenta">
     <th mat-header-cell *matHeaderCellDef> cuenta </th>
     <td mat-cell *matCellDef="let element">
@@ -27,7 +27,7 @@
   <ng-container matColumnDef="debito">
     <th mat-header-cell *matHeaderCellDef> debito </th>
     <td mat-cell *matCellDef="let element">
-      <input class="field" #debito (ngModelChange)="setDebito(debito.value,element.numero)" ngModel=""
+      <input type="number" class="field" #debito (ngModelChange)="setDebito(debito.value,element.numero)" ngModel=""
         value="element.debito">
     </td>
   </ng-container>
@@ -36,7 +36,7 @@
   <ng-container matColumnDef="credito">
     <th mat-header-cell *matHeaderCellDef> credito </th>
     <td mat-cell *matCellDef="let element">
-      <input class="field" #credito (ngModelChange)="setCredito(credito.value,element.numero)" ngModel=""
+      <input type="number" class="field" #credito (ngModelChange)="setCredito(credito.value,element.numero)" ngModel=""
         value="element.credito">
     </td>
   </ng-container>
@@ -46,7 +46,7 @@
     <th mat-header-cell *matHeaderCellDef> descripcion </th>
     <td mat-cell *matCellDef="let element">
       <textarea class="field" #descripcion (ngModelChange)="setDescripcion(descripcion.value,element.numero)" ngModel=""
-        value="element.descripcion" style="height:100px; font-size:smaller"></textarea>
+        value="element.descripcion" style="height:70px; font-size:smaller"></textarea>
     </td>
   </ng-container>
 
