@@ -1,74 +1,75 @@
 <mat-card style="height: 300px">
-    <div>
-      <p>
-        Fila #{{numlinea}}
-      </p>
-      <td>
-        <label>Cuenta contable</label>
-        <mat-form-field>
-          <mat-select [formControl]="cuentaControl" required>
-            <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.nombre)">
-              {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.descripcion}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="cuentaControl.hasError('required')">Selecione una cuenta</mat-error>
-          <mat-hint>{{cuentaControl.value?.numero}}</mat-hint>
-        </mat-form-field>
-      </td>
-      <td>
-        <label>Debito</label>
-        <input matInput #debito placeholder="- - -" ngModel={{getDebito()}}>
-        
-      </td>
-      <td>
-        <label>Credito</label>
-        <input matInput #credito placeholder="- - -" ngModel={{getCredito()}}>
-      </td>
-      <td>
-        <label>Impuesto</label>
-        <input matInput #impuesto placeholder="- - -" ngModel={{getImpuesto()}}>
-      </td>
-      <td>
-        <label>Proveedor</label>
-        <mat-form-field>
-          <mat-select [formControl]="proveedorControl" required>
-            <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor" (click)="setProveedor(proveedor.nombre)">
-              {{proveedor.nombre}} - {{proveedor.correo}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="proveedorControl.hasError('required')">Selecione un proveedor</mat-error>
-          <mat-hint>{{proveedorControl.value?.nombre}}</mat-hint>
-        </mat-form-field>
-      </td>
-    </div>
-    
-    
-    <div>
-      <mat-form-field style="width: 500px;">
-        <mat-label>Descripcion</mat-label>
-        <textarea matInput #descripcion ngModel={{getDescripcion()}} placeholder=">>> "></textarea>
+  <div>
+    <p>
+      Fila #{{numlinea}}
+    </p>
+    <td>
+      <label>Cuenta contable</label>
+      <mat-form-field>
+        <mat-select [formControl]="cuentaControl" required>
+          <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta" (click)="setCuenta(cuenta.nombre)">
+            {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="cuentaControl.hasError('required')">Selecione una cuenta</mat-error>
+        <mat-hint>{{cuentaControl.value?.numero}}</mat-hint>
       </mat-form-field>
-    </div>
-    <div>
-      
-        <mat-form-field>
-          <mat-label>Ingreso al banco</mat-label>
-          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <input matInput #fechabanco ngModel={{getFechabanco()}} [matDatepicker]="picker" placeholder="00/00/0000">
-        </mat-form-field>
-    </div> 
-    <p></p>
-    <div>
-      <td>
-        <button mat-icon-button (click)="closeDialog()">
-          <mat-icon>delete_forever</mat-icon>
-        </button>
-      </td>
-      <td>
-        <button mat-icon-button (click)="editRow(numlinea, debito.value, credito.value, impuesto.value, descripcion.value, fechabanco.value)">
-          <mat-icon>check_circle</mat-icon>
-        </button>
-      </td>
-    </div>   
+    </td>
+    <td>
+      <label>Debito</label>
+      <input matInput #debito placeholder="- - -" ngModel={{getDebito()}}>
+
+    </td>
+    <td>
+      <label>Credito</label>
+      <input matInput #credito placeholder="- - -" ngModel={{getCredito()}}>
+    </td>
+    <td>
+      <label>Impuesto</label>
+      <input matInput #impuesto placeholder="- - -" ngModel={{getImpuesto()}}>
+    </td>
+    <td>
+      <label>Proveedor</label>
+      <mat-form-field>
+        <mat-select [formControl]="proveedorControl" required>
+          <mat-option #nombre *ngFor="let proveedor of proveedores" [value]="proveedor"
+            (click)="setProveedor(proveedor.nombre)">
+            {{proveedor.nombre}} - {{proveedor.correo}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="proveedorControl.hasError('required')">Selecione un proveedor</mat-error>
+        <mat-hint>{{proveedorControl.value?.nombre}}</mat-hint>
+      </mat-form-field>
+    </td>
+  </div>
+
+
+  <div>
+    <mat-form-field style="width: 500px;">
+      <mat-label>Descripcion</mat-label>
+      <textarea matInput #descripcion ngModel={{getDescripcion()}} placeholder=">>> "></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+
+    <mat-form-field>
+      <mat-label>Ingreso al banco</mat-label>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <input matInput #fechabanco ngModel={{getFechabanco()}} [matDatepicker]="picker" placeholder="00/00/0000">
+    </mat-form-field>
+  </div>
+  <p></p>
+  <div>
+    <td>
+      <button mat-icon-button (click)="closeDialog()">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </td>
+    <td>
+      <button mat-icon-button>
+        <mat-icon>check_circle</mat-icon>
+      </button>
+    </td>
+  </div>
 </mat-card>

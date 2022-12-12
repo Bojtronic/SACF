@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
 import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 import { FormAsientoComponent } from '../form-asiento/form-asiento.component';
+import { Asiento } from 'src/app/Models/Asiento';
 
 
 let newProveedor: string = '';
@@ -25,7 +26,31 @@ let newCuenta: string = '';
 
 export class NewAsientoComponent implements AfterViewInit {
 
-  numlinea: string = (this.asientoService.getAllNewRows().length + 1).toString();
+
+  private allNewRows: LineaAsiento[] = [];
+  private newRow: LineaAsiento = {
+    numero: '',
+    cuenta: '',
+    debito: '',
+    credito: '',
+    descripcion: '',
+    impuesto: '',
+    proveedor: '',
+    fechabanco: ''
+  }
+
+  Asientos: Asiento[] = [];
+
+  numlinea: string = this.consecutivo();
+
+  consecutivo_asiento: string = this.consecutivo();
+
+  AsientoRows: LineaAsiento[] = this.getAllNewRows();
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
+
+  //numlinea: string = (this.asientoService.getAllNewRows().length + 1).toString();
 
   proveedorControl = this.proveedorService.getControl();
   cuentaControl = this.cuentaService.getControl();
@@ -34,15 +59,54 @@ export class NewAsientoComponent implements AfterViewInit {
   cuentas: Cuenta[] = this.cuentaService.allCuentas();
 
 
-  AsientoRows: LineaAsiento[] = this.asientoService.getAllNewRows();
-  consecutivo: string = this.asientoService.newConsecutivo()
+  //AsientoRows: LineaAsiento[] = this.asientoService.getAllNewRows();
+  //consecutivo: string = this.newConsecutivo();
 
   Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco', 'accion'];
+  //Columns: string[] = ['numlinea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'proveedor', 'fechabanco', 'accion'];
 
   dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
 
 
   constructor(public dialog: MatDialog, private asientoService: AsientoService, private cuentaService: CuentaService, private proveedorService: ProveedorService, private router: Router) { }
+
+  ngOnInit(): void {
+
+    this.asientoService.getAsientos().subscribe(data => {
+      this.Asientos = data as Asiento[];
+    })
+  }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+
+  getAllNewRows() {
+    return this.allNewRows;
+  }
+
+  /*
+  editRow(numero: string, cuenta: string, debito: string, credito: string, impuesto: string, proveedor: string, descripcion: string, fechabanco: string) {
+    for (let row of this.getAllNewRows()) {
+      if (row.numero == numero) {
+        row.cuenta = cuenta;
+        row.debito = debito;
+        row.credito = credito;
+        row.impuesto = impuesto;
+        row.proveedor = proveedor
+        row.descripcion = descripcion;
+        row.fechabanco = fechabanco;
+      }
+    }
+  }
+  */
+
+  consecutivo() {
+    return (this.Asientos.length + 1).toString();
+  }
 
   getProveedor(proveedor: Proveedor): string {
     return proveedor.nombre;
@@ -67,27 +131,33 @@ export class NewAsientoComponent implements AfterViewInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
   deleteRow(numero: string) {
     //this.AsientoRows.splice(+numero-1, 1);
     //this.AsientoRows = this.asientoService.reorderRows(this.AsientoRows);
-    this.asientoService.deleteRow(numero);
+    //this.asientoService.deleteRow(numero);
+    this.allNewRows.splice(+numero - 1, 1);
+    this.allNewRows = this.reorderRows(this.allNewRows);
+
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;
+  }
+
+  reorderRows(rows: LineaAsiento[]) {
+    let numRow: number = 1;
+    for (let row of rows) {
+      row.numero = (numRow).toString();
+      numRow++
+    }
+    return rows;
   }
 
   addRow(debito: string, credito: string, impuesto: string, descripcion: string, fechabanco: string) {
     let newRow: LineaAsiento = { numero: this.numlinea, cuenta: newCuenta, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: newProveedor, fechabanco: fechabanco };
 
-    this.asientoService.addNewRow(newRow);
+    //this.asientoService.addNewRow(newRow);
+    this.allNewRows.push(newRow);
+    this.allNewRows = this.reorderRows(this.allNewRows);
 
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoRows);
     this.dataSource.paginator = this.paginator;

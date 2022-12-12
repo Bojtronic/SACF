@@ -13,62 +13,63 @@ import { ProveedorService } from "src/app/Services/Proveedor/proveedor.service";
   templateUrl: './form-asiento.component.html',
   styleUrls: ['./form-asiento.component.scss']
 })
-export class FormAsientoComponent{
+export class FormAsientoComponent {
   numlinea: string = '';
   banco: string = '';
-  debito: string = ''; 
-  credito: string = ''; 
-  impuesto: string = ''; 
-  proveedor: string = ''; 
-  descripcion: string = ''; 
+  debito: string = '';
+  credito: string = '';
+  impuesto: string = '';
+  proveedor: string = '';
+  descripcion: string = '';
   fechabanco: string = '';
 
-  getDebito():string{
+  getDebito(): string {
     return this.debito;
   }
-  getCredito():string{
+  getCredito(): string {
     return this.credito;
   }
-  getImpuesto():string{
+  getImpuesto(): string {
     return this.impuesto;
   }
-  getDescripcion():string{
+  getDescripcion(): string {
     return this.descripcion;
   }
-  getCuenta():string{
+  getCuenta(): string {
     return this.banco;
   }
-  getProveedor():string{
+  getProveedor(): string {
     return this.proveedor;
   }
-  getFechabanco(){
+  getFechabanco() {
     return this.fechabanco;
   }
-  setProveedor(proveedor: string){
+  setProveedor(proveedor: string) {
     this.proveedor = proveedor;
   }
-  setCuenta(cuenta: string){
+  setCuenta(cuenta: string) {
     this.banco = cuenta;
   }
 
 
   constructor(
-    private asientoService:AsientoService,
-    private cuentaService:CuentaService, 
-    private proveedorService:ProveedorService,
+    private asientoService: AsientoService,
+    private cuentaService: CuentaService,
+    private proveedorService: ProveedorService,
     public dialogRef: MatDialogRef<FormAsientoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {numero:string, cuenta:string, debito:string, credito:string, impuesto:string, proveedor:string, descripcion:string, fechabanco:string}
+    @Inject(MAT_DIALOG_DATA) public data: { numero: string, cuenta: string, debito: string, credito: string, impuesto: string, proveedor: string, descripcion: string, fechabanco: string }
   ) {
     this.numlinea = data.numero;
     this.banco = data.cuenta;
-    this.debito = data.debito; 
-    this.credito = data.credito; 
-    this.impuesto = data.impuesto; 
-    this.proveedor = data.proveedor; 
-    this.descripcion = data.descripcion; 
+    this.debito = data.debito;
+    this.credito = data.credito;
+    this.impuesto = data.impuesto;
+    this.proveedor = data.proveedor;
+    this.descripcion = data.descripcion;
     this.fechabanco = data.fechabanco;
   }
 
+  /*
   addRow(debito: string, credito: string, descripcion: string, impuesto: string, fechabanco: string){
     let numero: string = (this.asientoService.getAllNewRows.length + 1).toString();
     let newRow: LineaAsiento = {numero: numero, cuenta: this.banco, debito: debito, credito: credito, descripcion: descripcion, impuesto: impuesto, proveedor: this.proveedor, fechabanco: fechabanco}
@@ -80,12 +81,13 @@ export class FormAsientoComponent{
     this.asientoService.editRow(numero, this.getCuenta(), debito, credito, impuesto, this.getProveedor(), descripcion, fechabanco)
     this.dialogRef.close();
   }
-  
+
+  */
 
   closeDialog(): void {
     this.dialogRef.close();
   }
-  
+
   proveedorControl = this.proveedorService.getControl();
   cuentaControl = this.cuentaService.getControl();
 

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { APP_BOOTSTRAP_LISTENER, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Asiento } from 'src/app/Models/Asiento';
 import { LineaAsiento } from 'src/app/Models/LineaAsiento';
@@ -9,13 +9,13 @@ import { LineaAsiento } from 'src/app/Models/LineaAsiento';
 })
 export class AsientoService {
 
+  API_Asientos: string = "http://localhost:3000/api/asientos/";
 
   getAsientos(): Observable<Asiento[]> {
-    return this.http.get<Asiento[]>('http://localhost:3000/api/quinielas/');
+    return this.http.get<Asiento[]>(this.API_Asientos);
   }
 
-
-
+  /*
 
   private allNewRows: LineaAsiento[] = [];
   private newRow: LineaAsiento = {
@@ -28,8 +28,10 @@ export class AsientoService {
     proveedor: '',
     fechabanco: ''
   }
+  */
 
 
+  /*
   Asientos: Asiento[] = [
     {
       consecutivo: '1', fecha: '00/00/0000',
@@ -50,42 +52,55 @@ export class AsientoService {
       { numero: '3', cuenta: 'BN', debito: '3000', credito: '3000', descripcion: 'otorrinolaringologo', impuesto: '9500', proveedor: 'Picachu', fechabanco: '07/10/9999' }]
     }
   ];
-
+  
 
 
   getNewRow() {
     return this.newRow;
   }
+  */
 
+  /*
   addNewRow(row: LineaAsiento) {
     this.allNewRows.push(row);
     this.allNewRows = this.reorderRows(this.allNewRows);
   }
+  */
 
+  /*
   getAllNewRows() {
     return this.allNewRows;
   }
+  */
 
+  /*
   allAsientos() {
     return this.Asientos
   }
+  */
 
-
+  /*
   asientoRows(consecutivo: string) {
     let asiento: Asiento = this.Asientos[+consecutivo]
     let rows: LineaAsiento[] = asiento.numlinea
     return rows
   }
+  */
 
+  /*
   asiento(consecutivo: string) {
     this.Asientos[+consecutivo]
   }
+  */
 
+  /*
   deleteRow(numero: string) {
     this.allNewRows.splice(+numero - 1, 1);
     this.allNewRows = this.reorderRows(this.allNewRows);
   }
+  */
 
+  /*
   editRow(numero: string, cuenta: string, debito: string, credito: string, impuesto: string, proveedor: string, descripcion: string, fechabanco: string) {
     for (let row of this.getAllNewRows()) {
       if (row.numero == numero) {
@@ -99,10 +114,13 @@ export class AsientoService {
       }
     }
   }
+  
 
   newConsecutivo() {
     return (this.Asientos.length).toString();
   }
+
+  
 
   updateAsientos(changes: Asiento[]) {
     this.Asientos = changes;
@@ -119,6 +137,9 @@ export class AsientoService {
     }
   }
 
+  */
+
+  /*
   reorderRows(rows: LineaAsiento[]) {
     let numRow: number = 1;
     for (let row of rows) {
@@ -127,6 +148,7 @@ export class AsientoService {
     }
     return rows;
   }
+  */
 
 
   constructor(private http: HttpClient) { }
