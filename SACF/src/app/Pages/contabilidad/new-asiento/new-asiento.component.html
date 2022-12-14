@@ -3,19 +3,8 @@
     <table>
       <td>
         <div>
-          <mat-form-field appearance="fill" style="margin-left: 20px; width: 200px;">
-            <mat-label>Divisa</mat-label>
-            <mat-select>
-              <mat-option value="dolar">Dolar</mat-option>
-              <mat-option value="euro" disabled>Euro (disabled)</mat-option>
-              <mat-option value="colon">Colon</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div>
-          <mat-form-field appearance="fill" style="margin-left: 20px; width: 200px">
-            <mat-label>Fecha del asiento</mat-label>
+          <mat-form-field appearance="fill" style="margin-left: 20px; width: 150px;">
+            <mat-label>Fecha</mat-label>
             <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
@@ -24,6 +13,17 @@
                 <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
               </mat-datepicker-actions>
             </mat-datepicker>
+          </mat-form-field>
+
+
+
+          <mat-form-field appearance="fill" style="margin-left: 20px; width: 100px;">
+            <mat-label>Divisa</mat-label>
+            <mat-select>
+              <mat-option value="dolar">Dolar</mat-option>
+              <mat-option value="euro" disabled>Euro (disabled)</mat-option>
+              <mat-option value="colon">Colon</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
       </td>
@@ -35,36 +35,41 @@
       <td>
         <mat-card style="width: 250px" valing="top">
           <img src="../../../assets/LogoCliente.png" />
+          CEDULA JURIDICA
         </mat-card>
       </td>
     </table>
   </div>
 
+  <mat-card style="background-color: rgba(133, 132, 132, 0.335); height: 20px;">
+    <div id="sharebuttons">
+      <button mat-icon-button>
+        <mat-icon>download</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>share</mat-icon>
+      </button>
+    </div>
+  </mat-card>
 
-  <div id="sharebuttons">
-    <button mat-icon-button>
-      <mat-icon>download</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>share</mat-icon>
-    </button>
-  </div>
+
 
   <app-edi-table></app-edi-table>
 
   <div>
-    <button mat-raised-button>Borrar</button>
-    <button mat-raised-button>Guardar</button>
+    <mat-card style="background-color: rgba(133, 132, 132, 0.335);  height: 40px;">
+
+    </mat-card>
   </div>
   <br>
   <div>
     <mat-label>Notas</mat-label>
     <div>
-      <textarea style="width: 700px;"></textarea>
+      <textarea style="width: 200px;"></textarea>
     </div>
   </div>
   <br>
-  <div>
+  <div id="wrap">
     <button mat-icon-button (click)="toAllAsientos()">
       <mat-icon>history</mat-icon>
       Todos los asientos
@@ -73,4 +78,18 @@
     <button mat-raised-button (click)="toDashboard()">Inicio</button>
   </div>
 
+  <mat-card style="background-color: rgba(44, 44, 44, 0.431);  height: 40px;">
+    <div class="btn-group" style="margin-left: 90%;">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        GUARDAR <span class="caret caret-up"></span>
+      </button>
+      <ul class="dropdown-menu drop-up" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+  </mat-card>
 </mat-card>

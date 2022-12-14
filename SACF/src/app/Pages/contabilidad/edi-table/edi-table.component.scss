@@ -7,10 +7,12 @@ table {
 
 td {
   border-color: black;
+  //height: 10px;
 }
 
 th {
   border-color: #8fc3ee;
+  width: 100px;
 }
 
 tr {
@@ -25,4 +27,5 @@ tr {
   overflow: hidden;
   display: block;
   //resize: none;
+  margin-left: -10px;
 }
