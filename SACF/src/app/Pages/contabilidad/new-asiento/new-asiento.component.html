@@ -1,5 +1,20 @@
 <mat-card>
   <div>
+    <div>
+      <button mat-icon-button style="margin-right: 5%">
+
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toAllAsientos()">
+
+        <label style="background-color:  rgba(133, 132, 132, 0.335); border-radius: 30%;"><mat-icon>history</mat-icon>
+          Todos los
+          asientos</label>
+
+      </button>
+    </div>
+  </div>
+  <div>
     <table>
       <td>
         <div>
@@ -68,28 +83,24 @@
       <textarea style="width: 200px;"></textarea>
     </div>
   </div>
+
+
+
+
   <br>
   <div id="wrap">
-    <button mat-icon-button (click)="toAllAsientos()">
-      <mat-icon>history</mat-icon>
-      Todos los asientos
-    </button>
-    <br>
-    <button mat-raised-button (click)="toDashboard()">Inicio</button>
+
   </div>
 
-  <mat-card style="background-color: rgba(44, 44, 44, 0.431);  height: 40px;">
-    <div class="btn-group" style="margin-left: 90%;">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        GUARDAR <span class="caret caret-up"></span>
-      </button>
-      <ul class="dropdown-menu drop-up" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
+
+  <mat-toolbar>
+    <div class="btn-group" style="margin-left: 80%;">
+      <mat-form-field style="width: 200px;">
+        <mat-label>GUARDAR</mat-label>
+        <mat-select>
+          <mat-option value="op1">Guardar y crear nuevo</mat-option>
+          <mat-option value="op2">Guardar y cerrar</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-  </mat-card>
-</mat-card>
+  </mat-toolbar>
