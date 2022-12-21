@@ -1,3 +1,17 @@
+<style>
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>
+
 <table style="border-collapse: collapse;" mat-table [dataSource]="dataSource">
   <!-- number Column -->
   <ng-container matColumnDef="numero_linea">
@@ -93,8 +107,8 @@
   <ng-container matColumnDef="accion">
     *ngFor="let AsientoRow of AsientoRows"
     <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button (click)="deleteRow()">
+    <td style="width: 5%;" mat-cell *matCellDef="let element">
+      <button style="margin-left: 20%;" mat-icon-button (click)="deleteRow()">
         <mat-icon>delete_forever</mat-icon>
       </button>
     </td>
@@ -109,14 +123,11 @@
 </button>
 <hr>
 <br>
-<div>
-  <td style="width: 180px;">
-    Total >>>
-  </td>
-  <td style="width: 120px;">
+<div style="margin-left: 23%;">
+  <td style="width: 160px;">
     Debitos:
   </td>
-  <td>
+  <td style="width: 160px;">
     Creditos:
   </td>
 </div>

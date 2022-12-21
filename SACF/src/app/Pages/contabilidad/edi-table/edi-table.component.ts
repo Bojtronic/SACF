@@ -61,14 +61,12 @@ export class EdiTableComponent {
     this.dataSource.paginator = this.paginator;
   }
   deleteRow() {
-    this.AsientoData.pop();
+    this.AsientoData.pop(); //cambiar esto porque siempre elimina la ultima fila
     if (this.AsientoData.length == 0) {
       this.addNewRow();
     }
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
-
-
   }
 
   /*
@@ -146,7 +144,7 @@ export class EdiTableComponent {
         /*
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null) || (row.credito == 0 && row.debito == 0)) {
             newEmptyRow = 0;
           }
         }
@@ -154,6 +152,7 @@ export class EdiTableComponent {
           this.addNewRow();
         }
         */
+
       }
       else {
         this.AsientoData[index].cuenta = cuenta;

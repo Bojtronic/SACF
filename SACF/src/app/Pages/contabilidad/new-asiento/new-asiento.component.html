@@ -1,18 +1,13 @@
 <mat-card>
   <div>
     <div>
-      <button mat-icon-button style="margin-right: 5%">
-
-        <mat-icon>keyboard_backspace</mat-icon>
-      </button>
       <button mat-icon-button (click)="toAllAsientos()">
-
-        <label style="background-color:  rgba(133, 132, 132, 0.335); border-radius: 30%;"><mat-icon>history</mat-icon>
+        <label><mat-icon>history</mat-icon>
           Todos los
           asientos</label>
-
       </button>
     </div>
+    <br>
   </div>
   <div>
     <table>
@@ -43,11 +38,11 @@
         </div>
       </td>
       <td>
-        <div style="margin-left: 200px; width: 200px">
-          <h1> Asiento n° {{consecutivo_asiento}}</h1>
+        <div style="margin-left: 200px; width: 200px;">
+          <h1 style="font-size:xx-large;"> Asiento n° {{consecutivo_asiento}}</h1>
         </div>
       </td>
-      <td>
+      <td style="margin-right: 10px;">
         <mat-card style="width: 250px" valing="top">
           <img src="../../../assets/LogoCliente.png" />
           CEDULA JURIDICA
@@ -55,9 +50,10 @@
       </td>
     </table>
   </div>
+  <br>
 
-  <mat-card style="background-color: rgba(133, 132, 132, 0.335); height: 20px;">
-    <div id="sharebuttons">
+  <mat-toolbar style="background-color: rgba(133, 132, 132, 0.335); height: 30px;">
+    <div id="sharebuttons" style="margin-left: 95%;">
       <button mat-icon-button>
         <mat-icon>download</mat-icon>
       </button>
@@ -65,17 +61,14 @@
         <mat-icon>share</mat-icon>
       </button>
     </div>
-  </mat-card>
-
+  </mat-toolbar>
+  <br>
 
 
   <app-edi-table></app-edi-table>
 
-  <div>
-    <mat-card style="background-color: rgba(133, 132, 132, 0.335);  height: 40px;">
-
-    </mat-card>
-  </div>
+  <mat-toolbar style="background-color: rgba(133, 132, 132, 0.335); height: 30px;">
+  </mat-toolbar>
   <br>
   <div>
     <mat-label>Notas</mat-label>
@@ -93,7 +86,7 @@
   </div>
 
 
-  <mat-toolbar>
+  <mat-toolbar style="background-color:rgba(104, 103, 103, 0.335); height: 40px;">
     <div class="btn-group" style="margin-left: 80%;">
       <mat-form-field style="width: 200px;">
         <mat-label>GUARDAR</mat-label>
