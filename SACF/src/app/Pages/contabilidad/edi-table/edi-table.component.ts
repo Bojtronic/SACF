@@ -60,11 +60,27 @@ export class EdiTableComponent {
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
   }
-  deleteRow() {
-    this.AsientoData.pop(); //cambiar esto porque siempre elimina la ultima fila
-    if (this.AsientoData.length == 0) {
+  deleteRow(rowNum: string) {
+
+    if (this.AsientoData.length == 1) {
+      this.AsientoData.pop();
       this.addNewRow();
     }
+    else {
+      let index: number = 1;
+      let AsientoData_aux: LineaAsiento[] = [];
+      let row_aux: LineaAsiento;
+      for (let row of this.AsientoData) {
+        if (row.numero_linea != +rowNum) {
+          row_aux = row;
+          row_aux.numero_linea = index;
+          AsientoData_aux.push(row_aux);
+          index++;
+        }
+      }
+      this.AsientoData = AsientoData_aux;
+    }
+
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
   }
@@ -108,20 +124,20 @@ export class EdiTableComponent {
 
         this.AsientoData[index].fecha_emision_factura = fecha;
 
-        this.addNewRow();
+        //this.addNewRow();
 
-        /*
-        //let newEmptyRow: number = 1;
+
+        let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.descripcion == '' || (row.credito == 0 && row.debito == 0))) {
             newEmptyRow = 0;
           }
         }
-        
+
         if (this.AsientoData.length == 0) {
           this.addNewRow();
         }
-        */
+
       }
       else {
         this.AsientoData[index].fecha_emision_factura = fecha;
@@ -139,19 +155,19 @@ export class EdiTableComponent {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
         this.AsientoData[index].cuenta = cuenta;
-        this.addNewRow();
+        //this.addNewRow();
 
-        /*
+
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null) || (row.credito == 0 && row.debito == 0)) {
+          if ((row.proveedor == '' || row.impuesto == '' || row.descripcion == '' || row.fecha_emision_factura == null) || (row.credito == 0 && row.debito == 0)) {
             newEmptyRow = 0;
           }
         }
         if (newEmptyRow == 1) {
           this.addNewRow();
         }
-        */
+
 
       }
       else {
@@ -171,19 +187,19 @@ export class EdiTableComponent {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
         this.AsientoData[index].proveedor = proveedor;
-        this.addNewRow();
+        //this.addNewRow();
 
-        /*
+
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.impuesto == '' || row.descripcion == '' || row.fecha_emision_factura == null) || (row.credito == 0 && row.debito == 0)) {
             newEmptyRow = 0;
           }
         }
         if (newEmptyRow == 1) {
           this.addNewRow();
         }
-        */
+
       }
       else {
         this.AsientoData[index].proveedor = proveedor;
@@ -201,19 +217,19 @@ export class EdiTableComponent {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
         this.AsientoData[index].impuesto = impuesto;
-        this.addNewRow();
+        //this.addNewRow();
 
-        /*
+
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.descripcion == '' || row.fecha_emision_factura == null) || (row.credito == 0 && row.debito == 0)) {
             newEmptyRow = 0;
           }
         }
         if (newEmptyRow == 1) {
           this.addNewRow();
         }
-        */
+
       }
       else {
         this.AsientoData[index].impuesto = impuesto;
@@ -231,19 +247,19 @@ export class EdiTableComponent {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
         this.AsientoData[index].descripcion = descripcion;
-        this.addNewRow();
+        //this.addNewRow();
 
-        /*
+
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null) || (row.credito == 0 && row.debito == 0)) {
             newEmptyRow = 0;
           }
         }
         if (newEmptyRow == 1) {
           this.addNewRow();
         }
-        */
+
       }
       else {
         this.AsientoData[index].descripcion = descripcion;
@@ -261,19 +277,19 @@ export class EdiTableComponent {
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].descripcion != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].proveedor != '' && this.AsientoData[index].cuenta != '') {
       if (this.AsientoData[index].credito == 0) {
         this.AsientoData[index].debito = +debito;
-        this.addNewRow();
+        //this.addNewRow();
 
-        /*
+
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null)) {
             newEmptyRow = 0;
           }
         }
         if (newEmptyRow == 1) {
           this.addNewRow();
         }
-        */
+
       }
       else {
         this.AsientoData[index].debito = 0;
@@ -298,17 +314,17 @@ export class EdiTableComponent {
       if (this.AsientoData[index].debito == 0) {
         this.AsientoData[index].credito = +credito;
 
-        /*
+
         let newEmptyRow: number = 1;
         for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null)) {
             newEmptyRow = 0;
           }
         }
         if (newEmptyRow == 1) {
           this.addNewRow();
         }
-        */
+
       }
       else {
         this.AsientoData[index].credito = 0;
