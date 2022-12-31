@@ -16,14 +16,14 @@ import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 })
 export class EdiTableComponent {
   AsientoData: LineaAsiento[] = [
-    { numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date(), proveedor: '' }
+    { numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' }
   ];
 
   dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
 
-  // {{myVar | date: 'shortDate'}}
+  today = new Date(new Date().getTime());
 
-  //
+
   numero_linea: number = 0;
   cuenta: string = '';
   debito: number = 0;
@@ -54,14 +54,13 @@ export class EdiTableComponent {
   }
 
   addNewRow() {
-
-    let newRow: LineaAsiento = { numero_linea: (this.AsientoData.length + 1), cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date, proveedor: '' };
+    let newRow: LineaAsiento = { numero_linea: (this.AsientoData.length + 1), cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
     this.AsientoData.push(newRow);
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
   }
-  deleteRow(rowNum: string) {
 
+  deleteRow(rowNum: string) {
     if (this.AsientoData.length == 1) {
       this.AsientoData.pop();
       this.addNewRow();
@@ -80,45 +79,17 @@ export class EdiTableComponent {
       }
       this.AsientoData = AsientoData_aux;
     }
-
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
   }
 
-  /*
-  setFechabanco(event: { value: any; }, rowNum: string) {
-    let index: number = +rowNum - 1
-    let fb: Date = event.value;
-    if (this.AsientoData[index].proveedor != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].cuenta != '') {
-      if (this.AsientoData[index].debito != '' || this.AsientoData[index].credito != '') {
-
-        this.AsientoData[index].fechabanco = fb.toString();
-
-        let newEmptyRow: number = 1;
-        for (let row of this.AsientoData) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fechabanco == '') || (row.credito == '' && row.debito == '')) {
-            newEmptyRow = 0;
-          }
-        }
-        if (newEmptyRow == 1) {
-          this.addNewRow();
-        }
-      }
-      else {
-        this.AsientoData[index].fechabanco = fb.toString();
-      }
-    }
-    else {
-      this.AsientoData[index].fechabanco = fb.toString();
-    }
-    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
-  }
-  */
-
 
   setFecha_emision_factura(event: { value: any; }, rowNum: string) {
     let fecha: Date = event.value;
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
+
+    console.log(this.AsientoData)
+
     if (this.AsientoData[index].cuenta != '' && this.AsientoData[index].descripcion != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].proveedor != '') {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 

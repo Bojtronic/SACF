@@ -6,7 +6,7 @@
       <button (click)="settingsSidenav.toggle()" mat-icon-button>
         <mat-icon>view_list</mat-icon>
         Empresa actual
-      </button>                    
+      </button>
     </div>
     <!--MENU PARA ACCIONES DEL USUARIO-->
     <div>
@@ -35,9 +35,9 @@
           <mat-icon>exit_to_app</mat-icon>
           <span>Cerrar sesion</span>
         </button>
-      </mat-menu> 
+      </mat-menu>
     </div>
-    
+
   </div>
 </mat-toolbar>
 
@@ -56,56 +56,60 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!--LISTA CON LAS OPCIONES DE CONTABILIDAD-->
-        <mat-list>   
-          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="generales">+ Generales</mat-list-item>
-              <mat-menu #generales="matMenu">
-                <button mat-menu-item [matMenuTriggerFor]="catalogocuentas" class="color-verde-claro">Catálogo de cuentas</button>
-                <button mat-menu-item [matMenuTriggerFor]="deposito" class="color-verde-claro">Depósito bancario</button>
-                <button mat-menu-item [matMenuTriggerFor]="transferencia" class="color-verde-claro">Transferencia</button>
-                <button mat-menu-item [matMenuTriggerFor]="asiento" class="color-verde-claro">Asiento de diario</button>
-              </mat-menu>
-  
-              <mat-menu #catalogocuentas="matMenu">
-                <button mat-menu-item (click)="toNewCuenta()" class="color-verde-claro">Nueva cuenta</button>
-                <button mat-menu-item (click)="toAllCuentas()" class="color-verde-claro">Catálogo</button>
-              </mat-menu>
-  
-              <mat-menu #deposito="matMenu">
-                <button mat-menu-item (click)="toNewDeposito()" class="color-verde-claro">Nuevo depositos</button>
-                <button mat-menu-item (click)="toAllDepositos()" class="color-verde-claro">Todos los depositos</button>
-              </mat-menu>
-  
-              <mat-menu #transferencia="matMenu">
-                <button mat-menu-item (click)="toNewTransferencia()" class="color-verde-claro">Nueva transferencia</button>
-                <button mat-menu-item (click)="toAllTransferencias()" class="color-verde-claro">Todas las transferencias</button>
-              </mat-menu>
-  
-              <mat-menu #asiento="matMenu">
-                <button mat-menu-item (click)="toNewAsiento()" class="color-verde-claro">Nuevo asiento</button>
-                <button mat-menu-item (click)="toAllAsientos()" class="color-verde-claro">Todos los asientos</button>
-              </mat-menu>
+        <mat-list>
+          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="generales">+
+            Generales</mat-list-item>
+          <mat-menu #generales="matMenu">
+            <button mat-menu-item (click)="toAllCuentas()" class="color-verde-claro">Plan de
+              cuentas</button>
+            <button mat-menu-item [matMenuTriggerFor]="deposito" class="color-verde-claro">Depósito bancario</button>
+            <button mat-menu-item [matMenuTriggerFor]="transferencia" class="color-verde-claro">Transferencia</button>
+            <button mat-menu-item [matMenuTriggerFor]="asiento" class="color-verde-claro">Asiento de diario</button>
+          </mat-menu>
 
-          <hr>
-  
-          <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXCobrar()">+ Cuentas por cobrar</mat-list-item>
-            <hr>
+          <mat-menu #deposito="matMenu">
+            <button mat-menu-item (click)="toNewDeposito()" class="color-verde-claro">Nuevo depositos</button>
+            <button mat-menu-item (click)="toAllDepositos()" class="color-verde-claro">Todos los depositos</button>
+          </mat-menu>
 
-          <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXPagar()">+ Cuentas por pagar</mat-list-item>
-          <hr>
-          <mat-list-item class="manage-control-options" [matMenuTriggerFor]="conciliacion" role="listitem">+ Conciliaciones bancarias</mat-list-item>
-          <mat-menu #conciliacion="matMenu">
-            <button mat-menu-item (click)="toNewConciliacion()" class="color-verde-claro">Nueva conciliaciación</button>
-            <button mat-menu-item (click)="toAllConciliaciones()" class="color-verde-claro">Todas las conciliaciones</button>
+          <mat-menu #transferencia="matMenu">
+            <button mat-menu-item (click)="toNewTransferencia()" class="color-verde-claro">Nueva transferencia</button>
+            <button mat-menu-item (click)="toAllTransferencias()" class="color-verde-claro">Todas las
+              transferencias</button>
+          </mat-menu>
+
+          <mat-menu #asiento="matMenu">
+            <button mat-menu-item (click)="toNewAsiento()" class="color-verde-claro">Nuevo asiento</button>
+            <button mat-menu-item (click)="toAllAsientos()" class="color-verde-claro">Todos los asientos</button>
           </mat-menu>
 
           <hr>
-          <mat-list-item class="manage-control-options" role="listitem" (click)="toInventarios()">+ Inventarios</mat-list-item>
+
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXCobrar()">+ Cuentas por
+            cobrar</mat-list-item>
           <hr>
-          <mat-list-item class="manage-control-options" role="listitem" (click)="toReportes()">+ Reportes</mat-list-item>
+
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toCuentasXPagar()">+ Cuentas por
+            pagar</mat-list-item>
+          <hr>
+          <mat-list-item class="manage-control-options" [matMenuTriggerFor]="conciliacion" role="listitem">+
+            Conciliaciones bancarias</mat-list-item>
+          <mat-menu #conciliacion="matMenu">
+            <button mat-menu-item (click)="toNewConciliacion()" class="color-verde-claro">Nueva conciliaciación</button>
+            <button mat-menu-item (click)="toAllConciliaciones()" class="color-verde-claro">Todas las
+              conciliaciones</button>
+          </mat-menu>
+
+          <hr>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toInventarios()">+
+            Inventarios</mat-list-item>
+          <hr>
+          <mat-list-item class="manage-control-options" role="listitem" (click)="toReportes()">+
+            Reportes</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
-    
+
     <!--CONTENEDOR DE OPCIONES PARA ADMINISTRACIÓN-->
     <mat-accordion multi>
       <mat-expansion-panel class="color-verde-musgo">
@@ -116,78 +120,79 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!--LISTA CON LAS OPCIONES DE ADMINISTRACIÓN-->
-        <mat-list> 
-          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="animals">+ General</mat-list-item> 
-              <mat-menu #animals="matMenu">
-                <button mat-menu-item [matMenuTriggerFor]="vertebrates" class="color-verde-claro">Vertebrates</button>
-                <button mat-menu-item [matMenuTriggerFor]="invertebrates" class="color-verde-claro">Invertebrates</button>
-              </mat-menu>
-  
-              <mat-menu #vertebrates="matMenu">
-                <button mat-menu-item [matMenuTriggerFor]="fish" class="color-verde-claro">Fishes</button>
-                <button mat-menu-item [matMenuTriggerFor]="amphibians" class="color-verde-claro">Amphibians</button>
-                <button mat-menu-item [matMenuTriggerFor]="reptiles" class="color-verde-claro">Reptiles</button>
-                <button mat-menu-item class="color-verde-claro">Birds</button>
-                <button mat-menu-item class="color-verde-claro">Mammals</button>
-              </mat-menu>
-  
-              <mat-menu #invertebrates="matMenu">
-                <button mat-menu-item class="color-verde-claro">Insects</button>
-                <button mat-menu-item class="color-verde-claro">Molluscs</button>
-                <button mat-menu-item class="color-verde-claro">Crustaceans</button>
-                <button mat-menu-item class="color-verde-claro">Corals</button>
-                <button mat-menu-item class="color-verde-claro">Arachnids</button>
-                <button mat-menu-item class="color-verde-claro">Velvet worms</button>
-                <button mat-menu-item class="color-verde-claro">Horseshoe crabs</button>
-              </mat-menu>
-  
-              <mat-menu #fish="matMenu">
-                <button mat-menu-item class="color-verde-claro">Baikal oilfish</button>
-                <button mat-menu-item class="color-verde-claro">Bala shark</button>
-                <button mat-menu-item class="color-verde-claro">Ballan wrasse</button>
-                <button mat-menu-item class="color-verde-claro">Bamboo shark</button>
-                <button mat-menu-item class="color-verde-claro">Banded killifish</button>
-              </mat-menu>
-  
-              <mat-menu #amphibians="matMenu">
-                <button mat-menu-item class="color-verde-claro">Sonoran desert toad</button>
-                <button mat-menu-item class="color-verde-claro">Western toad</button>
-                <button mat-menu-item class="color-verde-claro">Arroyo toad</button>
-                <button mat-menu-item class="color-verde-claro">Yosemite toad</button>
-              </mat-menu>
-  
-              <mat-menu #reptiles="matMenu">
-                <button mat-menu-item class="color-verde-claro">Banded Day Gecko</button>
-                <button mat-menu-item class="color-verde-claro">Banded Gila Monster</button>
-                <button mat-menu-item class="color-verde-claro">Black Tree Monitor</button>
-                <button mat-menu-item class="color-verde-claro">Blue Spiny Lizard</button>
-                <button mat-menu-item disabled class="color-verde-claro">Velociraptor</button>
-              </mat-menu>
-  
+        <mat-list>
+          <mat-list-item class="manage-control-options" role="listitem" [matMenuTriggerFor]="animals">+
+            General</mat-list-item>
+          <mat-menu #animals="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="vertebrates" class="color-verde-claro">Vertebrates</button>
+            <button mat-menu-item [matMenuTriggerFor]="invertebrates" class="color-verde-claro">Invertebrates</button>
+          </mat-menu>
+
+          <mat-menu #vertebrates="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="fish" class="color-verde-claro">Fishes</button>
+            <button mat-menu-item [matMenuTriggerFor]="amphibians" class="color-verde-claro">Amphibians</button>
+            <button mat-menu-item [matMenuTriggerFor]="reptiles" class="color-verde-claro">Reptiles</button>
+            <button mat-menu-item class="color-verde-claro">Birds</button>
+            <button mat-menu-item class="color-verde-claro">Mammals</button>
+          </mat-menu>
+
+          <mat-menu #invertebrates="matMenu">
+            <button mat-menu-item class="color-verde-claro">Insects</button>
+            <button mat-menu-item class="color-verde-claro">Molluscs</button>
+            <button mat-menu-item class="color-verde-claro">Crustaceans</button>
+            <button mat-menu-item class="color-verde-claro">Corals</button>
+            <button mat-menu-item class="color-verde-claro">Arachnids</button>
+            <button mat-menu-item class="color-verde-claro">Velvet worms</button>
+            <button mat-menu-item class="color-verde-claro">Horseshoe crabs</button>
+          </mat-menu>
+
+          <mat-menu #fish="matMenu">
+            <button mat-menu-item class="color-verde-claro">Baikal oilfish</button>
+            <button mat-menu-item class="color-verde-claro">Bala shark</button>
+            <button mat-menu-item class="color-verde-claro">Ballan wrasse</button>
+            <button mat-menu-item class="color-verde-claro">Bamboo shark</button>
+            <button mat-menu-item class="color-verde-claro">Banded killifish</button>
+          </mat-menu>
+
+          <mat-menu #amphibians="matMenu">
+            <button mat-menu-item class="color-verde-claro">Sonoran desert toad</button>
+            <button mat-menu-item class="color-verde-claro">Western toad</button>
+            <button mat-menu-item class="color-verde-claro">Arroyo toad</button>
+            <button mat-menu-item class="color-verde-claro">Yosemite toad</button>
+          </mat-menu>
+
+          <mat-menu #reptiles="matMenu">
+            <button mat-menu-item class="color-verde-claro">Banded Day Gecko</button>
+            <button mat-menu-item class="color-verde-claro">Banded Gila Monster</button>
+            <button mat-menu-item class="color-verde-claro">Black Tree Monitor</button>
+            <button mat-menu-item class="color-verde-claro">Blue Spiny Lizard</button>
+            <button mat-menu-item disabled class="color-verde-claro">Velociraptor</button>
+          </mat-menu>
+
           <mat-list-item class="manage-control-options" role="listitem">+ Asuntos administrativos</mat-list-item>
-          
+
           <mat-list-item class="manage-control-options" role="listitem">+ Otras opciones</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
 
-    
-    <img style="margin-left: 20%; margin-top: 50%;" src="../../../assets/LogoSistema.png"/>
-    
+
+    <img style="margin-left: 20%; margin-top: 50%;" src="../../../assets/LogoSistema.png" />
+
   </mat-drawer>
-  
-  
+
+
 
   <mat-drawer-content>
     <mat-slide-toggle [(ngModel)]="isChecked">Ocultar Información</mat-slide-toggle>
     <!--GRAFICAS-->
     <td>
-      <mat-drawer-content >
+      <mat-drawer-content>
         <mat-card [hidden]=isChecked>
           <app-all-charts></app-all-charts>
         </mat-card>
       </mat-drawer-content>
-      
+
     </td>
     <!--DIVISAS-->
     <td valign="top">
@@ -195,65 +200,65 @@
         <mat-card>
           Conversor de divisas
           <mat-card>
-            <td>  
-              <mat-form-field appearance="fill">
-                <mat-label> Cantidad de dinero</mat-label>
-                <input matInput placeholder="Ingrese solo numeros">
-              </mat-form-field>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label> Cantidad de dinero</mat-label>
+        <input matInput placeholder="Ingrese solo numeros">
+      </mat-form-field>
 
-              <mat-form-field appearance="fill">
-                <mat-label> Moneda 1 </mat-label>
-                <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
-                  <mat-option value="valid">Dolar</mat-option>
-                  <mat-option value="valid">Euro</mat-option>
-                  <mat-option value="valid">Colón</mat-option>
-                  <mat-option value="invalid">---</mat-option>
-                </mat-select>
-                <mat-hint>¡Debe elegir una moneda!</mat-hint>
-                <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-                <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                  Este campo no debe estar vacío
-                </mat-error>
-              </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> Moneda 1 </mat-label>
+        <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+          <mat-option value="valid">Dolar</mat-option>
+          <mat-option value="valid">Euro</mat-option>
+          <mat-option value="valid">Colón</mat-option>
+          <mat-option value="invalid">---</mat-option>
+        </mat-select>
+        <mat-hint>¡Debe elegir una moneda!</mat-hint>
+        <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+        <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+          Este campo no debe estar vacío
+        </mat-error>
+      </mat-form-field>
 
-              <mat-form-field appearance="fill">
-                <mat-label> Moneda 2 </mat-label>
-                <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
-                  <mat-option value="valid">Colón</mat-option>
-                  <mat-option value="valid">Dolar</mat-option>
-                  <mat-option value="valid">Euro</mat-option>
-                  <mat-option value="invalid">---</mat-option>
-                </mat-select>
-                <mat-hint>¡Debe elegir una moneda!</mat-hint>
-                <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-                <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                  Este campo no debe estar vacío
-                </mat-error>
-              </mat-form-field>
-            </td>
-            <br>
-            <h2>Conversión</h2>
-            
-            
-          </mat-card>
-        </mat-card>
-        <br>
-        <mat-card>
-          Dolares - {{fecha}}
-          <hr>
-          <td>Compra: ₡ 0.00</td>
-          <br>
-          <td>Venta: ₡ 0.00</td>
-        </mat-card>
-        <br>
-        <mat-card>
-          Euros - {{fecha}}
-          <hr>
-          <td>Compra: ₡ 0.00</td>
-          <br>
-          <td>Venta: ₡ 0.00</td>
-        </mat-card>
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label> Moneda 2 </mat-label>
+        <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+          <mat-option value="valid">Colón</mat-option>
+          <mat-option value="valid">Dolar</mat-option>
+          <mat-option value="valid">Euro</mat-option>
+          <mat-option value="invalid">---</mat-option>
+        </mat-select>
+        <mat-hint>¡Debe elegir una moneda!</mat-hint>
+        <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+        <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+          Este campo no debe estar vacío
+        </mat-error>
+      </mat-form-field>
+    </td>
+    <br>
+    <h2>Conversión</h2>
+
+
+    </mat-card>
+    </mat-card>
+    <br>
+    <mat-card>
+      Dolares - {{fecha}}
+      <hr>
+      <td>Compra: ₡ 0.00</td>
+      <br>
+      <td>Venta: ₡ 0.00</td>
+    </mat-card>
+    <br>
+    <mat-card>
+      Euros - {{fecha}}
+      <hr>
+      <td>Compra: ₡ 0.00</td>
+      <br>
+      <td>Venta: ₡ 0.00</td>
+    </mat-card>
+    </div>
     </td>
   </mat-drawer-content>
 </mat-drawer-container>

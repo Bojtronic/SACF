@@ -20,6 +20,8 @@ export class NewAsientoComponent {
 
   consecutivo_asiento: string = "";
   Asientos: Asiento[] = [];
+  today = new Date(new Date().getTime());
+
 
   constructor(private dateAdapter: DateAdapter<Date>, public dialog: MatDialog, private asientoService: AsientoService, private cuentaService: CuentaService, private proveedorService: ProveedorService, private router: Router) {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy

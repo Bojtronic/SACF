@@ -15,9 +15,9 @@
         <div>
           <mat-form-field appearance="fill" style="margin-left: 20px; width: 150px;">
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000">
+            <input matInput [matDatepicker]="datepicker" placeholder="00/00/0000" [(ngModel)]="today">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-            <mat-datepicker #datepicker>
+            <mat-datepicker [startAt]="today" #datepicker>
               <mat-datepicker-actions>
                 <button mat-button matDatepickerCancel>Cancelar</button>
                 <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
@@ -76,20 +76,14 @@
       <textarea style="width: 200px;"></textarea>
     </div>
   </div>
-
-
-
-
   <br>
-  <div id="wrap">
-
-  </div>
-
-
+  <button mat-raised-button style="font-size: larger; font-weight: 200; color: rgb(0, 0, 0);">Auditoría</button>
+  <br>
+  <br>
   <mat-toolbar style="background-color:rgba(104, 103, 103, 0.335); height: 40px;">
-    <div class="btn-group" style="margin-left: 80%;">
-      <mat-form-field style="width: 200px;">
-        <mat-label>GUARDAR</mat-label>
+    <div class="btn-group" style="margin-left: 85%;">
+      <mat-form-field style="width: 120px;">
+        <mat-label>Guardar</mat-label>
         <mat-select>
           <mat-option value="op1">Guardar y crear nuevo</mat-option>
           <mat-option value="op2">Guardar y cerrar</mat-option>
