@@ -6,6 +6,8 @@ import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
 import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 import { Asiento } from 'src/app/Models/Asiento';
 import { DateAdapter } from '@angular/material/core';
+import { Observable } from 'rxjs';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -23,6 +25,8 @@ export class NewAsientoComponent {
   today = new Date(new Date().getTime());
 
 
+
+
   constructor(private dateAdapter: DateAdapter<Date>, public dialog: MatDialog, private asientoService: AsientoService, private cuentaService: CuentaService, private proveedorService: ProveedorService, private router: Router) {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
   }
@@ -31,6 +35,7 @@ export class NewAsientoComponent {
     this.asientoService.getAsientos().subscribe(data => {
       this.Asientos = data as Asiento[];
       this.consecutivo_asiento = (this.Asientos.length).toString();
+
     })
   }
 

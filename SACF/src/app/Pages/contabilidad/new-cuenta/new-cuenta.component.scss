@@ -4,3 +4,9 @@ table {
     //border-collapse: separate;
     //table-layout: auto;
 }
+
+.centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
