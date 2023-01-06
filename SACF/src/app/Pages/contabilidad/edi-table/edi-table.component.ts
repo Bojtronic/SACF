@@ -14,6 +14,7 @@ import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
   templateUrl: './edi-table.component.html',
   styleUrls: ['./edi-table.component.scss']
 })
+
 export class EdiTableComponent {
   AsientoData: LineaAsiento[] = [
     { numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' }
@@ -23,6 +24,7 @@ export class EdiTableComponent {
 
   today = new Date(new Date().getTime());
 
+  more_rows: number = 1;
 
   numero_linea: number = 0;
   cuenta: string = '';
@@ -51,6 +53,16 @@ export class EdiTableComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  addNewRows(more_rows: number) {
+    for (let i = 0; i < more_rows; i++) {
+      let newRow: LineaAsiento = { numero_linea: (this.AsientoData.length + 1), cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
+      this.AsientoData.push(newRow);
+    }
+    this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
+    this.dataSource.paginator = this.paginator;
+    this.more_rows = 1;
   }
 
   addNewRow() {

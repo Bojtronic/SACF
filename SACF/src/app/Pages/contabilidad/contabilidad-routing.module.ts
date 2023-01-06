@@ -18,27 +18,29 @@ import { NewConciliacionComponent } from './new-conciliacion/new-conciliacion.co
 import { AllConciliacionesComponent } from './all-conciliaciones/all-conciliaciones.component';
 import { InventariosComponent } from './inventarios/inventarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
+import { AuditComponent } from './audit/audit.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     children: [
-      { path:'newasiento', component:NewAsientoComponent},
-      { path:'allasientos', component:AllAsientosComponent},
-      { path:'formasiento', component:FormAsientoComponent},
-      { path:'editable', component:EdiTableComponent},
-      { path:'newdeposito', component:NewDepositoComponent},
-      { path:'newtransferencia', component:NewTransferenciaComponent},
-      { path:'alltransferencias', component:AllTransferenciasComponent},
-      { path:'allcuentas', component:AllCuentasComponent},
-      { path:'cuentasxcobrar', component:CuentasXCobrarComponent},
-      { path:'cuentasxpagar', component:CuentasXPagarComponent},
-      { path:'newcuenta', component:NewCuentaComponent},
-      { path:'alldepositos', component:AllDepositosComponent},
-      { path:'newconciliacion', component:NewConciliacionComponent},
-      { path:'allconciliaciones', component:AllConciliacionesComponent},
-      { path:'inventarios', component:InventariosComponent},
-      { path:'reportes', component:ReportesComponent}
+      { path: 'newasiento', component: NewAsientoComponent },
+      { path: 'allasientos', component: AllAsientosComponent },
+      { path: 'formasiento', component: FormAsientoComponent },
+      { path: 'editable', component: EdiTableComponent },
+      { path: 'newdeposito', component: NewDepositoComponent },
+      { path: 'newtransferencia', component: NewTransferenciaComponent },
+      { path: 'alltransferencias', component: AllTransferenciasComponent },
+      { path: 'allcuentas', component: AllCuentasComponent },
+      { path: 'cuentasxcobrar', component: CuentasXCobrarComponent },
+      { path: 'cuentasxpagar', component: CuentasXPagarComponent },
+      { path: 'newcuenta', component: NewCuentaComponent },
+      { path: 'alldepositos', component: AllDepositosComponent },
+      { path: 'newconciliacion', component: NewConciliacionComponent },
+      { path: 'allconciliaciones', component: AllConciliacionesComponent },
+      { path: 'inventarios', component: InventariosComponent },
+      { path: 'reportes', component: ReportesComponent },
+      { path: 'audit', component: AuditComponent }
     ]
   }
 ]

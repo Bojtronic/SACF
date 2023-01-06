@@ -47,6 +47,10 @@ export class NewAsientoComponent {
     this.router.navigate(['/allasientos']);
   }
 
+  toAudit() {
+    this.router.navigate(['/audit']);
+  }
+
   consecutivo() {
     return (this.Asientos.length + 1).toString();
   }

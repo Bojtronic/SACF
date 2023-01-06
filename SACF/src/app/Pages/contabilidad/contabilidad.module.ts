@@ -40,6 +40,7 @@ import { AllConciliacionesComponent } from './all-conciliaciones/all-conciliacio
 import { InventariosComponent } from './inventarios/inventarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ContabilidadRoutingModule } from './contabilidad-routing.module';
+import { AuditComponent } from './audit/audit.component';
 
 
 
@@ -60,7 +61,8 @@ import { ContabilidadRoutingModule } from './contabilidad-routing.module';
     NewConciliacionComponent,
     AllConciliacionesComponent,
     InventariosComponent,
-    ReportesComponent
+    ReportesComponent,
+    AuditComponent
   ],
   imports: [
     CommonModule,
