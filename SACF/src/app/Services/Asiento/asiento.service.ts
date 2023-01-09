@@ -16,8 +16,9 @@ export class AsientoService {
 
   constructor(private http: HttpClient) { }
 
+  /*
   getAsientos(): Observable<Asiento[]> {
     return this.http.get<Asiento[]>(this.Url_Asientos);
   }
-
+  */
 }

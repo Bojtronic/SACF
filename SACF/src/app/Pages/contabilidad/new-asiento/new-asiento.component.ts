@@ -32,11 +32,13 @@ export class NewAsientoComponent {
   }
 
   ngOnInit(): void {
+    /*
     this.asientoService.getAsientos().subscribe(data => {
       this.Asientos = data as Asiento[];
       this.consecutivo_asiento = (this.Asientos.length).toString();
 
     })
+    */
   }
 
   toDashboard() {

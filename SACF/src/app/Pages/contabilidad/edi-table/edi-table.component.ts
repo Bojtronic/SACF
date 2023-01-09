@@ -26,6 +26,9 @@ export class EdiTableComponent {
 
   more_rows: number = 1;
 
+  totalCreditos: number = 0;
+  totalDebitos: number = 0;
+
   numero_linea: number = 0;
   cuenta: string = '';
   debito: number = 0;
@@ -37,6 +40,9 @@ export class EdiTableComponent {
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  disable_credito = false;
+  disable_debito = false;
 
   cuentaControl = this.cuentaService.getControl();
   proveedorControl = this.proveedorService.getControl();
@@ -63,6 +69,9 @@ export class EdiTableComponent {
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
     this.more_rows = 1;
+
+    this.suma_creditos();
+    this.suma_debitos();
   }
 
   addNewRow() {
@@ -70,6 +79,9 @@ export class EdiTableComponent {
     this.AsientoData.push(newRow);
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
+
+    this.suma_creditos();
+    this.suma_debitos();
   }
 
   deleteRow(rowNum: string) {
@@ -93,8 +105,24 @@ export class EdiTableComponent {
     }
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
     this.dataSource.paginator = this.paginator;
+
+    this.suma_creditos();
+    this.suma_debitos();
   }
 
+  suma_debitos() {
+    this.totalDebitos = 0;
+    for (let row of this.AsientoData) {
+      this.totalDebitos += row.debito
+    }
+  }
+
+  suma_creditos() {
+    this.totalCreditos = 0;
+    for (let row of this.AsientoData) {
+      this.totalCreditos += row.credito;
+    }
+  }
 
   setFecha_emision_factura(event: { value: any; }, rowNum: string) {
     let fecha: Date = event.value;
@@ -133,7 +161,7 @@ export class EdiTableComponent {
   }
 
   setCuenta(cuenta: string, rowNum: string) {
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].descripcion != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].proveedor != '') {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
@@ -165,7 +193,7 @@ export class EdiTableComponent {
 
 
   setProveedor(proveedor: string, rowNum: string) {
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].descripcion != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].cuenta != '') {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
@@ -195,7 +223,7 @@ export class EdiTableComponent {
   }
 
   setImpuesto(impuesto: string, rowNum: string) {
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].descripcion != '' && this.AsientoData[index].proveedor != '' && this.AsientoData[index].cuenta != '') {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
@@ -225,7 +253,7 @@ export class EdiTableComponent {
   }
 
   setDescripcion(descripcion: string, rowNum: string) {
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].impuesto != '' && this.AsientoData[index].proveedor != '' && this.AsientoData[index].cuenta != '') {
       if (((this.AsientoData[index].debito != 0) && (this.AsientoData[index].credito == 0)) || ((this.AsientoData[index].debito == 0) && (this.AsientoData[index].credito != 0))) {
 
@@ -255,11 +283,13 @@ export class EdiTableComponent {
   }
 
   setDebito(debito: string, rowNum: string) {
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
 
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].descripcion != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].proveedor != '' && this.AsientoData[index].cuenta != '') {
       if (this.AsientoData[index].credito == 0) {
         this.AsientoData[index].debito = +debito;
+
+
         //this.addNewRow();
 
 
@@ -277,25 +307,35 @@ export class EdiTableComponent {
       else {
         this.AsientoData[index].debito = 0;
         console.log('la fila no puede tener credito y debito, solo 1');
+
+        this.debito = 0;
+        this.disable_debito = true;
       }
     }
     else {
       if (this.AsientoData[index].credito == 0) {
         this.AsientoData[index].debito = +debito;
+
+
       }
       else {
         this.AsientoData[index].debito = 0;
         console.log('la fila no puede tener credito y debito, solo 1');
+
+        this.debito = 0;
+        this.disable_debito = true;
       }
     }
+    //this.suma_debitos()
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
   setCredito(credito: string, rowNum: string) {
-    let index: number = +rowNum;
+    let index: number = +rowNum - 1;
     if (this.AsientoData[index].fecha_emision_factura != null && this.AsientoData[index].descripcion != '' && this.AsientoData[index].impuesto != '' && this.AsientoData[index].proveedor != '' && this.AsientoData[index].cuenta != '') {
       if (this.AsientoData[index].debito == 0) {
         this.AsientoData[index].credito = +credito;
+
 
 
         let newEmptyRow: number = 1;
@@ -317,12 +357,15 @@ export class EdiTableComponent {
     else {
       if (this.AsientoData[index].debito == 0) {
         this.AsientoData[index].credito = +credito;
+
+
       }
       else {
         console.log('la fila no puede tener credito y debito, solo 1');
         this.AsientoData[index].credito = 0;
       }
     }
+    //this.suma_creditos();
     this.dataSource = new MatTableDataSource<LineaAsiento>(this.AsientoData);
   }
 
