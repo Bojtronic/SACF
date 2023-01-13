@@ -1,16 +1,3 @@
-
-/*export interface LineaAsiento {
-    numero: string;
-    cuenta: string;
-    debito: string;
-    credito: string;
-    descripcion: string;
-    impuesto: string;
-    proveedor: string;
-    fechabanco: string;
-}
-*/
-
 export interface LineaAsiento {
   numero_linea: number;
   cuenta: string;

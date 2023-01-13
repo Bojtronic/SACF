@@ -42,7 +42,7 @@
     <th mat-header-cell *matHeaderCellDef> debito </th>
     <td mat-cell *matCellDef="let element">
       <input type="number" class="field" #debito (ngModelChange)="setDebito(debito.value,element.numero_linea)"
-        [(ngModel)]="element.debito" [disabled]="disable_debito">
+        [(ngModel)]="element.debito_cantidad" [disabled]="element.debito_deshabilitado">
     </td>
   </ng-container>
 
@@ -51,7 +51,7 @@
     <th mat-header-cell *matHeaderCellDef> credito </th>
     <td mat-cell *matCellDef="let element">
       <input type="number" class="field" #credito (ngModelChange)="setCredito(credito.value,element.numero_linea)"
-        value="element.credito" [disabled]="disable_credito">
+        [(ngModel)]="element.credito_cantidad" [disabled]="element.credito_deshabilitado">
     </td>
   </ng-container>
 
@@ -125,7 +125,7 @@
 </button>
 
 <hr>
-<br>
+
 <div style="margin-left: 29%;">
   <td style="width: 160px;">
     {{totalDebitos}}
@@ -133,5 +133,7 @@
   <td style="width: 160px;">
     {{totalCreditos}}
   </td>
+  <td style="width: 160px;">
+    {{diferenciaDC}}
+  </td>
 </div>
-<br>
