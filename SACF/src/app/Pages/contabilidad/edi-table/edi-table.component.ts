@@ -94,10 +94,31 @@ export class EdiTableComponent {
   }
 
   addNewRows(more_rows: number) {
+    let debito: number = 0;
+    let credito: number = 0;
+    let deb_deshabilitado: boolean = false;
+    let cred_deshabilitado: boolean = false;
+
+    if (this.diferenciaDC > 0) {
+      credito = this.diferenciaDC;
+      deb_deshabilitado = true;
+    }
+    else if (this.diferenciaDC < 0) {
+      debito = -(this.diferenciaDC);
+      cred_deshabilitado = true;
+    }
+
+    let cuadrar_asiento: number = this.AsientoDataGraph.length;
+
     for (let i = 0; i < more_rows; i++) {
-      let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoData.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
+      let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoDataGraph.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
       this.AsientoDataGraph.push(newRow);
     }
+    this.AsientoDataGraph[cuadrar_asiento].debito_cantidad = debito;
+    this.AsientoDataGraph[cuadrar_asiento].debito_deshabilitado = deb_deshabilitado;
+    this.AsientoDataGraph[cuadrar_asiento].credito_cantidad = credito;
+    this.AsientoDataGraph[cuadrar_asiento].credito_deshabilitado = cred_deshabilitado;
+
     this.dataSource = new MatTableDataSource<LineaAsientoGraph>(this.AsientoDataGraph);
     this.dataSource.paginator = this.paginator;
     this.more_rows = 1;
@@ -107,7 +128,7 @@ export class EdiTableComponent {
   }
 
   addNewRow() {
-    let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoData.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
+    let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoDataGraph.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
     this.AsientoDataGraph.push(newRow);
     this.dataSource = new MatTableDataSource<LineaAsientoGraph>(this.AsientoDataGraph);
     this.dataSource.paginator = this.paginator;
@@ -331,9 +352,10 @@ export class EdiTableComponent {
   setDebito(debito: string, rowNum: string) {
     let index: number = +rowNum - 1;
 
-    if (+debito == 0 && (this.AsientoDataGraph[index].credito_cantidad == 0) || this.AsientoDataGraph[index].credito_cantidad == null) {
+    if ((+debito == 0) && (this.AsientoDataGraph[index].credito_cantidad == 0 || this.AsientoDataGraph[index].credito_cantidad == null)) {
 
-      this.AsientoDataGraph[index].debito_cantidad = +debito;
+      //this.AsientoDataGraph[index].debito_cantidad = +debito;
+      this.AsientoDataGraph[index].debito_cantidad = 0;
 
       this.AsientoDataGraph[index].debito_deshabilitado = false;
       this.AsientoDataGraph[index].credito_deshabilitado = false;
@@ -342,7 +364,7 @@ export class EdiTableComponent {
     }
 
     else if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
-      if (this.AsientoDataGraph[index].credito_cantidad == 0) {
+      if (this.AsientoDataGraph[index].credito_cantidad == 0 || this.AsientoDataGraph[index].credito_cantidad == null) {
         this.AsientoDataGraph[index].debito_cantidad = +debito;
 
         this.AsientoDataGraph[index].debito_deshabilitado = false;
@@ -370,7 +392,7 @@ export class EdiTableComponent {
       }
     }
     else {
-      if (this.AsientoDataGraph[index].credito_cantidad == 0) {
+      if (this.AsientoDataGraph[index].credito_cantidad == 0 || this.AsientoDataGraph[index].credito_cantidad == null) {
         this.AsientoDataGraph[index].debito_cantidad = +debito;
 
 
@@ -399,16 +421,16 @@ export class EdiTableComponent {
   setCredito(credito: string, rowNum: string) {
     let index: number = +rowNum - 1;
 
-    if (+credito == 0 && this.AsientoDataGraph[index].debito_cantidad == 0) {
+    if ((+credito == 0) && (this.AsientoDataGraph[index].debito_cantidad == 0 || this.AsientoDataGraph[index].debito_cantidad == null)) {
 
-      this.AsientoDataGraph[index].credito_cantidad = +credito;
+      //this.AsientoDataGraph[index].credito_cantidad = +credito;
+      this.AsientoDataGraph[index].credito_cantidad = 0;
 
       this.AsientoDataGraph[index].debito_deshabilitado = false;
       this.AsientoDataGraph[index].credito_deshabilitado = false;
     }
-
     else if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
-      if (this.AsientoDataGraph[index].debito_cantidad == 0) {
+      if (this.AsientoDataGraph[index].debito_cantidad == 0 || this.AsientoDataGraph[index].debito_cantidad == null) {
         this.AsientoDataGraph[index].credito_cantidad = +credito;
 
         this.AsientoDataGraph[index].debito_deshabilitado = true;
@@ -437,7 +459,7 @@ export class EdiTableComponent {
       }
     }
     else {
-      if (this.AsientoDataGraph[index].debito_cantidad == 0) {
+      if (this.AsientoDataGraph[index].debito_cantidad == 0 || this.AsientoDataGraph[index].debito_cantidad == null) {
         this.AsientoDataGraph[index].credito_cantidad = +credito;
 
 
@@ -455,7 +477,6 @@ export class EdiTableComponent {
         this.AsientoDataGraph[index].credito_deshabilitado = true;
       }
     }
-
 
     this.suma_creditos();
     this.dataSource = new MatTableDataSource<LineaAsientoGraph>(this.AsientoDataGraph);
