@@ -1,13 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { Cuenta } from 'src/app/Models/Cuenta';
 import { LineaAsiento } from 'src/app/Models/LineaAsiento';
 import { LineaAsientoGraph } from 'src/app/Models/LineaAsientoGraph';
 import { Proveedor } from 'src/app/Models/Proveedor';
 import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
 import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
-
+import { NewCuentaComponent } from '../new-cuenta/new-cuenta.component';
 
 
 @Component({
@@ -18,18 +22,20 @@ import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 
 export class EdiTableComponent {
 
+  today = new Date(new Date().getTime());
+  defaultDate = new Date('01-01-2000');
 
   AsientoData: LineaAsiento[] = [
     //{ numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' }
   ];
 
   AsientoDataGraph: LineaAsientoGraph[] = [
-    { numero_linea: 1, cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' }
+    { numero_linea: 1, cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' },
+    { numero_linea: 2, cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' }
   ];
 
   dataSource = new MatTableDataSource<LineaAsientoGraph>(this.AsientoDataGraph);
 
-  today = new Date(new Date().getTime());
 
   more_rows: number = 1;
 
@@ -57,21 +63,47 @@ export class EdiTableComponent {
 
 
   cuentas: Cuenta[] = this.cuentaService.allCuentas();
+  //nombreCuentas: string[] = this.cuentaService.nombreCuentas();
+
   proveedores: Proveedor[] = this.proveedorService.allProveedores();
 
 
   Columns: string[] = ['numero_linea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'fecha_emision_factura', 'proveedor', 'accion'];
 
-  constructor(private cuentaService: CuentaService, private proveedorService: ProveedorService) { }
+  //myControl = new FormControl('');
+  //options: string[] = ['One', 'Two', 'Three'];
+  //filteredOptions: Observable<string[]> | any;
+
+  constructor(private cuentaService: CuentaService, private proveedorService: ProveedorService, public dialog: MatDialog) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  /*
+  ngOnInit() {
+    this.filteredOptions = this.cuentaControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
+  
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.nombreCuentas.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  */
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
+
+  openNewCuenta(): void {
+    this.dialog.open(NewCuentaComponent);
+  }
+
   sendAsiento() {
-    let lineaAsiento: LineaAsiento = { numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
+    let lineaAsiento: LineaAsiento = { numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' };
     this.AsientoData = [];
     for (let row of this.AsientoDataGraph) {
       lineaAsiento.numero_linea = row.numero_linea;
@@ -111,7 +143,7 @@ export class EdiTableComponent {
     let cuadrar_asiento: number = this.AsientoDataGraph.length;
 
     for (let i = 0; i < more_rows; i++) {
-      let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoDataGraph.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
+      let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoDataGraph.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' };
       this.AsientoDataGraph.push(newRow);
     }
     this.AsientoDataGraph[cuadrar_asiento].debito_cantidad = debito;
@@ -128,7 +160,21 @@ export class EdiTableComponent {
   }
 
   addNewRow() {
-    let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoDataGraph.length + 1), cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' };
+    let debito: number = 0;
+    let credito: number = 0;
+    let deb_deshabilitado: boolean = false;
+    let cred_deshabilitado: boolean = false;
+
+    if (this.diferenciaDC > 0) {
+      credito = this.diferenciaDC;
+      deb_deshabilitado = true;
+    }
+    else if (this.diferenciaDC < 0) {
+      debito = -(this.diferenciaDC);
+      cred_deshabilitado = true;
+    }
+
+    let newRow: LineaAsientoGraph = { numero_linea: (this.AsientoDataGraph.length + 1), cuenta: '', debito_cantidad: debito, debito_deshabilitado: deb_deshabilitado, credito_cantidad: credito, credito_deshabilitado: cred_deshabilitado, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' };
     this.AsientoDataGraph.push(newRow);
     this.dataSource = new MatTableDataSource<LineaAsientoGraph>(this.AsientoDataGraph);
     this.dataSource.paginator = this.paginator;
@@ -140,6 +186,9 @@ export class EdiTableComponent {
   deleteRow(rowNum: string) {
     if (this.AsientoDataGraph.length == 1) {
       this.AsientoDataGraph.pop();
+      this.totalCreditos = 0;
+      this.totalDebitos = 0;
+      this.diferenciaDC = 0;
       this.addNewRow();
     }
     else {
@@ -209,7 +258,7 @@ export class EdiTableComponent {
           }
         }
 
-        if (this.AsientoDataGraph.length == 0) {
+        if (newEmptyRow == 1) {
           this.addNewRow();
         }
 
@@ -226,14 +275,14 @@ export class EdiTableComponent {
 
   setCuenta(cuenta: string, rowNum: string) {
     let index: number = +rowNum - 1;
-    if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '') {
+    if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '') {
       if (((this.AsientoDataGraph[index].debito_cantidad != 0) && (this.AsientoDataGraph[index].credito_cantidad == 0)) || ((this.AsientoDataGraph[index].debito_cantidad == 0) && (this.AsientoDataGraph[index].credito_cantidad != 0))) {
 
         this.AsientoDataGraph[index].cuenta = cuenta;
 
         let newEmptyRow: number = 1;
         for (let row of this.AsientoDataGraph) {
-          if ((row.proveedor == '' || row.impuesto == '' || row.descripcion == '' || row.fecha_emision_factura == null) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
+          if ((row.proveedor == '' || row.impuesto == '' || row.descripcion == '' || row.fecha_emision_factura == this.defaultDate) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
             newEmptyRow = 0;
           }
         }
@@ -256,7 +305,7 @@ export class EdiTableComponent {
 
   setProveedor(proveedor: string, rowNum: string) {
     let index: number = +rowNum - 1;
-    if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].cuenta != '') {
+    if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].cuenta != '') {
       if (((this.AsientoDataGraph[index].debito_cantidad != 0) && (this.AsientoDataGraph[index].credito_cantidad == 0)) || ((this.AsientoDataGraph[index].debito_cantidad == 0) && (this.AsientoDataGraph[index].credito_cantidad != 0))) {
 
         this.AsientoDataGraph[index].proveedor = proveedor;
@@ -265,7 +314,7 @@ export class EdiTableComponent {
 
         let newEmptyRow: number = 1;
         for (let row of this.AsientoDataGraph) {
-          if ((row.cuenta == '' || row.impuesto == '' || row.descripcion == '' || row.fecha_emision_factura == null) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
+          if ((row.cuenta == '' || row.impuesto == '' || row.descripcion == '' || row.fecha_emision_factura == this.defaultDate) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
             newEmptyRow = 0;
           }
         }
@@ -286,7 +335,7 @@ export class EdiTableComponent {
 
   setImpuesto(impuesto: string, rowNum: string) {
     let index: number = +rowNum - 1;
-    if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
+    if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
       if (((this.AsientoDataGraph[index].debito_cantidad != 0) && (this.AsientoDataGraph[index].credito_cantidad == 0)) || ((this.AsientoDataGraph[index].debito_cantidad == 0) && (this.AsientoDataGraph[index].credito_cantidad != 0))) {
 
         this.AsientoDataGraph[index].impuesto = impuesto;
@@ -295,7 +344,7 @@ export class EdiTableComponent {
 
         let newEmptyRow: number = 1;
         for (let row of this.AsientoDataGraph) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.descripcion == '' || row.fecha_emision_factura == null) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.descripcion == '' || row.fecha_emision_factura == this.defaultDate) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
             newEmptyRow = 0;
           }
         }
@@ -316,14 +365,14 @@ export class EdiTableComponent {
 
   setDescripcion(descripcion: string, rowNum: string) {
     let index: number = +rowNum - 1;
-    if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
+    if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
       if (((this.AsientoDataGraph[index].debito_cantidad != 0) && (this.AsientoDataGraph[index].credito_cantidad == 0)) || ((this.AsientoDataGraph[index].debito_cantidad == 0) && (this.AsientoDataGraph[index].credito_cantidad != 0))) {
 
         this.AsientoDataGraph[index].descripcion = descripcion;
 
         let newEmptyRow: number = 1;
         for (let row of this.AsientoDataGraph) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == this.defaultDate) || (row.credito_cantidad == 0 && row.debito_cantidad == 0)) {
             newEmptyRow = 0;
           }
         }
@@ -363,7 +412,7 @@ export class EdiTableComponent {
       //this.suma_debitos();
     }
 
-    else if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
+    else if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
       if (this.AsientoDataGraph[index].credito_cantidad == 0 || this.AsientoDataGraph[index].credito_cantidad == null) {
         this.AsientoDataGraph[index].debito_cantidad = +debito;
 
@@ -373,7 +422,7 @@ export class EdiTableComponent {
 
         let newEmptyRow: number = 1;
         for (let row of this.AsientoDataGraph) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null)) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == this.defaultDate)) {
             newEmptyRow = 0;
           }
         }
@@ -429,7 +478,7 @@ export class EdiTableComponent {
       this.AsientoDataGraph[index].debito_deshabilitado = false;
       this.AsientoDataGraph[index].credito_deshabilitado = false;
     }
-    else if (this.AsientoDataGraph[index].fecha_emision_factura != null && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
+    else if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '' && this.AsientoDataGraph[index].cuenta != '') {
       if (this.AsientoDataGraph[index].debito_cantidad == 0 || this.AsientoDataGraph[index].debito_cantidad == null) {
         this.AsientoDataGraph[index].credito_cantidad = +credito;
 
@@ -439,7 +488,7 @@ export class EdiTableComponent {
 
         let newEmptyRow: number = 1;
         for (let row of this.AsientoDataGraph) {
-          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == null)) {
+          if ((row.cuenta == '' || row.proveedor == '' || row.impuesto == '' || row.fecha_emision_factura == this.defaultDate)) {
             newEmptyRow = 0;
           }
         }

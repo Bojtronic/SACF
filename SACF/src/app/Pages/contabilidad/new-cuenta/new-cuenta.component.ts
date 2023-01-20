@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
 
 @Component({
   selector: 'app-new-cuenta',
@@ -8,7 +9,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class NewCuentaComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<NewCuentaComponent>) { }
+  tipoCuenta: string[] = this.cuentaService.getTipos();
+
+  divisas: string[] = this.cuentaService.getDivisas()
+
+  constructor(public dialogRef: MatDialogRef<NewCuentaComponent>, private cuentaService: CuentaService) { }
 
   ngOnInit(): void {
   }

@@ -25,7 +25,7 @@ export class AllCuentasComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  openDialog(): void {
+  openNewCuenta(): void {
     this.dialog.open(NewCuentaComponent);
   }
 
