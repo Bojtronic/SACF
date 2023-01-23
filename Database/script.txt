@@ -1,3 +1,34 @@
+create table cuenta
+(
+id_cuenta bigserial primary key,
+numero bigint,
+nombre varchar(20),
+tipo varchar(20),
+tipo_detalle varchar(50),
+descripcion varchar(50),
+saldo decimal(15,5),
+divisa varchar(10),
+fecha_registro date 
+);
+
+insert into cuenta (numero, nombre, tipo, tipo_detalle, descripcion, saldo, divisa, fecha_registro) values (9223372036854775807, 'nombre de la cuenta', 'tipo de la cuenta', 'tipo_detalle', 'descripcion', 0.00001, 'divisa', to_date('01/01/2000', 'DD/MM/YYYY'));
+
+select * from cuenta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 create table ASIENTO
 (
 id_asiento int,

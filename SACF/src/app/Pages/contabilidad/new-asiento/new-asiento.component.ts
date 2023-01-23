@@ -3,11 +3,9 @@ import { AsientoService } from 'src/app/Services/Asiento/asiento.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CuentaService } from 'src/app/Services/Cuenta/cuenta.service';
-import { ProveedorService } from 'src/app/Services/Proveedor/proveedor.service';
 import { Asiento } from 'src/app/Models/Asiento';
 import { DateAdapter } from '@angular/material/core';
-import { Observable } from 'rxjs';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { Cuenta } from 'src/app/Models/Cuenta';
 
 
 @Component({
@@ -24,10 +22,12 @@ export class NewAsientoComponent {
   Asientos: Asiento[] = [];
   today = new Date(new Date().getTime());
 
+  cuentas: Cuenta[] = [];
 
 
 
-  constructor(private dateAdapter: DateAdapter<Date>, public dialog: MatDialog, private asientoService: AsientoService, private cuentaService: CuentaService, private proveedorService: ProveedorService, private router: Router) {
+
+  constructor(private dateAdapter: DateAdapter<Date>, private cuentaService: CuentaService, private router: Router) {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
   }
 
@@ -55,6 +55,20 @@ export class NewAsientoComponent {
 
   consecutivo() {
     return (this.Asientos.length + 1).toString();
+  }
+
+  getCuentas() {
+    let lista: Cuenta[] = [];
+    this.cuentaService.getCuentas().subscribe((data: Cuenta[]) => {
+      lista = data
+
+      for (let cuenta of lista) {
+        this.cuentas.push(cuenta)
+      }
+
+      console.log(this.cuentas);
+    });
+    console.log(this.cuentas);
   }
 }
 
