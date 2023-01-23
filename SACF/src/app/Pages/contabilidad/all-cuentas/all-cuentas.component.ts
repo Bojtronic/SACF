@@ -11,10 +11,11 @@ import { NewCuentaComponent } from '../new-cuenta/new-cuenta.component';
   templateUrl: './all-cuentas.component.html',
   styleUrls: ['./all-cuentas.component.scss']
 })
-export class AllCuentasComponent implements AfterViewInit {
+export class AllCuentasComponent implements AfterViewInit, OnInit {
 
-  dataSource = new MatTableDataSource<Cuenta>(this.cuentaService.allCuentas());
-  Columns: string[] = ['numero', 'nombre', 'tipo', 'detalle', 'descripcion', 'saldo', 'divisa'];
+  cuentas: Cuenta[] = [];
+  dataSource = new MatTableDataSource<Cuenta>(this.cuentas);
+  Columns: string[] = ['numero', 'nombre', 'tipo', 'tipo_detalle', 'descripcion', 'saldo', 'divisa', 'fecha_registro', 'eliminar'];
 
   constructor(private cuentaService: CuentaService, public dialog: MatDialog) { }
 
@@ -25,8 +26,25 @@ export class AllCuentasComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  ngOnInit(): void {
+    let lista: Cuenta[] = [];
+    this.cuentaService.getCuentas().subscribe((data: Cuenta[]) => {
+      lista = data
+      for (let cuenta of lista) {
+        this.cuentas.push(cuenta);
+      }
+      this.dataSource = new MatTableDataSource<Cuenta>(this.cuentas);
+    });
+  }
+
   openNewCuenta(): void {
     this.dialog.open(NewCuentaComponent);
+  }
+
+  deleteRow(id_cuenta: number) {
+    this.cuentaService.deleteCuenta(id_cuenta).subscribe((data) => {
+      console.log(data);
+    });
   }
 
 }

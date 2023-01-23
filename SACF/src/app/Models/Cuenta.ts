@@ -1,9 +1,10 @@
 export interface Cuenta {
-    numero: string;
-    nombre: string;
-    tipo: string;
-    detalle: string;
-    descripcion: string;
-    saldo: string;
-    divisa: string;
-  }
+  numero: number;
+  nombre: string;
+  tipo: string;
+  tipo_detalle: string;
+  descripcion: string;
+  saldo: number;
+  divisa: string;
+  fecha_registro: Date;
+}

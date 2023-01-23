@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -20,7 +20,7 @@ import { NewCuentaComponent } from '../new-cuenta/new-cuenta.component';
   styleUrls: ['./edi-table.component.scss']
 })
 
-export class EdiTableComponent {
+export class EdiTableComponent implements OnInit {
 
   today = new Date(new Date().getTime());
   defaultDate = new Date('01-01-2000');
@@ -62,13 +62,13 @@ export class EdiTableComponent {
   proveedorControl = this.proveedorService.getControl();
 
 
-  cuentas: Cuenta[] = this.cuentaService.allCuentas();
+  cuentas: Cuenta[] = [];
   //nombreCuentas: string[] = this.cuentaService.nombreCuentas();
 
   proveedores: Proveedor[] = this.proveedorService.allProveedores();
 
 
-  Columns: string[] = ['numero_linea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'fecha_emision_factura', 'proveedor', 'accion'];
+  Columns: string[] = ['numero_linea', 'cuenta', 'debito', 'credito', 'descripcion', 'impuesto', 'fecha_emision_factura', 'proveedor', 'eliminar'];
 
   //myControl = new FormControl('');
   //options: string[] = ['One', 'Two', 'Three'];
@@ -78,20 +78,15 @@ export class EdiTableComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  /*
-  ngOnInit() {
-    this.filteredOptions = this.cuentaControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+  ngOnInit(): void {
+    let lista: Cuenta[] = [];
+    this.cuentaService.getCuentas().subscribe((data: Cuenta[]) => {
+      lista = data
+      for (let cuenta of lista) {
+        this.cuentas.push(cuenta);
+      }
+    });
   }
-  
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.nombreCuentas.filter(option => option.toLowerCase().includes(filterValue));
-  }
-  */
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

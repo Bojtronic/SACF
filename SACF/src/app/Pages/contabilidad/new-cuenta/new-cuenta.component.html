@@ -13,7 +13,7 @@
                             Tipo de cuenta
                         </mat-label>
                         <mat-select>
-                            <mat-option *ngFor="let tipo of tipoCuenta" [value]="tipo">
+                            <mat-option *ngFor="let tipo of tipoCuenta" [value]="tipo" (click)="setTipo(tipo)">
                                 {{tipo}}
                             </mat-option>
                         </mat-select>
@@ -38,23 +38,27 @@
                 <td>
 
                     <mat-form-field>
-                        <mat-label>Tipo de detalles</mat-label>
-                        <input matInput placeholder="detalle">
+                        <mat-label>Tipo de detalle</mat-label>
+                        <input #tipo_detalle matInput placeholder="detalle"
+                            (ngModelChange)="setTipo_detalle(tipo_detalle.value)" ngModel="">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
                         <mat-label>Nombre</mat-label>
-                        <input matInput placeholder="nombre">
+                        <input #nombre matInput placeholder="nombre" (ngModelChange)="setNombre(nombre.value)"
+                            ngModel="">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
                         <mat-label>Numero</mat-label>
-                        <input matInput placeholder="numero">
+                        <input #numero matInput placeholder="numero" (ngModelChange)="setNumero(numero.value)"
+                            ngModel="">
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Descripcion</mat-label>
-                        <input matInput placeholder="descripcion">
+                        <input #descripcion matInput placeholder="descripcion"
+                            (ngModelChange)="setDescripcion(descripcion.value)" ngModel="">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
@@ -62,7 +66,8 @@
                             Divisa
                         </mat-label>
                         <mat-select>
-                            <mat-option *ngFor="let divisa of divisas" [value]="divisa">
+                            <mat-option #divisa *ngFor="let divisa of divisas" [value]="divisa"
+                                (click)="setDivisa(divisa)">
                                 {{divisa}}
                             </mat-option>
                         </mat-select>
@@ -70,13 +75,15 @@
                     <br>
                     <mat-form-field>
                         <mat-label>Saldo inicial</mat-label>
-                        <input matInput placeholder="saldo inicial">
+                        <input #saldo matInput placeholder="saldo inicial" (ngModelChange)="setSaldo(saldo.value)"
+                            ngModel="">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa">
+                        <mat-datepicker-toggle matSuffix [for]="fecha_registro"></mat-datepicker-toggle>
+                        <mat-datepicker #fecha_registro></mat-datepicker>
+                        <input matInput [matDatepicker]="fecha_registro" placeholder="dd/mm/aaaa"
+                            (dateChange)="setFecha_registro($event)">
                     </mat-form-field>
 
                 </td>
@@ -90,7 +97,7 @@
         <br>
         <div class="centrar">
             <button mat-raised-button style="background-color: crimson;">Cancelar</button>
-            <button mat-raised-button style="background-color: aquamarine;">Guardar</button>
+            <button mat-raised-button style="background-color: aquamarine;" (click)="createCuenta()">Guardar</button>
         </div>
     </div>
 </div>

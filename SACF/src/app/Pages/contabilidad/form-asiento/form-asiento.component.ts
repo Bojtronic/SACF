@@ -92,6 +92,6 @@ export class FormAsientoComponent {
   cuentaControl = this.cuentaService.getControl();
 
   proveedores: Proveedor[] = this.proveedorService.allProveedores();
-  cuentas: Cuenta[] = this.cuentaService.allCuentas();
+  //cuentas: Cuenta[] = this.cuentaService.allCuentas();
 
 }

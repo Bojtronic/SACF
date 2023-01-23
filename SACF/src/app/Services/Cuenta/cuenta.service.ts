@@ -12,7 +12,7 @@ export class CuentaService {
 
   constructor(private http: HttpClient) { }
 
-  cuentas_URL: string = environment.APIurl + "/api/cuentas";
+  cuentas_URL: string = environment.APIurl + "/api/cuentas/";
 
   cuentaControl = new FormControl('');
   //cuentaControl = new FormControl('', Validators.required);
@@ -26,6 +26,7 @@ export class CuentaService {
 
   private divisas: string[] = ["Colon", "Dolar", "Euro"]
 
+  /*
   cuentas: Cuenta[] = [
     { numero: '101', nombre: 'Bancos Colones', tipo: 'Efectivo y equivalentes de efectivo', detalle: 'Banco', descripcion: '', saldo: '12.430.818,95', divisa: 'CRC' },
     { numero: '101-01-00', nombre: 'Bancos Colones:BNCR #100-01-000466-0', tipo: 'Efectivo y equivalentes de efectivo', detalle: 'Banco', descripcion: 'BNCR 000466', saldo: '12.022.693,55', divisa: 'CRC' },
@@ -38,12 +39,22 @@ export class CuentaService {
     { numero: '103-01-00', nombre: 'Cuentas por cobrar (C/C) - USD', tipo: 'Cuentas por cobrar (C/C)', detalle: 'Cuentas por cobrar (C/C)', descripcion: '', saldo: '137.017,96', divisa: 'USD' },
     { numero: '103-02-00', nombre: 'Cuentas por cobrar', tipo: 'Cuentas por cobrar (C/C)', detalle: 'Cuentas por cobrar (C/C)', descripcion: '', saldo: '140.341.424,71', divisa: 'CRC' }
   ];
-
+  */
 
   getCuentas(): Observable<Cuenta[]> {
     return this.http.get<Cuenta[]>(this.cuentas_URL);
   }
 
+  addCuenta(cuenta: Cuenta): Observable<Cuenta> {
+    return this.http.post<Cuenta>(this.cuentas_URL, cuenta);
+  }
+
+  deleteCuenta(id: number): Observable<Cuenta> {
+    return this.http.delete<Cuenta>(this.cuentas_URL + id);
+  }
+
+
+  /*
   nombreCuentas() {
     let nombrecuentas: string[] = [];
     for (let cuenta of this.cuentas) {
@@ -51,7 +62,7 @@ export class CuentaService {
     }
     return nombrecuentas;
   }
-
+  */
 
   getTipos() {
     return this.tipocuentas;
@@ -63,16 +74,11 @@ export class CuentaService {
 
 
 
-
-
-
-
-
-
-
-  allCuentas() {
-    return this.cuentas;
-  }
+  /*
+    allCuentas() {
+      return this.cuentas;
+    }
+    */
 
   getControl() {
     return this.cuentaControl;
