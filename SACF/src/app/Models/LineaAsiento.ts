@@ -1,10 +1,11 @@
 export interface LineaAsiento {
+  numero_asiento: number;
   numero_linea: number;
-  cuenta: string;
+  id_cuenta: string;
   debito: number;
   credito: number;
   descripcion: string;
   impuesto: string;
-  fecha_emision_factura: Date;
+  fecha_factura: Date;
   proveedor: string;
 }

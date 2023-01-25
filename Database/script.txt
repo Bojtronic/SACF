@@ -11,6 +11,32 @@ divisa varchar(10),
 fecha_registro date 
 );
 
+
+create table asiento
+(
+numero bigint primary key,
+fecha_creacion date,
+divisa varchar(20)
+);
+
+
+create table linea_asiento
+(
+numero_asiento bigint ,
+numero_linea int,
+id_cuenta bigint,
+debito decimal(15,5),
+credito decimal(15,5),
+decripcion varchar(50),
+impuesto varchar(50),
+fecha_factura date,
+proveedor varchar(20)
+);
+
+
+
+
+
 insert into cuenta (numero, nombre, tipo, tipo_detalle, descripcion, saldo, divisa, fecha_registro) values (9223372036854775807, 'nombre de la cuenta', 'tipo de la cuenta', 'tipo_detalle', 'descripcion', 0.00001, 'divisa', to_date('01/01/2000', 'DD/MM/YYYY'));
 
 select * from cuenta

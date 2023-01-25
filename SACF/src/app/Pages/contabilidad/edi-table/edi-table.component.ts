@@ -25,7 +25,7 @@ export class EdiTableComponent implements OnInit {
   today = new Date(new Date().getTime());
   defaultDate = new Date('01-01-2000');
 
-  AsientoData: LineaAsiento[] = [
+  lineasAsiento: LineaAsiento[] = [
     //{ numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' }
   ];
 
@@ -98,19 +98,19 @@ export class EdiTableComponent implements OnInit {
   }
 
   sendAsiento() {
-    let lineaAsiento: LineaAsiento = { numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' };
-    this.AsientoData = [];
+    let lineaAsiento: LineaAsiento = { numero_asiento: 1, numero_linea: 1, id_cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_factura: this.defaultDate, proveedor: '' };
+    this.lineasAsiento = [];
     for (let row of this.AsientoDataGraph) {
       lineaAsiento.numero_linea = row.numero_linea;
-      lineaAsiento.cuenta = row.cuenta;
+      lineaAsiento.id_cuenta = row.cuenta;
       lineaAsiento.debito = row.debito_cantidad;
       lineaAsiento.credito = row.credito_cantidad;
       lineaAsiento.descripcion = row.descripcion;
       lineaAsiento.impuesto = row.impuesto;
-      lineaAsiento.fecha_emision_factura = row.fecha_emision_factura;
+      lineaAsiento.fecha_factura = row.fecha_emision_factura;
       lineaAsiento.proveedor = row.proveedor;
 
-      this.AsientoData.push(lineaAsiento);
+      this.lineasAsiento.push(lineaAsiento);
 
       //logica para hacer post
       //

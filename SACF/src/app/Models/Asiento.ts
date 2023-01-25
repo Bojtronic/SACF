@@ -1,7 +1,7 @@
 import { LineaAsiento } from "./LineaAsiento";
 
 export interface Asiento {
-  num_asiento: string;
+  numero: number;
   fecha_creacion: Date;
-  Filas: LineaAsiento[];
+  //Filas: LineaAsiento[];
 }

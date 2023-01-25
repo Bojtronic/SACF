@@ -12,7 +12,7 @@ export class CuentaService {
 
   constructor(private http: HttpClient) { }
 
-  cuentas_URL: string = environment.APIurl + "/api/cuentas/";
+  URL_cuentas: string = environment.APIurl + "/api/cuentas/";
 
   cuentaControl = new FormControl('');
   //cuentaControl = new FormControl('', Validators.required);
@@ -42,15 +42,15 @@ export class CuentaService {
   */
 
   getCuentas(): Observable<Cuenta[]> {
-    return this.http.get<Cuenta[]>(this.cuentas_URL);
+    return this.http.get<Cuenta[]>(this.URL_cuentas);
   }
 
   addCuenta(cuenta: Cuenta): Observable<Cuenta> {
-    return this.http.post<Cuenta>(this.cuentas_URL, cuenta);
+    return this.http.post<Cuenta>(this.URL_cuentas, cuenta);
   }
 
   deleteCuenta(id: number): Observable<Cuenta> {
-    return this.http.delete<Cuenta>(this.cuentas_URL + id);
+    return this.http.delete<Cuenta>(this.URL_cuentas + id);
   }
 
 
