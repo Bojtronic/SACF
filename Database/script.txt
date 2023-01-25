@@ -47,72 +47,19 @@ select * from cuenta
 
 
 
+INSERT INTO asiento (numero, fecha_creacion, divisa) VALUES (3, '01/03/2000', 'bolivar');
 
 
 
+INSERT INTO linea_asiento(numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor) VALUES(1, 1, 7, 5, 5, 'descripcion', 'impuesto', '02/02/2002', 'proveedor');
 
 
+INSERT INTO linea_asiento(numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor) VALUES(2, 1, 6666, 0, 10, 'descripcion', 'impuesto', '03/03/2003', 'proveedor');
+INSERT INTO linea_asiento(numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor) VALUES(2, 2, 5555, 10, 0, 'descripcion', 'impuesto', '04/04/2004', 'proveedor');
+
+INSERT INTO linea_asiento(numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor) VALUES(3, 1, 4444, 0, 3, 'descripcion', 'impuesto', '05/05/2005', 'proveedor');
+INSERT INTO linea_asiento(numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor) VALUES(3, 2, 3333, 0, 2, 'descripcion', 'impuesto', '06/06/2006', 'proveedor');
+INSERT INTO linea_asiento(numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor) VALUES(3, 3, 2222, 5, 0, 'descripcion', 'impuesto', '07/07/2007', 'proveedor');
 
 
-
-create table ASIENTO
-(
-id_asiento int,
-num_asiento int,
-num_cuenta varchar,
-cuenta varchar,
-debitos int,
-creditos int,
-descripcion varchar(100),
-impuestos varchar,
-fecha_creacion date,
-fecha_emision_factura date,
-proveedor varchar
-)
-
-
-create table CONDOMINIO
-(
-id_condominio int,
-nombre varchar,
-direccion varchar,
-correo varchar,
-telefono int
-)
-
-create table CLIENTE
-(
-cedula varchar,
-nombre varchar,
-apellido1 varchar,
-apellido2 varchar,
-direccion varchar,
-telefono int,
-correo varchar,
-tipo varchar
-)
-
-create table PROVEEDOR
-(
-cedula varchar,
-nombre varchar,
-direccion varchar,
-telefono int,
-correo varchar,
-cuenta varchar,
-tipo varchar,
-monto int
-)
-
-create table CUENTA
-(
-id_cuenta int,
-numero varchar,
-nombre varchar,
-tipo varchar,
-tipo_detalle varchar,
-descripcion varchar,
-saldo varchar,
-divisa varchar
-)
 

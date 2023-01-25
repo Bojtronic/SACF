@@ -11,10 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class AsientoService {
 
-  //API_Asientos: string = "http://localhost:3000/api/asientos/";
-
-  Url_Asientos: string = environment.APIurl + "asientos/";
-  Url_LineasAsiento: string = environment.APIurl + "lineasasiento/";
+  Url_Asientos: string = environment.APIurl + "api/asientos/";
+  Url_LineasAsiento: string = environment.APIurl + "api/lineasasiento/";
 
   constructor(private http: HttpClient) { }
 

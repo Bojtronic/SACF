@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIurl: 'https://sacf-api.onrender.com'
+  APIurl: 'https://sacf-api.onrender.com/'
 };
 
 /*

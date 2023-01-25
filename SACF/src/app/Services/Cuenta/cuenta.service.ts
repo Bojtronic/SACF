@@ -12,7 +12,7 @@ export class CuentaService {
 
   constructor(private http: HttpClient) { }
 
-  URL_cuentas: string = environment.APIurl + "/api/cuentas/";
+  URL_cuentas: string = environment.APIurl + "api/cuentas/";
 
   cuentaControl = new FormControl('');
   //cuentaControl = new FormControl('', Validators.required);
