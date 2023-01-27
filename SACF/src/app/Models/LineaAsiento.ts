@@ -1,7 +1,7 @@
 export interface LineaAsiento {
   numero_asiento: number;
   numero_linea: number;
-  id_cuenta: string;
+  id_cuenta: number;
   debito: number;
   credito: number;
   descripcion: string;

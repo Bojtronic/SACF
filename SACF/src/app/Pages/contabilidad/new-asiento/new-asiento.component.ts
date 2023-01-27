@@ -57,18 +57,6 @@ export class NewAsientoComponent {
     return (this.Asientos.length + 1).toString();
   }
 
-  getCuentas() {
-    let lista: Cuenta[] = [];
-    this.cuentaService.getCuentas().subscribe((data: Cuenta[]) => {
-      lista = data
 
-      for (let cuenta of lista) {
-        this.cuentas.push(cuenta)
-      }
-
-      console.log(this.cuentas);
-    });
-    console.log(this.cuentas);
-  }
 }
 

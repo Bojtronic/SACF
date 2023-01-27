@@ -1,4 +1,5 @@
 export interface Cuenta {
+  id_cuenta?: number;
   numero: number;
   nombre: string;
   tipo: string;

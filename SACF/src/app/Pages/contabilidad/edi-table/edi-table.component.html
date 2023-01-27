@@ -27,36 +27,18 @@
     <th mat-header-cell *matHeaderCellDef> cuenta </th>
     <td mat-cell *matCellDef="let element">
 
-      <!--
-      <form style="width: 250px; margin-left: -50px;">
-        <mat-form-field>
-          <input type="text" aria-label="Number" matInput [formControl]="cuentaControl" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option (click)="openNewCuenta()" style="cursor:cell;">
-              + Agregar cuenta
-            </mat-option>
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </form>
-      -->
 
-      <form style="width: 250px; margin-left: -50px;">
-        <mat-form-field>
-          <mat-select>
-            <mat-option (click)="openNewCuenta()" style="cursor:cell; background-color: #8fc3ee;">
-              <mat-icon>add</mat-icon> Agregar cuenta
-            </mat-option>
-            <mat-option *ngFor="let cuenta of cuentas" [value]="element.cuenta">
-              {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.tipo}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
-
-
+      <mat-form-field style="width: 250px; margin-left: -50px;">
+        <mat-select>
+          <mat-option (click)="openNewCuenta()" style="cursor:cell; background-color: #8fc3ee;">
+            <mat-icon>add</mat-icon> Agregar cuenta
+          </mat-option>
+          <mat-option *ngFor="let cuenta of cuentas" [value]="element.cuenta"
+            (click)="setCuenta(element.id_cuenta, element.numero_linea)">
+            {{cuenta.id_cuenta}} - {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.tipo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
     </td>
   </ng-container>
