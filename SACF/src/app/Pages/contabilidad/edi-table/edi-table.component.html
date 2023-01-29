@@ -34,7 +34,7 @@
             <mat-icon>add</mat-icon> Agregar cuenta
           </mat-option>
           <mat-option *ngFor="let cuenta of cuentas" [value]="element.cuenta"
-            (click)="setCuenta(element.id_cuenta, element.numero_linea)">
+            (click)="setCuenta(cuenta.id_cuenta!, element.numero_linea)">
             {{cuenta.id_cuenta}} - {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.tipo}}
           </mat-option>
         </mat-select>
@@ -145,3 +145,5 @@
     {{diferenciaDC}}
   </td>
 </div>
+
+<button (click)="sendAsiento()">H</button>

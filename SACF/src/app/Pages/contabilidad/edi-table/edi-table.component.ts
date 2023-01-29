@@ -25,9 +25,15 @@ export class EdiTableComponent implements OnInit {
   today = new Date(new Date().getTime());
   defaultDate = new Date('01-01-2000');
 
+
+
+
   lineasAsiento: LineaAsiento[] = [
-    //{ numero_linea: 1, cuenta: '', debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_emision_factura: new Date('01-01-2000'), proveedor: '' }
+    { numero_asiento: 0, numero_linea: 0, id_cuenta: 0, debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_factura: new Date('01-01-2000'), proveedor: '' }
   ];
+
+
+
 
   AsientoDataGraph: LineaAsientoGraph[] = [
     { numero_linea: 1, cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' },
@@ -61,8 +67,8 @@ export class EdiTableComponent implements OnInit {
   cuentaControl = this.cuentaService.getControl();
   proveedorControl = this.proveedorService.getControl();
 
-
-  cuentas: Cuenta[] = [{ id_cuenta: 0, numero: 0, nombre: '', tipo: '', tipo_detalle: '', descripcion: '', saldo: 0, divisa: '', fecha_registro: new Date('01/01/2000') }];
+  cuentas: Cuenta[] = [];
+  //cuentas: Cuenta[] = [{ id_cuenta: 0, numero: 0, nombre: '', tipo: '', tipo_detalle: '', descripcion: '', saldo: 0, divisa: '', fecha_registro: new Date('01/01/2000') }];
   //nombreCuentas: string[] = this.cuentaService.nombreCuentas();
 
   proveedores: Proveedor[] = this.proveedorService.allProveedores();
@@ -78,10 +84,36 @@ export class EdiTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngOnInit(): void {
-    this.cuentas = this.getCuentas();
+ 
 
-    console.log(this.cuentas[0].id_cuenta);
+  ngOnInit(): void {
+    let lista: Cuenta[] = [];
+    this.cuentas = [];
+    let cuenta_aux: Cuenta = { id_cuenta: 0, numero: 0, nombre: '', tipo: '', tipo_detalle: '', descripcion: '', saldo: 0, divisa: '', fecha_registro: new Date('01/01/2000') };
+
+
+    this.cuentaService.getCuentas().subscribe((data: Cuenta[]) => {
+      lista = data as Cuenta[]
+      for (let cuenta of lista) {
+
+        
+        cuenta_aux.id_cuenta = cuenta.id_cuenta;
+        cuenta_aux.numero = cuenta.numero;
+        cuenta_aux.nombre = cuenta.nombre;
+        cuenta_aux.tipo = cuenta.tipo;
+        cuenta_aux.tipo_detalle = cuenta.tipo_detalle;
+        cuenta_aux.descripcion = cuenta.descripcion;
+        cuenta_aux.saldo = cuenta.saldo;
+        cuenta_aux.divisa = cuenta.divisa;
+        cuenta_aux.fecha_registro = cuenta.fecha_registro;
+
+
+        this.cuentas.push(cuenta_aux);
+
+        
+      }
+    });
+    
   }
 
   ngAfterViewInit() {
@@ -100,9 +132,7 @@ export class EdiTableComponent implements OnInit {
       for (let cuenta of lista) {
 
         cuenta_aux.id_cuenta = cuenta.id_cuenta,
-
-
-          this.cuentas.push(cuenta)
+        this.cuentas.push(cuenta);
       }
     });
     console.log(cuenta_aux.id_cuenta);
@@ -115,9 +145,10 @@ export class EdiTableComponent implements OnInit {
   }
 
   sendAsiento() {
-    let lineaAsiento: LineaAsiento = { numero_asiento: 1, numero_linea: 1, id_cuenta: 0, debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_factura: this.defaultDate, proveedor: '' };
+    let lineaAsiento: LineaAsiento = { numero_asiento: 0, numero_linea: 0, id_cuenta: 0, debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_factura: this.defaultDate, proveedor: '' };
     this.lineasAsiento = [];
     for (let row of this.AsientoDataGraph) {
+      
       lineaAsiento.numero_linea = row.numero_linea;
       lineaAsiento.id_cuenta = +row.cuenta;
       lineaAsiento.debito = row.debito_cantidad;
@@ -128,13 +159,17 @@ export class EdiTableComponent implements OnInit {
       lineaAsiento.proveedor = row.proveedor;
 
       this.lineasAsiento.push(lineaAsiento);
+      
+      lineaAsiento = { numero_asiento: 0, numero_linea: 0, id_cuenta: 0, debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_factura: this.defaultDate, proveedor: '' };
+    
+    }
+    console.log(this.lineasAsiento);
+    //console.log(this.AsientoDataGraph);
 
       //logica para hacer post
       //
       //
       //
-
-    }
   }
 
   addNewRows(more_rows: number) {
@@ -286,8 +321,6 @@ export class EdiTableComponent implements OnInit {
   }
 
   setCuenta(id_cuenta: number, rowNum: string) {
-    console.log(id_cuenta)
-
     let cuenta: string = id_cuenta.toString();
     let index: number = +rowNum - 1;
     if (this.AsientoDataGraph[index].fecha_emision_factura != this.defaultDate && this.AsientoDataGraph[index].descripcion != '' && this.AsientoDataGraph[index].impuesto != '' && this.AsientoDataGraph[index].proveedor != '') {
