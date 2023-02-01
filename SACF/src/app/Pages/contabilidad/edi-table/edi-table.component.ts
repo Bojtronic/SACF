@@ -25,15 +25,9 @@ export class EdiTableComponent implements OnInit {
   today = new Date(new Date().getTime());
   defaultDate = new Date('01-01-2000');
 
-
-
-
   lineasAsiento: LineaAsiento[] = [
     { numero_asiento: 0, numero_linea: 0, id_cuenta: 0, debito: 0, credito: 0, descripcion: '', impuesto: '', fecha_factura: new Date('01-01-2000'), proveedor: '' }
   ];
-
-
-
 
   AsientoDataGraph: LineaAsientoGraph[] = [
     { numero_linea: 1, cuenta: '', debito_cantidad: 0, debito_deshabilitado: false, credito_cantidad: 0, credito_deshabilitado: false, descripcion: '', impuesto: '', fecha_emision_factura: this.defaultDate, proveedor: '' },
@@ -50,6 +44,8 @@ export class EdiTableComponent implements OnInit {
 
   diferenciaDC: number = this.totalDebitos - this.totalCreditos;
 
+
+  
   numero_linea: number = 0;
   cuenta: string = '';
   debito: number = 0;

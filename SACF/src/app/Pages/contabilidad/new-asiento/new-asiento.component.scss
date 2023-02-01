@@ -75,3 +75,47 @@ img {
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    //border-collapse: separate;
+    //table-layout: auto;
+  }
+  
+  td {
+    border-color: black;
+    //height: 10px;
+  }
+  
+  
+  th {
+    border-color: #8fc3ee;
+    width: 100px;
+  }
+  
+  tr {
+    border-color: black;
+  }
+  
+  .field {
+    border: 0px;
+    outline-color: #8fc3ee;
+    width: 100px;
+    //outline: none;
+    overflow: hidden;
+    display: block;
+    //resize: none;
+    margin-left: -20px;
+    text-align: center;
+  
+  }

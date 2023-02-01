@@ -1,3 +1,17 @@
+<style>
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>
+
 <mat-card>
   <div>
     <div>
@@ -30,9 +44,8 @@
           <mat-form-field appearance="fill" style="margin-left: 20px; width: 100px;">
             <mat-label>Divisa</mat-label>
             <mat-select>
-              <mat-option value="Dolar">Dolar</mat-option>
-              <mat-option value="Euro" disabled>Euro (disabled)</mat-option>
-              <mat-option value="Colon">Colon</mat-option>
+              <mat-option (click)="setDivisa('Dolar')" value="Dolar">Dolar</mat-option>
+              <mat-option (click)="setDivisa('Colon')" value="Colon">Colon</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -67,7 +80,141 @@
 
 
 
-  <app-edi-table></app-edi-table>
+  
+  
+  <table style="border-collapse: collapse;" mat-table [dataSource]="dataSource">
+    <!-- number Column -->
+    <ng-container matColumnDef="numero_linea">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element">
+  
+        <label style="width: 10px;">{{element.numero_linea}}</label>
+      </td>
+    </ng-container>
+  
+    <!-- account Column -->
+    <ng-container matColumnDef="cuenta">
+      <th mat-header-cell *matHeaderCellDef> cuenta </th>
+      <td mat-cell *matCellDef="let element">
+  
+  
+        <mat-form-field style="width: 250px; margin-left: -50px;">
+          <mat-select>
+            <mat-option (click)="openNewCuenta()" style="cursor:cell; background-color: #8fc3ee;">
+              <mat-icon>add</mat-icon> Agregar cuenta
+            </mat-option>
+            <mat-option *ngFor="let cuenta of cuentas" [value]="element.cuenta"
+              (click)="setCuenta(cuenta.id_cuenta!, element.numero_linea)">
+              {{cuenta.id_cuenta}} - {{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.tipo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+      </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="debito">
+      <th mat-header-cell *matHeaderCellDef> debito </th>
+      <td mat-cell *matCellDef="let element">
+        <input type="number" onkeypress="return event.charCode >= 46" class="field" #debito
+          (ngModelChange)="setDebito(debito.value,element.numero_linea)" [(ngModel)]="element.debito_cantidad"
+          [disabled]="element.debito_deshabilitado">
+      </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="credito">
+      <th mat-header-cell *matHeaderCellDef> credito </th>
+      <td mat-cell *matCellDef="let element">
+        <input type="number" onkeypress="return event.charCode >= 46" class="field" #credito
+          (ngModelChange)="setCredito(credito.value,element.numero_linea)" [(ngModel)]="element.credito_cantidad"
+          [disabled]="element.credito_deshabilitado">
+      </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> descripcion </th>
+      <td mat-cell *matCellDef="let element">
+        <textarea class="field" #descripcion (ngModelChange)="setDescripcion(descripcion.value,element.numero_linea)"
+          ngModel="" value="element.descripcion" style="height:70px; font-size:smaller"></textarea>
+      </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="impuesto">
+      <th mat-header-cell *matHeaderCellDef> impuesto </th>
+      <td mat-cell *matCellDef="let element">
+        <input class="field" #impuesto (ngModelChange)="setImpuesto(impuesto.value,element.numero_linea)" ngModel=""
+          value="element.impuesto">
+      </td>
+    </ng-container>
+  
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="fecha_emision_factura">
+      <th mat-header-cell *matHeaderCellDef> Emision de factura </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field style="width: 110px;">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <input style="margin-left: -10px;" class="field" matInput #fecha_emision_factura
+            (dateChange)="setFecha_emision_factura($event,element.numero_linea)" [matDatepicker]="picker"
+            placeholder="dd/mm/aaaa" value="defaultDate">
+        </mat-form-field>
+      </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="proveedor">
+      <th mat-header-cell *matHeaderCellDef> proveedor </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field style="width: 90px;">
+          <mat-select>
+            <mat-option *ngFor="let proveedor of proveedores" value="element.proveedor"
+              (click)="setProveedor(proveedor.nombre+' '+'-'+' '+proveedor.correo,element.numero_linea)">
+              {{proveedor.nombre}} - {{proveedor.correo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="eliminar">
+      *ngFor="let AsientoRow of AsientoRows"
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td style="width: 5%;" mat-cell *matCellDef="let element">
+        <button style="margin-left: 20%;" mat-icon-button (click)="deleteRow(element.numero_linea)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+  </table>
+  
+  <br>
+  <input type="number" value="1" style="width: 25px; border-color: #8fc3ee; border-radius: 50%;" [(ngModel)]="more_rows">
+  <button mat-icon-button (click)="addNewRows(more_rows)">
+    <mat-icon>note_add</mat-icon>
+  </button>
+  
+  <hr>
+  
+  <div style="margin-left: 33%;">
+    <td style="width: 160px;">
+      {{totalDebitos}}
+    </td>
+    <td style="width: 160px;">
+      {{totalCreditos}}
+    </td>
+    <td style="width: 160px;">
+      {{diferenciaDC}}
+    </td>
+  </div>
 
 
 
@@ -109,8 +256,8 @@
       <mat-form-field style="width: 120px;">
         <mat-label>Guardar</mat-label>
         <mat-select>
-          <mat-option value="op1">Guardar y crear nuevo</mat-option>
-          <mat-option value="op2">Guardar y cerrar</mat-option>
+          <mat-option (click)="guardarCrear()" value="op1">Guardar y crear nuevo</mat-option>
+          <mat-option (click)="guardarCerrar()" value="op2">Guardar y cerrar</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

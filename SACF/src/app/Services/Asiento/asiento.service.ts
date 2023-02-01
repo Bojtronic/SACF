@@ -14,8 +14,11 @@ export class AsientoService {
   Url_Asientos: string = environment.APIurl + "api/asientos/";
   Url_LineasAsiento: string = environment.APIurl + "api/lineasasiento/";
 
+  consecutivo: number = 1;
+
   constructor(private http: HttpClient) { }
 
+  
   //devuelve todos los asientos
   getAsientos(): Observable<Asiento[]> {
     return this.http.get<Asiento[]>(this.Url_Asientos);
@@ -38,7 +41,7 @@ export class AsientoService {
     return this.http.get<LineaAsiento[]>(this.Url_LineasAsiento);
   }
 
-  addLineasAsiento(lineaAsiento: LineaAsiento): Observable<LineaAsiento> {
+  addLineaAsiento(lineaAsiento: LineaAsiento): Observable<LineaAsiento> {
     return this.http.post<LineaAsiento>(this.Url_LineasAsiento, lineaAsiento);
   }
 
