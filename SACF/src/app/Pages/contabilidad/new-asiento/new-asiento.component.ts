@@ -181,8 +181,7 @@ export class NewAsientoComponent {
 
       //logica para hacer post
       //
-      //
-      //
+      
 
       this.asientoService.addAsiento(Asiento).subscribe(data => {
         //this.toastr.success("asiento "+this.consecutivo_asiento+" se ha guardado");
